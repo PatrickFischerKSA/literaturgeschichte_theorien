@@ -1,23 +1,57 @@
 (function () {
   const i18n = window.LitI18n;
   const taskI18n = window.LitTaskI18n;
+  const SUPPORTED_LANGUAGES = ["de", "en", "fr", "es", "ru"];
 
   const crossLanguageMap = {
     selection: "auswahl selektiv selektion",
+    "sélection": "auswahl selektiv selektion selection",
+    seleccion: "auswahl selektiv selektion selection",
+    selección: "auswahl selektiv selektion selection",
+    выбор: "auswahl selektiv selektion selection",
     selective: "auswahl selektiv selektion",
     order: "ordnung struktur gliederung",
+    orden: "ordnung struktur gliederung order",
+    ordre: "ordnung struktur gliederung order",
+    порядок: "ordnung struktur gliederung order",
     structure: "struktur ordnung gliederung",
+    estructura: "struktur ordnung gliederung structure",
+    structure_fr: "struktur ordnung gliederung structure",
     interpretation: "deutung interpretation",
+    interpretación: "deutung interpretation",
+    interpretation_fr: "deutung interpretation",
+    интерпретация: "deutung interpretation",
     narrative: "narrativ erzaehlung erzaehlt deutung",
+    narratif: "narrativ erzaehlung erzaehlt deutung narrative",
+    narrativo: "narrativ erzaehlung erzaehlt deutung narrative",
+    нарратив: "narrativ erzaehlung erzaehlt deutung narrative",
     perspective: "perspektive perspektivisch",
+    perspective_fr: "perspektive perspektivisch perspective",
+    perspectiva: "perspektive perspektivisch perspective",
+    перспектива: "perspektive perspektivisch perspective",
     constructed: "konstruiert konstruktion",
     construction: "konstruktion konstruiert",
+    construcción: "konstruktion konstruiert construction",
+    construction_fr: "konstruktion konstruiert construction",
+    конструкция: "konstruktion konstruiert construction",
     institution: "institution schule universitaet verlag archiv",
     institutions: "institutionen schule universitaet verlag archiv",
+    institución: "institution institutionen schule universitaet verlag archiv",
+    institution_fr: "institution institutionen schule universitaet verlag archiv",
+    институт: "institution institutionen schule universitaet verlag archiv",
     canon: "kanon",
     canonization: "kanonisierung",
+    canonisation: "kanonisierung canonization",
+    canonización: "kanonisierung canonization",
+    канонизация: "kanonisierung canonization",
     periodization: "periodisierung",
+    périodisation: "periodisierung periodization",
+    periodización: "periodisierung periodization",
+    периодизация: "periodisierung periodization",
     heuristic: "heuristik heuristisch",
+    heuristique: "heuristik heuristisch heuristic",
+    heurística: "heuristik heuristisch heuristic",
+    эвристика: "heuristik heuristisch heuristic",
     transition: "uebergang ueberlagerung",
     overlap: "ueberlagerung",
     modern: "modern",
@@ -43,13 +77,25 @@
     exclusion: "ausschluss ausblenden unsichtbar",
     visibility: "sichtbarkeit sichtbar",
     memory: "gedaechtnis erinnerung",
+    mémoire: "gedaechtnis erinnerung memory",
+    memoria: "gedaechtnis erinnerung memory",
+    память: "gedaechtnis erinnerung memory",
     school: "schule schulkanon curriculum",
     censorship: "zensur",
+    censure: "zensur censorship",
+    censura: "zensur censorship",
+    цензура: "zensur censorship",
     state: "staat",
     nation: "nation national",
     transnational: "transnational",
+    transnationale: "transnational transnationale",
+    transnacional: "transnational transnacional",
+    транснациональный: "transnational",
     satire: "satire satirisch",
     political: "politisch",
+    politique: "politisch political",
+    político: "politisch political",
+    политический: "politisch political",
     jewish: "juedisch juedin",
     jewish_alt: "judisch judin",
     ambiguity: "ambivalenz instabilitaet",
@@ -75,7 +121,7 @@
       .toLowerCase()
       .replace(/ß/g, "ss")
       .replace(/[„“"']/g, "")
-      .replace(/[^a-z0-9]+/g, " ")
+      .replace(/[^\p{L}\p{N}]+/gu, " ")
       .trim();
 
     const additions = [];
@@ -89,7 +135,11 @@
   }
 
   function lang(state) {
-    return state?.settings?.language === "en" ? "en" : "de";
+    return SUPPORTED_LANGUAGES.includes(state?.settings?.language) ? state.settings.language : "de";
+  }
+
+  function copy(state, variants) {
+    return variants[lang(state)] || variants.en || variants.de || "";
   }
 
   function ui(state, key) {
@@ -97,8 +147,7 @@
   }
 
   function localizedTask(task, state) {
-    if (lang(state) !== "en") return task;
-    const translation = taskI18n?.getTask("en", task.id);
+    const translation = taskI18n?.getTask(lang(state), task.id);
     if (!translation) return task;
     const localized = { ...task, ...translation };
     if (translation.options && task.options) {
@@ -148,15 +197,33 @@
 
   function buildWrongFeedback(task, attempts, state) {
     if (attempts === 1) {
-      return buildFeedback("error", ui(state, "neutralWrong"), task.firstHint || (lang(state) === "en" ? "Check the task again more carefully." : "Prüfe die Aufgabe noch einmal genauer."));
+      return buildFeedback("error", ui(state, "neutralWrong"), task.firstHint || copy(state, {
+        de: "Prüfe die Aufgabe noch einmal genauer.",
+        en: "Check the task again more carefully.",
+        fr: "Vérifie encore une fois la tâche plus attentivement.",
+        es: "Revisa la tarea una vez más con mayor atención.",
+        ru: "Проверь задание ещё раз внимательнее."
+      }));
     }
     if (attempts === 2) {
-      return buildFeedback("warn", ui(state, "secondWrong"), task.secondHint || (lang(state) === "en" ? "Focus on the content-related precision of your answer." : "Achte auf die inhaltliche Präzision deiner Auswahl."));
+      return buildFeedback("warn", ui(state, "secondWrong"), task.secondHint || copy(state, {
+        de: "Achte auf die inhaltliche Präzision deiner Auswahl.",
+        en: "Focus on the content-related precision of your answer.",
+        fr: "Concentre-toi sur la précision conceptuelle de ta réponse.",
+        es: "Concéntrate en la precisión conceptual de tu respuesta.",
+        ru: "Сосредоточься на содержательной точности своего ответа."
+      }));
     }
     return buildFeedback(
       "success",
       ui(state, "modelAnswer"),
-      task.modelAnswer || task.explanation || "Die Aufgabe wird jetzt mit einer Musterlösung freigegeben."
+      task.modelAnswer || task.explanation || copy(state, {
+        de: "Die Aufgabe wird jetzt mit einer Musterlösung freigegeben.",
+        en: "The task is now released with a model answer.",
+        fr: "La tâche est maintenant libérée avec une réponse modèle.",
+        es: "La tarea queda ahora liberada con una respuesta modelo.",
+        ru: "Задание теперь открывается с образцовым ответом."
+      })
     );
   }
 
@@ -202,8 +269,26 @@
     return `
       <details class="teacher-solution">
         <summary>${escapeHtml(ui(state, "teacherSolution"))}</summary>
-        <p><strong>${escapeHtml(ui(state, "modelAnswer"))}:</strong> ${escapeHtml(taskText.modelAnswer || taskText.explanation || "Keine Musterlösung hinterlegt.")}</p>
-        <p><strong>${escapeHtml(lang(state) === "en" ? "Didactic focus" : "Didaktischer Fokus")}:</strong> ${escapeHtml(taskText.help || "Aufgabenspezifische Präzision sichern.")}</p>
+        <p><strong>${escapeHtml(ui(state, "modelAnswer"))}:</strong> ${escapeHtml(taskText.modelAnswer || taskText.explanation || copy(state, {
+          de: "Keine Musterlösung hinterlegt.",
+          en: "No model answer stored.",
+          fr: "Aucune réponse modèle n'est enregistrée.",
+          es: "No hay una respuesta modelo guardada.",
+          ru: "Образцовый ответ не задан."
+        }))}</p>
+        <p><strong>${escapeHtml(copy(state, {
+          de: "Didaktischer Fokus",
+          en: "Didactic focus",
+          fr: "Focalisation didactique",
+          es: "Foco didáctico",
+          ru: "Дидактический фокус"
+        }))}:</strong> ${escapeHtml(taskText.help || copy(state, {
+          de: "Aufgabenspezifische Präzision sichern.",
+          en: "Secure task-specific precision.",
+          fr: "Assurer la précision propre à la tâche.",
+          es: "Asegurar la precisión específica de la tarea.",
+          ru: "Обеспечить точность, требуемую конкретным заданием."
+        }))}</p>
       </details>
     `;
   }
@@ -335,7 +420,13 @@
           </div>
           <span class="task-state">${escapeHtml(statusText)}</span>
         </div>
-        ${lang(state) === "en" ? `<p class="task-language-note">Focus guide and navigation are fully bilingual. Short answers may be written in German or English.</p>` : ""}
+        ${lang(state) !== "de" ? `<p class="task-language-note">${escapeHtml(copy(state, {
+          de: "Fokusspur und Navigation sind mehrsprachig. Offene Antworten koennen in der gewaehlten Sprache formuliert werden; die Auswertung orientiert sich an fachlichen Schluesselbegriffen.",
+          en: "Focus guide and navigation are multilingual. Open responses may be written in the selected language; evaluation follows key disciplinary concepts.",
+          fr: "Le parcours guidé et la navigation sont multilingues. Les réponses ouvertes peuvent être rédigées dans la langue choisie ; l'évaluation suit des concepts disciplinaires clés.",
+          es: "La guía focalizada y la navegación son multilingües. Las respuestas abiertas pueden escribirse en la lengua elegida; la evaluación se orienta por conceptos disciplinares clave.",
+          ru: "Фокусный маршрут и навигация многоязычны. Открытые ответы можно писать на выбранном языке; оценивание опирается на ключевые предметные понятия."
+        }))}</p>` : ""}
         <p class="task-prompt">${escapeHtml(taskText.prompt)}</p>
         <p class="task-help">${escapeHtml(taskText.help || "")}</p>
         <div class="task-body">${body}</div>

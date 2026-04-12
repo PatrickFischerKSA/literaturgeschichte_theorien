@@ -161,6 +161,23 @@ button {
   margin-top: 22px;
 }
 
+.language-switcher {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.language-pill {
+  min-width: 54px;
+  justify-content: center;
+}
+
+.language-pill.is-active {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+  color: #f8fbfd;
+  border-color: transparent;
+}
+
 .btn {
   border: none;
   border-radius: 999px;

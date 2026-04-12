@@ -8,6 +8,14 @@
   const i18n = window.LitI18n;
   const taskI18n = window.LitTaskI18n;
   const state = progressApi.loadState();
+  const SUPPORTED_LANGUAGES = ["de", "en", "fr", "es", "ru"];
+  const LANGUAGE_BUTTONS = [
+    { code: "de", key: "languageDe" },
+    { code: "en", key: "languageEn" },
+    { code: "fr", key: "languageFr" },
+    { code: "es", key: "languageEs" },
+    { code: "ru", key: "languageRu" }
+  ];
 
   let glossaryQuery = "";
 
@@ -21,7 +29,11 @@
   }
 
   function lang() {
-    return state.settings.language === "en" ? "en" : "de";
+    return SUPPORTED_LANGUAGES.includes(state.settings.language) ? state.settings.language : "de";
+  }
+
+  function copy(variants) {
+    return variants[lang()] || variants.en || variants.de || "";
   }
 
   function ui(key) {
@@ -46,6 +58,15 @@
 
   function taskText(task, key) {
     return taskI18n?.getTask(lang(), task.id)?.[key] || task[key];
+  }
+
+  function titleParts(module) {
+    const localizedTitle = moduleText(module, "title");
+    const match = localizedTitle.match(/^([^:]+):\s*(.+)$/);
+    if (match) {
+      return { prefix: match[1], label: match[2] };
+    }
+    return { prefix: module.navTitle, label: localizedTitle };
   }
 
   function fallbackFocus(module) {
@@ -227,8 +248,8 @@
   function renderKeyTerms() {
     return siteData.site.englishFocus
       .map((pair) => {
-        const primary = lang() === "en" ? pair.en : pair.de;
-        const secondary = lang() === "en" ? pair.de : pair.en;
+        const primary = lang() === "de" ? pair.de : pair.en;
+        const secondary = lang() === "de" ? pair.en : pair.de;
         return `
           <span class="term-chip">
             <strong>${escapeHtml(primary)}</strong>
@@ -239,15 +260,37 @@
       .join("");
   }
 
+  function renderLanguageSwitcher() {
+    return `
+      <div class="language-switcher" role="group" aria-label="${escapeHtml(copy({
+        de: "Sprachauswahl",
+        en: "Language selection",
+        fr: "Choix de la langue",
+        es: "Selección de idioma",
+        ru: "Выбор языка"
+      }))}">
+        ${LANGUAGE_BUTTONS.map((entry) => {
+          const active = lang() === entry.code;
+          return `
+            <button type="button" class="btn ghost language-pill ${active ? "is-active" : ""}" data-language="${escapeHtml(entry.code)}" aria-pressed="${active ? "true" : "false"}">
+              ${escapeHtml(ui(entry.key))}
+            </button>
+          `;
+        }).join("")}
+      </div>
+    `;
+  }
+
   function renderHeroCards() {
     return modules
       .map((module) => {
         const progress = progressApi.getTaskProgress(state, module);
+        const { prefix, label } = titleParts(module);
         return `
           <a class="module-card-link" href="#${escapeHtml(module.id)}" data-module-link="${escapeHtml(module.id)}">
             <article class="module-card">
-              <p class="module-card-kicker">${escapeHtml(module.navTitle)}</p>
-              <h3>${escapeHtml(moduleText(module, "title").replace(/^Module \d+: /, "").replace(/^Modul \d+: /, ""))}</h3>
+              <p class="module-card-kicker">${escapeHtml(prefix)}</p>
+              <h3>${escapeHtml(label)}</h3>
               <p>${escapeHtml(moduleText(module, "subtitle"))}</p>
               <div class="progress-mini">
                 <div class="progress-track">
@@ -268,9 +311,10 @@
         ${modules
           .map((module) => {
             const progress = progressApi.getTaskProgress(state, module);
+            const { prefix } = titleParts(module);
             return `
               <a href="#${escapeHtml(module.id)}" data-module-link="${escapeHtml(module.id)}">
-                <span>${escapeHtml(module.navTitle)}</span>
+                <span>${escapeHtml(prefix)}</span>
                 <small>${progress.percent}%</small>
               </a>
             `;
@@ -406,9 +450,27 @@
             (entry) => `
               <article class="deep-card">
                 <h4>${escapeHtml(entry.title)}</h4>
-                <p><strong>Focus:</strong> ${escapeHtml(entry.focus)}</p>
-                <p><strong>Good for:</strong> ${escapeHtml(entry.strength)}</p>
-                <p><strong>Blind spot:</strong> ${escapeHtml(entry.blindSpot)}</p>
+                <p><strong>${escapeHtml(copy({
+                  de: "Fokus",
+                  en: "Focus",
+                  fr: "Focalisation",
+                  es: "Foco",
+                  ru: "Фокус"
+                }))}:</strong> ${escapeHtml(entry.focus)}</p>
+                <p><strong>${escapeHtml(copy({
+                  de: "Stärke",
+                  en: "Good for",
+                  fr: "Atout",
+                  es: "Fortaleza",
+                  ru: "Сильная сторона"
+                }))}:</strong> ${escapeHtml(entry.strength)}</p>
+                <p><strong>${escapeHtml(copy({
+                  de: "Blindstelle",
+                  en: "Blind spot",
+                  fr: "Angle mort",
+                  es: "Punto ciego",
+                  ru: "Слепое пятно"
+                }))}:</strong> ${escapeHtml(entry.blindSpot)}</p>
               </article>
             `
           )
@@ -502,12 +564,13 @@
     const subtitle = moduleText(module, "subtitle");
     const intro = moduleText(module, "intro");
     const goals = moduleText(module, "goals") || module.goals;
+    const { prefix } = titleParts(module);
 
     return `
       <section class="module-panel" id="${escapeHtml(module.id)}">
         <div class="module-top">
           <div>
-            <p class="section-kicker">${escapeHtml(module.navTitle)}</p>
+            <p class="section-kicker">${escapeHtml(prefix)}</p>
             <h2>${escapeHtml(title)}</h2>
             <p class="module-subtitle">${escapeHtml(subtitle)}</p>
           </div>
@@ -540,14 +603,32 @@
         <div class="module-top">
           <div>
             <p class="section-kicker">${escapeHtml(ui("glossary"))}</p>
-            <h2>${escapeHtml(lang() === "en" ? "Glossary DE/EN" : "Glossar DE/EN")}</h2>
-            <p class="module-subtitle">${escapeHtml(lang() === "en" ? "Core key terms of the unit in two languages." : "Zentrale Fachbegriffe der Einheit zweisprachig und kommentiert.")}</p>
+            <h2>${escapeHtml(copy({
+              de: "Glossar DE/EN",
+              en: "Glossary DE/EN",
+              fr: "Glossaire DE/EN",
+              es: "Glosario DE/EN",
+              ru: "Глоссарий DE/EN"
+            }))}</h2>
+            <p class="module-subtitle">${escapeHtml(copy({
+              de: "Zentrale Fachbegriffe der Einheit zweisprachig und kommentiert.",
+              en: "Core key terms of the unit in two languages.",
+              fr: "Les termes clés de l'unité, commentés de manière bilingue.",
+              es: "Los conceptos clave de la unidad, comentados de forma bilingüe.",
+              ru: "Ключевые понятия курса в двуязычном и комментированном формате."
+            }))}</p>
           </div>
         </div>
         <div class="glossary-toolbar">
           <label class="glossary-search">
             <span>${escapeHtml(ui("searchTerm"))}</span>
-            <input id="glossary-search-input" type="search" placeholder="${escapeHtml(lang() === "en" ? "e.g. canon, discourse, distant reading" : "z. B. Kanon, discourse, distant reading")}" value="${escapeHtml(glossaryQuery)}" />
+            <input id="glossary-search-input" type="search" placeholder="${escapeHtml(copy({
+              de: "z. B. Kanon, discourse, distant reading",
+              en: "e.g. canon, discourse, distant reading",
+              fr: "par ex. canon, discourse, distant reading",
+              es: "p. ej. canon, discourse, distant reading",
+              ru: "например: canon, discourse, distant reading"
+            }))}" value="${escapeHtml(glossaryQuery)}" />
           </label>
           <p>${results.length} ${escapeHtml(ui("matches"))}</p>
         </div>
@@ -556,12 +637,24 @@
             .map(
               (term) => `
                 <article class="glossary-card">
-                  <h3>${escapeHtml(lang() === "en" ? term.en : term.de)}</h3>
-                  <p class="glossary-english">${escapeHtml(lang() === "en" ? term.de : term.en)}</p>
+                  <h3>${escapeHtml(lang() === "de" ? term.de : term.en)}</h3>
+                  <p class="glossary-english">${escapeHtml(lang() === "de" ? term.en : term.de)}</p>
                   <p><strong>DE:</strong> ${escapeHtml(term.definitionDe)}</p>
                   <p><strong>EN:</strong> ${escapeHtml(term.definitionEn)}</p>
-                  <p><strong>${escapeHtml(lang() === "en" ? "Comment" : "Kommentar")}:</strong> ${escapeHtml(term.notes)}</p>
-                  <p><strong>${escapeHtml(lang() === "en" ? "Related" : "Verwandt")}:</strong> ${escapeHtml((term.related || []).join(", "))}</p>
+                  <p><strong>${escapeHtml(copy({
+                    de: "Kommentar",
+                    en: "Comment",
+                    fr: "Commentaire",
+                    es: "Comentario",
+                    ru: "Комментарий"
+                  }))}:</strong> ${escapeHtml(term.notes)}</p>
+                  <p><strong>${escapeHtml(copy({
+                    de: "Verwandt",
+                    en: "Related",
+                    fr: "Associé",
+                    es: "Relacionado",
+                    ru: "Связано"
+                  }))}:</strong> ${escapeHtml((term.related || []).join(", "))}</p>
                 </article>
               `
             )
@@ -578,19 +671,43 @@
           <div class="module-top">
             <div>
               <p class="section-kicker">${escapeHtml(ui("teacher"))}</p>
-              <h2>${escapeHtml(lang() === "en" ? "Protected teacher area" : "Geschützter Lösungs- und Planungsbereich")}</h2>
+              <h2>${escapeHtml(copy({
+                de: "Geschützter Lösungs- und Planungsbereich",
+                en: "Protected teacher area",
+                fr: "Espace enseignant protégé",
+                es: "Área docente protegida",
+                ru: "Защищённая зона для преподавателей"
+              }))}</h2>
               <p class="module-subtitle">${escapeHtml(ui("teacherProtected"))}</p>
             </div>
           </div>
           <p>${escapeHtml(teacherGuideText("overview"))}</p>
           <form id="teacher-login-form" class="teacher-login-form">
             <label>
-              <span>${escapeHtml(lang() === "en" ? "Password" : "Passwort")}</span>
-              <input type="password" id="teacher-password-input" autocomplete="current-password" placeholder="${escapeHtml(lang() === "en" ? "Enter password" : "Passwort eingeben")}" />
+              <span>${escapeHtml(copy({
+                de: "Passwort",
+                en: "Password",
+                fr: "Mot de passe",
+                es: "Contraseña",
+                ru: "Пароль"
+              }))}</span>
+              <input type="password" id="teacher-password-input" autocomplete="current-password" placeholder="${escapeHtml(copy({
+                de: "Passwort eingeben",
+                en: "Enter password",
+                fr: "Saisir le mot de passe",
+                es: "Introducir contraseña",
+                ru: "Введите пароль"
+              }))}" />
             </label>
             <button type="submit" class="btn primary">${escapeHtml(ui("teacherOpen"))}</button>
           </form>
-          <p class="teacher-small-note">${escapeHtml(lang() === "en" ? "The lock is intentionally lightweight and fully client-side." : "Hinweis: Die Sperre ist bewusst niedrigschwellig und rein clientseitig.")}</p>
+          <p class="teacher-small-note">${escapeHtml(copy({
+            de: "Hinweis: Die Sperre ist bewusst niedrigschwellig und rein clientseitig.",
+            en: "The lock is intentionally lightweight and fully client-side.",
+            fr: "Remarque : la protection reste volontairement légère et entièrement côté client.",
+            es: "Nota: la protección es deliberadamente ligera y totalmente del lado del cliente.",
+            ru: "Примечание: защита намеренно упрощена и полностью работает на стороне клиента."
+          }))}</p>
         </section>
       `;
     }
@@ -600,8 +717,20 @@
         <div class="module-top">
           <div>
             <p class="section-kicker">${escapeHtml(ui("teacher"))}</p>
-            <h2>${escapeHtml(lang() === "en" ? "Teacher mode: same modules, extra visibility" : "Lehrpersonenmodus: gleiche Module, mehr Sichtbarkeit")}</h2>
-            <p class="module-subtitle">${escapeHtml(lang() === "en" ? "Teacher mode no longer creates a separate content version. It uses the same modules as the student view and only reveals solutions and didactic notes inline." : "Der Lehrpersonenmodus erzeugt keine eigene Inhaltsversion mehr. Er nutzt dieselben Module wie die Schüleransicht und blendet nur Lösungen und didaktische Hinweise zusätzlich ein.")}</p>
+            <h2>${escapeHtml(copy({
+              de: "Lehrpersonenmodus: gleiche Module, mehr Sichtbarkeit",
+              en: "Teacher mode: same modules, extra visibility",
+              fr: "Mode enseignant : mêmes modules, visibilité accrue",
+              es: "Modo docente: mismos módulos, más visibilidad",
+              ru: "Режим учителя: те же модули, больше видимости"
+            }))}</h2>
+            <p class="module-subtitle">${escapeHtml(copy({
+              de: "Der Lehrpersonenmodus erzeugt keine eigene Inhaltsversion mehr. Er nutzt dieselben Module wie die Schüleransicht und blendet nur Lösungen und didaktische Hinweise zusätzlich ein.",
+              en: "Teacher mode no longer creates a separate content version. It uses the same modules as the student view and only reveals solutions and didactic notes inline.",
+              fr: "Le mode enseignant ne crée plus de version de contenu séparée. Il utilise les mêmes modules que la vue élève et n'affiche en plus que les solutions et remarques didactiques en ligne.",
+              es: "El modo docente ya no crea una versión separada del contenido. Utiliza los mismos módulos que la vista del alumnado y solo añade soluciones y notas didácticas integradas.",
+              ru: "Режим учителя больше не создаёт отдельную версию содержания. Он использует те же модули, что и ученический режим, и лишь дополнительно показывает решения и дидактические примечания."
+            }))}</p>
           </div>
           <div class="module-actions">
             <button type="button" class="btn ghost" id="teacher-logout-button">${escapeHtml(ui("teacherClose"))}</button>
@@ -609,19 +738,55 @@
         </div>
         <div class="teacher-overview-grid">
           <article class="info-box example">
-            <h4>${escapeHtml(lang() === "en" ? "What changes in teacher mode" : "Was sich im Lehrpersonenmodus ändert")}</h4>
+            <h4>${escapeHtml(copy({
+              de: "Was sich im Lehrpersonenmodus ändert",
+              en: "What changes in teacher mode",
+              fr: "Ce qui change en mode enseignant",
+              es: "Qué cambia en el modo docente",
+              ru: "Что меняется в режиме учителя"
+            }))}</h4>
             <ul>
-              <li>${escapeHtml(lang() === "en" ? "All modules remain identical to the student modules." : "Alle Module bleiben identisch mit den Schülermodulen.")}</li>
-              <li>${escapeHtml(lang() === "en" ? "Model answers appear directly inside the same task cards." : "Musterlösungen erscheinen direkt in denselben Aufgabenkarten.")}</li>
-              <li>${escapeHtml(lang() === "en" ? "The teacher panel serves only as orientation and planning support." : "Der Lehrpersonenbereich dient nur noch der Orientierung und Planung.")}</li>
+              <li>${escapeHtml(copy({
+                de: "Alle Module bleiben identisch mit den Schülermodulen.",
+                en: "All modules remain identical to the student modules.",
+                fr: "Tous les modules restent identiques à ceux de la vue élève.",
+                es: "Todos los módulos siguen siendo idénticos a los de la vista del alumnado.",
+                ru: "Все модули остаются идентичными ученической версии."
+              }))}</li>
+              <li>${escapeHtml(copy({
+                de: "Musterlösungen erscheinen direkt in denselben Aufgabenkarten.",
+                en: "Model answers appear directly inside the same task cards.",
+                fr: "Les solutions types apparaissent directement dans les mêmes cartes d'exercices.",
+                es: "Las soluciones modelo aparecen directamente en las mismas tarjetas de actividades.",
+                ru: "Образцовые ответы появляются прямо в тех же карточках заданий."
+              }))}</li>
+              <li>${escapeHtml(copy({
+                de: "Der Lehrpersonenbereich dient nur noch der Orientierung und Planung.",
+                en: "The teacher panel serves only as orientation and planning support.",
+                fr: "L'espace enseignant sert uniquement d'aide à l'orientation et à la planification.",
+                es: "El área docente sirve únicamente como apoyo para la orientación y la planificación.",
+                ru: "Раздел для преподавателей служит только для ориентации и планирования."
+              }))}</li>
             </ul>
           </article>
           <article class="info-box example">
-            <h4>${escapeHtml(lang() === "en" ? "Teaching suggestions" : "Unterrichtsvorschläge")}</h4>
+            <h4>${escapeHtml(copy({
+              de: "Unterrichtsvorschläge",
+              en: "Teaching suggestions",
+              fr: "Suggestions didactiques",
+              es: "Sugerencias didácticas",
+              ru: "Методические предложения"
+            }))}</h4>
             <ul>${teacherGuideText("suggestions").map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
           </article>
           <article class="info-box criticism">
-            <h4>${escapeHtml(lang() === "en" ? "Technical note" : "Technischer Hinweis")}</h4>
+            <h4>${escapeHtml(copy({
+              de: "Technischer Hinweis",
+              en: "Technical note",
+              fr: "Note technique",
+              es: "Nota técnica",
+              ru: "Техническое замечание"
+            }))}</h4>
             <p>${escapeHtml(teacherGuideText("note"))}</p>
           </article>
         </div>
@@ -631,10 +796,34 @@
               (module) => `
                 <article class="teacher-task-card">
                   <h4>${escapeHtml(moduleText(module, "title"))}</h4>
-                  <p><strong>${escapeHtml(lang() === "en" ? "Use" : "Einsatz")}:</strong> ${escapeHtml(teacherModuleText(module, "use"))}</p>
-                  <p><strong>${escapeHtml(lang() === "en" ? "Didactic focus" : "Didaktischer Fokus")}:</strong> ${escapeHtml(teacherModuleText(module, "didactics"))}</p>
-                  <p><strong>${escapeHtml(lang() === "en" ? "Suitable social forms" : "Geeignete Sozialformen")}:</strong> ${escapeHtml(teacherModuleText(module, "socialForms").join(", "))}</p>
-                  <p><strong>${escapeHtml(lang() === "en" ? "Assessment focus" : "Beobachtung für Beurteilung")}:</strong> ${escapeHtml(teacherModuleText(module, "assessment"))}</p>
+                  <p><strong>${escapeHtml(copy({
+                    de: "Einsatz",
+                    en: "Use",
+                    fr: "Usage",
+                    es: "Uso",
+                    ru: "Применение"
+                  }))}:</strong> ${escapeHtml(teacherModuleText(module, "use"))}</p>
+                  <p><strong>${escapeHtml(copy({
+                    de: "Didaktischer Fokus",
+                    en: "Didactic focus",
+                    fr: "Focalisation didactique",
+                    es: "Foco didáctico",
+                    ru: "Дидактический фокус"
+                  }))}:</strong> ${escapeHtml(teacherModuleText(module, "didactics"))}</p>
+                  <p><strong>${escapeHtml(copy({
+                    de: "Geeignete Sozialformen",
+                    en: "Suitable social forms",
+                    fr: "Formes sociales adaptées",
+                    es: "Formas sociales adecuadas",
+                    ru: "Подходящие формы работы"
+                  }))}:</strong> ${escapeHtml(teacherModuleText(module, "socialForms").join(", "))}</p>
+                  <p><strong>${escapeHtml(copy({
+                    de: "Beobachtung für Beurteilung",
+                    en: "Assessment focus",
+                    fr: "Point d'observation pour l'évaluation",
+                    es: "Foco de observación para la evaluación",
+                    ru: "Что отслеживать при оценивании"
+                  }))}:</strong> ${escapeHtml(teacherModuleText(module, "assessment"))}</p>
                 </article>
               `
             )
@@ -648,19 +837,26 @@
     const root = document.getElementById("app");
     const overall = progressApi.getOverallProgress(state, modules);
     const comparisonAxes = siteText("comparisonAxes") || siteData.site.comparisonAxes;
+    document.documentElement.lang = lang();
 
     root.innerHTML = `
       <div class="page-shell">
         <header class="hero-panel">
           <div class="hero-main">
-            <p class="eyebrow">${escapeHtml(lang() === "en" ? "Digital learning unit | full language switch DE/EN" : "Digitale Lerneinheit | voller Sprachschalter DE/EN")}</p>
+            <p class="eyebrow">${escapeHtml(copy({
+              de: "Digitale Lerneinheit | voller Sprachschalter DE/EN/FR/ES/RU",
+              en: "Digital learning unit | full language switch DE/EN/FR/ES/RU",
+              fr: "Unité d'apprentissage numérique | bascule complète DE/EN/FR/ES/RU",
+              es: "Unidad digital de aprendizaje | cambio completo DE/EN/FR/ES/RU",
+              ru: "Цифровой учебный модуль | полный переключатель DE/EN/FR/ES/RU"
+            }))}</p>
             <h1>${escapeHtml(siteText("title"))}</h1>
             <p class="hero-subtitle">${escapeHtml(siteText("subtitle"))}</p>
             <p class="hero-copy">${escapeHtml(siteText("shortDescription"))}</p>
             ${renderGoals(siteText("heroGoals") || siteData.site.heroGoals)}
             <div class="hero-actions">
               <a class="btn primary" href="#mod-1">${escapeHtml(ui("startModule"))}</a>
-              <button type="button" class="btn ghost" id="language-switch-button">${escapeHtml(lang() === "de" ? ui("languageEn") : ui("languageDe"))}</button>
+              ${renderLanguageSwitcher()}
               <button type="button" class="btn ghost" id="focus-switch-button">${escapeHtml(state.settings.focusMode ? ui("focusOff") : ui("focusOn"))}</button>
               <button type="button" class="btn ghost" id="reset-all-button">${escapeHtml(ui("resetAll"))}</button>
             </div>
@@ -674,14 +870,32 @@
             </article>
             <article class="info-box definition">
               <h4>${escapeHtml(ui("focusQuestion"))}</h4>
-              <p>${escapeHtml(lang() === "en" ? "How can we teach literary history if it is both necessary and contested?" : "Wie lässt sich Literaturgeschichte lehren, wenn sie zugleich notwendig und umstritten ist?")}</p>
+              <p>${escapeHtml(copy({
+                de: "Wie lässt sich Literaturgeschichte lehren, wenn sie zugleich notwendig und umstritten ist?",
+                en: "How can we teach literary history if it is both necessary and contested?",
+                fr: "Comment enseigner l'histoire littéraire si elle est à la fois nécessaire et contestée ?",
+                es: "¿Cómo enseñar historia literaria si es a la vez necesaria y discutida?",
+                ru: "Как преподавать историю литературы, если она одновременно необходима и спорна?"
+              }))}</p>
             </article>
             <article class="info-box english">
-              <h4>${escapeHtml(lang() === "en" ? "Display logic" : "Darstellungslogik")}</h4>
+              <h4>${escapeHtml(copy({
+                de: "Darstellungslogik",
+                en: "Display logic",
+                fr: "Logique de présentation",
+                es: "Lógica de presentación",
+                ru: "Логика представления"
+              }))}</h4>
               <p>${escapeHtml(ui("guidedTrack"))}</p>
             </article>
             <article class="info-box example">
-              <h4>${escapeHtml(lang() === "en" ? "Comparison axes" : "Vergleichsachsen")}</h4>
+              <h4>${escapeHtml(copy({
+                de: "Vergleichsachsen",
+                en: "Comparison axes",
+                fr: "Axes de comparaison",
+                es: "Ejes de comparación",
+                ru: "Оси сравнения"
+              }))}</h4>
               <ul>${comparisonAxes.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
             </article>
           </aside>
@@ -734,9 +948,11 @@
   }
 
   function bindGlobalEvents() {
-    document.getElementById("language-switch-button")?.addEventListener("click", () => {
-      progressApi.setLanguage(state, lang() === "de" ? "en" : "de");
-      renderApp();
+    document.querySelectorAll("[data-language]").forEach((button) => {
+      button.addEventListener("click", () => {
+        progressApi.setLanguage(state, button.dataset.language);
+        renderApp();
+      });
     });
 
     document.getElementById("focus-switch-button")?.addEventListener("click", () => {
@@ -745,11 +961,13 @@
     });
 
     document.getElementById("reset-all-button")?.addEventListener("click", () => {
-      const confirmed = window.confirm(
-        lang() === "en"
-          ? "Do you really want to reset all local progress on this device?"
-          : "Soll der gesamte Lernstand auf diesem Gerät wirklich zurückgesetzt werden?"
-      );
+      const confirmed = window.confirm(copy({
+        de: "Soll der gesamte Lernstand auf diesem Gerät wirklich zurückgesetzt werden?",
+        en: "Do you really want to reset all local progress on this device?",
+        fr: "Veux-tu vraiment réinitialiser toute la progression locale sur cet appareil ?",
+        es: "¿De verdad quieres restablecer todo el progreso local en este dispositivo?",
+        ru: "Вы действительно хотите сбросить весь локальный прогресс на этом устройстве?"
+      }));
       if (!confirmed) return;
       progressApi.resetAll(state);
       glossaryQuery = "";
@@ -760,11 +978,13 @@
       button.addEventListener("click", () => {
         const module = modules.find((entry) => entry.id === button.dataset.resetModule);
         if (!module) return;
-        const confirmed = window.confirm(
-          lang() === "en"
-            ? `Do you really want to reset ${moduleText(module, "title")}?`
-            : `Soll ${module.title} wirklich zurückgesetzt werden?`
-        );
+        const confirmed = window.confirm(copy({
+          de: `Soll ${module.title} wirklich zurückgesetzt werden?`,
+          en: `Do you really want to reset ${moduleText(module, "title")}?`,
+          fr: `Veux-tu vraiment réinitialiser ${moduleText(module, "title")} ?`,
+          es: `¿De verdad quieres restablecer ${moduleText(module, "title")}?`,
+          ru: `Вы действительно хотите сбросить ${moduleText(module, "title")}?`
+        }));
         if (!confirmed) return;
         progressApi.resetModule(state, module);
         renderApp();
@@ -788,7 +1008,13 @@
       event.preventDefault();
       const input = document.getElementById("teacher-password-input");
       if (!teacherPasswordValid(input?.value || "")) {
-        window.alert(lang() === "en" ? "Password not correct." : "Passwort nicht korrekt.");
+        window.alert(copy({
+          de: "Passwort nicht korrekt.",
+          en: "Password not correct.",
+          fr: "Mot de passe incorrect.",
+          es: "Contraseña incorrecta.",
+          ru: "Неверный пароль."
+        }));
         return;
       }
       progressApi.setTeacherAuthorized(state, true);

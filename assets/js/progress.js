@@ -88,7 +88,7 @@
   }
 
   function setLanguage(state, value) {
-    state.settings.language = value === "en" ? "en" : "de";
+    state.settings.language = ["de", "en", "fr", "es", "ru"].includes(value) ? value : "de";
     saveState(state);
   }
 

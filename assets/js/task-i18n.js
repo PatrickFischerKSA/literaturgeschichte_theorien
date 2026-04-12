@@ -749,15 +749,15 @@
   };
 
   function getTask(lang, taskId) {
-    return tasks[lang]?.[taskId] || null;
+    return tasks[lang]?.[taskId] || tasks.en?.[taskId] || null;
   }
 
   function getTeacher(lang, key) {
-    return teacher[lang]?.[key] || null;
+    return teacher[lang]?.[key] || teacher.en?.[key] || null;
   }
 
   function getTeacherModule(lang, moduleId) {
-    return teacher[lang]?.modules?.[moduleId] || null;
+    return teacher[lang]?.modules?.[moduleId] || teacher.en?.modules?.[moduleId] || null;
   }
 
   window.LitTaskI18n = {
