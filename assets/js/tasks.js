@@ -147,6 +147,7 @@
   }
 
   function localizedTask(task, state) {
+    if (lang(state) === "de") return task;
     const translation = taskI18n?.getTask(lang(state), task.id);
     if (!translation) return task;
     const localized = { ...task, ...translation };

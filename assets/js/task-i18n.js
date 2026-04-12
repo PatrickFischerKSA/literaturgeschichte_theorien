@@ -749,14 +749,17 @@
   };
 
   function getTask(lang, taskId) {
+    if (lang === "de") return tasks.de?.[taskId] || null;
     return tasks[lang]?.[taskId] || tasks.en?.[taskId] || null;
   }
 
   function getTeacher(lang, key) {
+    if (lang === "de") return teacher.de?.[key] || null;
     return teacher[lang]?.[key] || teacher.en?.[key] || null;
   }
 
   function getTeacherModule(lang, moduleId) {
+    if (lang === "de") return teacher.de?.modules?.[moduleId] || null;
     return teacher[lang]?.modules?.[moduleId] || teacher.en?.modules?.[moduleId] || null;
   }
 

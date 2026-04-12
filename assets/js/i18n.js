@@ -7,6 +7,9 @@
       resetAll: "Gesamten Lernstand zurücksetzen",
       languageDe: "DE",
       languageEn: "EN",
+      languageFr: "FR",
+      languageEs: "ES",
+      languageRu: "RU",
       focusOn: "Fokusmodus an",
       focusOff: "Fokusmodus aus",
       navigation: "Navigation",
@@ -69,6 +72,9 @@
       resetAll: "Reset all progress",
       languageDe: "DE",
       languageEn: "EN",
+      languageFr: "FR",
+      languageEs: "ES",
+      languageRu: "RU",
       focusOn: "Focus mode on",
       focusOff: "Focus mode off",
       navigation: "Navigation",
@@ -1278,10 +1284,12 @@
   }
 
   function getSite(lang, key) {
+    if (lang === "de") return null;
     return site[lang]?.[key] || site.en?.[key] || null;
   }
 
   function getModule(lang, moduleId, key) {
+    if (lang === "de") return null;
     return modules[moduleId]?.[lang]?.[key] || modules[moduleId]?.en?.[key] || null;
   }
 
