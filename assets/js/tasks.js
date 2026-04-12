@@ -1,4 +1,64 @@
 (function () {
+  const i18n = window.LitI18n;
+  const taskI18n = window.LitTaskI18n;
+
+  const crossLanguageMap = {
+    selection: "auswahl selektiv selektion",
+    selective: "auswahl selektiv selektion",
+    order: "ordnung struktur gliederung",
+    structure: "struktur ordnung gliederung",
+    interpretation: "deutung interpretation",
+    narrative: "narrativ erzaehlung erzaehlt deutung",
+    perspective: "perspektive perspektivisch",
+    constructed: "konstruiert konstruktion",
+    construction: "konstruktion konstruiert",
+    institution: "institution schule universitaet verlag archiv",
+    institutions: "institutionen schule universitaet verlag archiv",
+    canon: "kanon",
+    canonization: "kanonisierung",
+    periodization: "periodisierung",
+    heuristic: "heuristik heuristisch",
+    transition: "uebergang ueberlagerung",
+    overlap: "ueberlagerung",
+    modern: "modern",
+    fragment: "fragment fragmentarisch",
+    reception: "rezeption rezeptionsaesthetik wirkung",
+    reader: "leser leserschaft",
+    readers: "leserschaft leser",
+    history: "geschichte historisch",
+    context: "kontext historisch",
+    form: "form formal formalismus",
+    close: "textnah close reading",
+    reading: "lektuere reading",
+    distant: "distant reading korpus",
+    corpus: "korpus korpusanalyse",
+    data: "daten",
+    interpretation_needed: "interpretation kontext bedeutung",
+    power: "macht",
+    ideology: "ideologie",
+    class: "klasse",
+    discourse: "diskurs",
+    system: "system",
+    reader_response: "erwartungshorizont rezeption",
+    exclusion: "ausschluss ausblenden unsichtbar",
+    visibility: "sichtbarkeit sichtbar",
+    memory: "gedaechtnis erinnerung",
+    school: "schule schulkanon curriculum",
+    censorship: "zensur",
+    state: "staat",
+    nation: "nation national",
+    transnational: "transnational",
+    satire: "satire satirisch",
+    political: "politisch",
+    jewish: "juedisch juedin",
+    jewish_alt: "judisch judin",
+    ambiguity: "ambivalenz instabilitaet",
+    instability: "instabilitaet",
+    question: "frage fragestellung",
+    visible: "sichtbar zeigt erschliesst",
+    blindspot: "blendet aus uebersieht grenze"
+  };
+
   function escapeHtml(value) {
     return String(value || "")
       .replaceAll("&", "&amp;")
@@ -9,7 +69,7 @@
   }
 
   function normalize(value) {
-    return String(value || "")
+    const normalized = String(value || "")
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase()
@@ -17,6 +77,49 @@
       .replace(/[„“"']/g, "")
       .replace(/[^a-z0-9]+/g, " ")
       .trim();
+
+    const additions = [];
+    Object.entries(crossLanguageMap).forEach(([source, target]) => {
+      if (normalized.includes(source.replace(/_/g, " "))) {
+        additions.push(target);
+      }
+    });
+
+    return `${normalized} ${additions.join(" ")}`.trim();
+  }
+
+  function lang(state) {
+    return state?.settings?.language === "en" ? "en" : "de";
+  }
+
+  function ui(state, key) {
+    return i18n.getUi(lang(state), key);
+  }
+
+  function localizedTask(task, state) {
+    if (lang(state) !== "en") return task;
+    const translation = taskI18n?.getTask("en", task.id);
+    if (!translation) return task;
+    const localized = { ...task, ...translation };
+    if (translation.options && task.options) {
+      localized.options = task.options.map((option, index) => ({
+        ...option,
+        label: translation.options[index] || option.label
+      }));
+    }
+    if (translation.pairs && task.pairs) {
+      localized.pairs = translation.pairs.map((pair, index) => ({
+        ...task.pairs[index],
+        ...pair
+      }));
+    }
+    if (translation.items && task.items) {
+      localized.items = task.items.map((item, index) => ({
+        ...item,
+        label: translation.items[index]?.label || item.label
+      }));
+    }
+    return localized;
   }
 
   function containsVariant(answer, variant) {
@@ -43,16 +146,16 @@
     return { status, title, body };
   }
 
-  function buildWrongFeedback(task, attempts) {
+  function buildWrongFeedback(task, attempts, state) {
     if (attempts === 1) {
-      return buildFeedback("error", "Falsch", task.firstHint || "Prüfe die Aufgabe noch einmal genauer.");
+      return buildFeedback("error", ui(state, "neutralWrong"), task.firstHint || (lang(state) === "en" ? "Check the task again more carefully." : "Prüfe die Aufgabe noch einmal genauer."));
     }
     if (attempts === 2) {
-      return buildFeedback("warn", "Noch nicht überzeugend", task.secondHint || "Achte auf die inhaltliche Präzision deiner Auswahl.");
+      return buildFeedback("warn", ui(state, "secondWrong"), task.secondHint || (lang(state) === "en" ? "Focus on the content-related precision of your answer." : "Achte auf die inhaltliche Präzision deiner Auswahl."));
     }
     return buildFeedback(
       "success",
-      "Modelllösung",
+      ui(state, "modelAnswer"),
       task.modelAnswer || task.explanation || "Die Aufgabe wird jetzt mit einer Musterlösung freigegeben."
     );
   }
@@ -94,12 +197,13 @@
   }
 
   function renderTeacherBlock(task, state) {
+    const taskText = localizedTask(task, state);
     if (!state.settings.teacherAuthorized) return "";
     return `
       <details class="teacher-solution">
-        <summary>Musterlösung und Hinweis für Lehrpersonen</summary>
-        <p><strong>Musterlösung:</strong> ${escapeHtml(task.modelAnswer || task.explanation || "Keine Musterlösung hinterlegt.")}</p>
-        <p><strong>Didaktischer Fokus:</strong> ${escapeHtml(task.help || "Aufgabenspezifische Präzision sichern.")}</p>
+        <summary>${escapeHtml(ui(state, "teacherSolution"))}</summary>
+        <p><strong>${escapeHtml(ui(state, "modelAnswer"))}:</strong> ${escapeHtml(taskText.modelAnswer || taskText.explanation || "Keine Musterlösung hinterlegt.")}</p>
+        <p><strong>${escapeHtml(lang(state) === "en" ? "Didactic focus" : "Didaktischer Fokus")}:</strong> ${escapeHtml(taskText.help || "Aufgabenspezifische Präzision sichern.")}</p>
       </details>
     `;
   }
@@ -140,7 +244,7 @@
           <div class="matching-row">
             <label for="${escapeHtml(task.id)}-${index}">${escapeHtml(pair.left)}</label>
             <select id="${escapeHtml(task.id)}-${index}" data-left="${escapeHtml(pair.left)}">
-              <option value="">Bitte wählen</option>
+              <option value="">${escapeHtml(ui(state, "choose"))}</option>
               ${orderedOptions
                 .map((option) => {
                   const selected = answers[pair.left] === option ? "selected" : "";
@@ -181,70 +285,73 @@
   }
 
   function renderTaskCard(task, module, state, taskIndex) {
+    const taskText = localizedTask(task, state);
     const taskState = window.LitProgress.ensureTaskState(state, task.id);
     const unlocked = window.LitProgress.isTaskUnlocked(state, module, taskIndex);
-    const statusText = taskState.completed ? (taskState.success ? "abgeschlossen" : "freigeschaltet nach Hinweis") : unlocked ? "offen" : "gesperrt";
+    const statusText = taskState.completed ? (taskState.success ? ui(state, "completed") : ui(state, "unlockedAfterHint")) : unlocked ? ui(state, "open") : ui(state, "locked");
 
     if (!unlocked) {
       return `
         <article class="task-card task-card--locked">
           <div class="task-head">
             <div>
-              <p class="task-kicker">Aufgabe ${taskIndex + 1}</p>
-              <h4>${escapeHtml(task.title)}</h4>
+              <p class="task-kicker">${escapeHtml(ui(state, "task"))} ${taskIndex + 1}</p>
+              <h4>${escapeHtml(taskText.title)}</h4>
             </div>
             <span class="task-state">${escapeHtml(statusText)}</span>
           </div>
-          <p>Diese Aufgabe wird freigeschaltet, sobald die vorherige Aufgabe abgeschlossen ist.</p>
+          <p>${escapeHtml(ui(state, "taskLockedText"))}</p>
         </article>
       `;
     }
 
     let body = "";
     if (task.type === "single-choice") {
-      body = `<div class="options-group">${renderChoiceOptions(task, state, taskState, true)}</div>`;
+      body = `<div class="options-group">${renderChoiceOptions(taskText, state, taskState, true)}</div>`;
     }
     if (task.type === "multi-select") {
-      body = `<div class="options-group">${renderChoiceOptions(task, state, taskState, false)}</div>`;
+      body = `<div class="options-group">${renderChoiceOptions(taskText, state, taskState, false)}</div>`;
     }
     if (task.type === "matching") {
-      body = `<div class="matching-group">${renderMatching(task, state, taskState)}</div>`;
+      body = `<div class="matching-group">${renderMatching(taskText, state, taskState)}</div>`;
     }
     if (task.type === "order") {
-      body = `<ol class="order-list">${renderOrderTask(task, taskState, state)}</ol>`;
+      body = `<ol class="order-list">${renderOrderTask(taskText, taskState, state)}</ol>`;
     }
     if (task.type === "short-text") {
       body = `
-        <textarea class="answer-textarea" rows="5" placeholder="${escapeHtml(task.placeholder || "")}">${escapeHtml(taskState.answer || "")}</textarea>
+        <textarea class="answer-textarea" rows="5" placeholder="${escapeHtml(taskText.placeholder || "")}">${escapeHtml(taskState.answer || "")}</textarea>
       `;
     }
 
-    const actionLabel = taskState.completed ? "Erneut ansehen" : "Prüfen";
+    const actionLabel = taskState.completed ? ui(state, "review") : ui(state, "submit");
 
     return `
       <article class="task-card" data-task-id="${escapeHtml(task.id)}">
         <div class="task-head">
           <div>
-            <p class="task-kicker">Aufgabe ${taskIndex + 1}</p>
-            <h4>${escapeHtml(task.title)}</h4>
+            <p class="task-kicker">${escapeHtml(ui(state, "task"))} ${taskIndex + 1}</p>
+            <h4>${escapeHtml(taskText.title)}</h4>
           </div>
           <span class="task-state">${escapeHtml(statusText)}</span>
         </div>
-        <p class="task-prompt">${escapeHtml(task.prompt)}</p>
-        <p class="task-help">${escapeHtml(task.help || "")}</p>
+        ${lang(state) === "en" ? `<p class="task-language-note">Focus guide and navigation are fully bilingual. Short answers may be written in German or English.</p>` : ""}
+        <p class="task-prompt">${escapeHtml(taskText.prompt)}</p>
+        <p class="task-help">${escapeHtml(taskText.help || "")}</p>
         <div class="task-body">${body}</div>
         <div class="task-toolbar">
           <button type="button" class="btn primary" data-action="submit">${escapeHtml(actionLabel)}</button>
-          <span class="attempt-note">Versuche: ${taskState.attempts}</span>
+          <span class="attempt-note">${escapeHtml(ui(state, "answerAttempts"))}: ${taskState.attempts}</span>
         </div>
         ${renderFeedback(taskState)}
-        ${taskState.revealed && !state.settings.teacherAuthorized ? `<div class="model-answer-inline"><strong>Musterlösung:</strong> ${escapeHtml(task.modelAnswer || task.explanation || "")}</div>` : ""}
+        ${taskState.revealed && !state.settings.teacherAuthorized ? `<div class="model-answer-inline"><strong>${escapeHtml(ui(state, "modelAnswer"))}:</strong> ${escapeHtml(taskText.modelAnswer || taskText.explanation || "")}</div>` : ""}
         ${renderTeacherBlock(task, state)}
       </article>
     `;
   }
 
   function submitChoiceTask(module, task, state, card) {
+    const taskText = localizedTask(task, state);
     const checkedInputs = Array.from(card.querySelectorAll("input:checked"));
     const answer = checkedInputs.map((input) => input.value);
     const taskState = window.LitProgress.ensureTaskState(state, task.id);
@@ -261,12 +368,12 @@
         completed: true,
         success: true,
         revealed: false,
-        feedback: buildFeedback("success", "Richtig", task.explanation || "Die Auswahl ist stimmig.")
+        feedback: buildFeedback("success", ui(state, "solved"), taskText.explanation || "Die Auswahl ist stimmig.")
       });
       return;
     }
 
-    const feedback = buildWrongFeedback(task, attempts);
+    const feedback = buildWrongFeedback(taskText, attempts, state);
     window.LitProgress.updateTaskState(state, task.id, {
       answer: isSingleChoice ? normalizedAnswer : answer,
       attempts,
@@ -278,12 +385,13 @@
   }
 
   function submitMatchingTask(task, state, card) {
+    const taskText = localizedTask(task, state);
     const answer = {};
     card.querySelectorAll("select").forEach((select) => {
       answer[select.dataset.left] = select.value;
     });
 
-    const correct = (task.pairs || []).every((pair) => answer[pair.left] === pair.right);
+    const correct = (taskText.pairs || []).every((pair) => answer[pair.left] === pair.right);
     const taskState = window.LitProgress.ensureTaskState(state, task.id);
     const attempts = taskState.attempts + (correct ? 0 : 1);
 
@@ -294,12 +402,12 @@
         completed: true,
         success: true,
         revealed: false,
-        feedback: buildFeedback("success", "Richtig", task.explanation || "Die Zuordnungen stimmen.")
-      });
+      feedback: buildFeedback("success", ui(state, "solved"), taskText.explanation || "Die Zuordnungen stimmen.")
+    });
       return;
     }
 
-    const feedback = buildWrongFeedback(task, attempts);
+    const feedback = buildWrongFeedback(taskText, attempts, state);
     window.LitProgress.updateTaskState(state, task.id, {
       answer,
       attempts,
@@ -311,6 +419,7 @@
   }
 
   function submitOrderTask(task, state) {
+    const taskText = localizedTask(task, state);
     const taskState = window.LitProgress.ensureTaskState(state, task.id);
     const currentOrder = getCurrentOrder(task, taskState, state);
     const correct = JSON.stringify(currentOrder) === JSON.stringify(task.correctOrder || []);
@@ -323,12 +432,12 @@
         completed: true,
         success: true,
         revealed: false,
-        feedback: buildFeedback("success", "Richtig", task.explanation || "Die Reihenfolge ist korrekt.")
+        feedback: buildFeedback("success", ui(state, "solved"), taskText.explanation || "Die Reihenfolge ist korrekt.")
       });
       return;
     }
 
-    const feedback = buildWrongFeedback(task, attempts);
+    const feedback = buildWrongFeedback(taskText, attempts, state);
     window.LitProgress.updateTaskState(state, task.id, {
       currentOrder,
       attempts,
@@ -340,8 +449,9 @@
   }
 
   function submitShortTextTask(task, state, card) {
+    const taskText = localizedTask(task, state);
     const answer = card.querySelector("textarea")?.value || "";
-    const evaluation = evaluateShortText(task, answer);
+    const evaluation = evaluateShortText(taskText, answer);
     const taskState = window.LitProgress.ensureTaskState(state, task.id);
     const attempts = taskState.attempts + (evaluation.correct ? 0 : 1);
 
@@ -352,12 +462,12 @@
         completed: true,
         success: true,
         revealed: false,
-        feedback: buildFeedback("success", "Treffend", evaluation.details)
+        feedback: buildFeedback("success", ui(state, "strong"), evaluation.details)
       });
       return;
     }
 
-    const feedback = buildWrongFeedback(task, attempts);
+    const feedback = buildWrongFeedback(taskText, attempts, state);
     window.LitProgress.updateTaskState(state, task.id, {
       answer,
       attempts,
@@ -370,7 +480,7 @@
 
   function moveOrderItem(state, task, itemId, direction) {
     const taskState = window.LitProgress.ensureTaskState(state, task.id);
-    const currentOrder = getCurrentOrder(task, taskState, state);
+    const currentOrder = getCurrentOrder(localizedTask(task, state), taskState, state);
     const currentIndex = currentOrder.indexOf(itemId);
     const targetIndex = direction === "up" ? currentIndex - 1 : currentIndex + 1;
     if (currentIndex < 0 || targetIndex < 0 || targetIndex >= currentOrder.length) return;
@@ -421,8 +531,8 @@
   function renderTaskList(container, module, state, onUpdate) {
     container.innerHTML = `
       <div class="tasks-header">
-        <h3>Arbeitsaufträge</h3>
-        <p>Die Aufgaben werden der Reihe nach freigeschaltet. Nach dem dritten Fehlversuch erscheint eine modellhafte Lösung.</p>
+        <h3>${escapeHtml(ui(state, "tasksHeader"))}</h3>
+        <p>${escapeHtml(ui(state, "tasksIntro"))}</p>
       </div>
       <div class="task-stack">
         ${(module.tasks || []).map((task, index) => renderTaskCard(task, module, state, index)).join("")}

@@ -416,6 +416,81 @@ button {
   margin-top: 26px;
 }
 
+.focus-guide {
+  margin-top: 24px;
+}
+
+.focus-grid,
+.summary-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.focus-card,
+.deep-card {
+  padding: 18px;
+  background: #f7f9fb;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.focus-card--question {
+  background: #e7eff6;
+  border-color: rgba(41, 72, 94, 0.22);
+}
+
+.focus-card h3,
+.deep-card h4 {
+  margin-bottom: 10px;
+}
+
+.focus-term-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.focus-term-list span {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(41, 72, 94, 0.08);
+  border: 1px solid rgba(41, 72, 94, 0.14);
+  font-size: 0.92rem;
+}
+
+.deepening-block {
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.deepening-block summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 18px;
+  font-weight: 700;
+  background: #f4f7fa;
+}
+
+.deepening-block summary::-webkit-details-marker {
+  display: none;
+}
+
+.deepening-stack {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.task-language-note {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
 .subsection-head {
   margin-bottom: 14px;
 }

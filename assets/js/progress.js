@@ -5,7 +5,9 @@
     return {
       settings: {
         showEnglish: true,
-        teacherAuthorized: false
+        teacherAuthorized: false,
+        language: "de",
+        focusMode: true
       },
       moduleVisits: {},
       taskStates: {},
@@ -82,6 +84,16 @@
 
   function setShowEnglish(state, value) {
     state.settings.showEnglish = Boolean(value);
+    saveState(state);
+  }
+
+  function setLanguage(state, value) {
+    state.settings.language = value === "en" ? "en" : "de";
+    saveState(state);
+  }
+
+  function setFocusMode(state, value) {
+    state.settings.focusMode = Boolean(value);
     saveState(state);
   }
 
@@ -170,6 +182,8 @@
     updateTaskState,
     markModuleVisited,
     setShowEnglish,
+    setLanguage,
+    setFocusMode,
     setTeacherAuthorized,
     setDhFilters,
     resetModule,
