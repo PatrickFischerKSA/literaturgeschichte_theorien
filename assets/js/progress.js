@@ -150,10 +150,7 @@
   }
 
   function isTaskUnlocked(state, module, taskIndex) {
-    if (taskIndex === 0) return true;
-    const previousTask = module.tasks[taskIndex - 1];
-    if (!previousTask) return true;
-    return ensureTaskState(state, previousTask.id).completed;
+    return true;
   }
 
   function shuffleArray(values) {

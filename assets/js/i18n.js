@@ -19,7 +19,7 @@
       completedTasks: "Aufgaben abgeschlossen",
       tasksHeader: "Arbeitsaufträge",
       tasksIntro:
-        "Die Aufgaben werden der Reihe nach freigeschaltet. Nach dem dritten Fehlversuch erscheint eine modellhafte Lösung.",
+        "Alle Aufgaben sind offen zugänglich. Nach dem dritten Fehlversuch erscheint eine modellhafte Lösung.",
       focusQuestion: "Leitfrage",
       focusBridge: "Vorwissen-Brücke",
       focusCore: "Kernidee",
@@ -81,7 +81,7 @@
       completedTasks: "tasks completed",
       tasksHeader: "Tasks",
       tasksIntro:
-        "Tasks unlock step by step. After the third incorrect attempt, a model answer becomes available.",
+        "All tasks are openly accessible. After the third incorrect attempt, a model answer becomes available.",
       focusQuestion: "Guiding question",
       focusBridge: "Bridge from prior knowledge",
       focusCore: "Core idea",

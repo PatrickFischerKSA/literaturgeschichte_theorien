@@ -600,14 +600,22 @@
         <div class="module-top">
           <div>
             <p class="section-kicker">${escapeHtml(ui("teacher"))}</p>
-            <h2>${escapeHtml(lang() === "en" ? "Solutions, dashboard, and didactic notes" : "Solutions, Dashboard und didaktische Hinweise")}</h2>
-            <p class="module-subtitle">${escapeHtml(teacherGuideText("overview"))}</p>
+            <h2>${escapeHtml(lang() === "en" ? "Teacher mode: same modules, extra visibility" : "Lehrpersonenmodus: gleiche Module, mehr Sichtbarkeit")}</h2>
+            <p class="module-subtitle">${escapeHtml(lang() === "en" ? "Teacher mode no longer creates a separate content version. It uses the same modules as the student view and only reveals solutions and didactic notes inline." : "Der Lehrpersonenmodus erzeugt keine eigene Inhaltsversion mehr. Er nutzt dieselben Module wie die Schüleransicht und blendet nur Lösungen und didaktische Hinweise zusätzlich ein.")}</p>
           </div>
           <div class="module-actions">
             <button type="button" class="btn ghost" id="teacher-logout-button">${escapeHtml(ui("teacherClose"))}</button>
           </div>
         </div>
         <div class="teacher-overview-grid">
+          <article class="info-box example">
+            <h4>${escapeHtml(lang() === "en" ? "What changes in teacher mode" : "Was sich im Lehrpersonenmodus ändert")}</h4>
+            <ul>
+              <li>${escapeHtml(lang() === "en" ? "All modules remain identical to the student modules." : "Alle Module bleiben identisch mit den Schülermodulen.")}</li>
+              <li>${escapeHtml(lang() === "en" ? "Model answers appear directly inside the same task cards." : "Musterlösungen erscheinen direkt in denselben Aufgabenkarten.")}</li>
+              <li>${escapeHtml(lang() === "en" ? "The teacher panel serves only as orientation and planning support." : "Der Lehrpersonenbereich dient nur noch der Orientierung und Planung.")}</li>
+            </ul>
+          </article>
           <article class="info-box example">
             <h4>${escapeHtml(lang() === "en" ? "Teaching suggestions" : "Unterrichtsvorschläge")}</h4>
             <ul>${teacherGuideText("suggestions").map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
@@ -617,37 +625,17 @@
             <p>${escapeHtml(teacherGuideText("note"))}</p>
           </article>
         </div>
-        <div class="teacher-module-stack">
+        <div class="teacher-overview-grid">
           ${modules
             .map(
               (module) => `
-                <details class="teacher-module-card">
-                  <summary>
-                    <div>
-                      <strong>${escapeHtml(moduleText(module, "title"))}</strong>
-                      <span>${escapeHtml(teacherModuleText(module, "use"))}</span>
-                    </div>
-                  </summary>
-                  <div class="teacher-module-body">
-                    <p><strong>${escapeHtml(lang() === "en" ? "Didactic focus" : "Didaktischer Fokus")}:</strong> ${escapeHtml(teacherModuleText(module, "didactics"))}</p>
-                    <p><strong>${escapeHtml(lang() === "en" ? "Suitable social forms" : "Geeignete Sozialformen")}:</strong> ${escapeHtml(teacherModuleText(module, "socialForms").join(", "))}</p>
-                    <p><strong>${escapeHtml(lang() === "en" ? "Assessment focus" : "Beobachtung für Beurteilung")}:</strong> ${escapeHtml(teacherModuleText(module, "assessment"))}</p>
-                    <div class="teacher-task-list">
-                      ${(module.tasks || [])
-                        .map(
-                          (task) => `
-                            <article class="teacher-task-card">
-                              <h4>${escapeHtml(taskText(task, "title"))}</h4>
-                              <p><strong>${escapeHtml(ui("task"))}:</strong> ${escapeHtml(taskText(task, "prompt"))}</p>
-                              <p><strong>${escapeHtml(ui("modelAnswer"))}:</strong> ${escapeHtml(taskText(task, "modelAnswer") || taskText(task, "explanation") || "Keine Musterlösung hinterlegt.")}</p>
-                              <p><strong>${escapeHtml(lang() === "en" ? "Hint" : "Hinweis")}:</strong> ${escapeHtml(taskText(task, "help") || "Auf Präzision und Begründung achten.")}</p>
-                            </article>
-                          `
-                        )
-                        .join("")}
-                    </div>
-                  </div>
-                </details>
+                <article class="teacher-task-card">
+                  <h4>${escapeHtml(moduleText(module, "title"))}</h4>
+                  <p><strong>${escapeHtml(lang() === "en" ? "Use" : "Einsatz")}:</strong> ${escapeHtml(teacherModuleText(module, "use"))}</p>
+                  <p><strong>${escapeHtml(lang() === "en" ? "Didactic focus" : "Didaktischer Fokus")}:</strong> ${escapeHtml(teacherModuleText(module, "didactics"))}</p>
+                  <p><strong>${escapeHtml(lang() === "en" ? "Suitable social forms" : "Geeignete Sozialformen")}:</strong> ${escapeHtml(teacherModuleText(module, "socialForms").join(", "))}</p>
+                  <p><strong>${escapeHtml(lang() === "en" ? "Assessment focus" : "Beobachtung für Beurteilung")}:</strong> ${escapeHtml(teacherModuleText(module, "assessment"))}</p>
+                </article>
               `
             )
             .join("")}

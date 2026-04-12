@@ -236,6 +236,25 @@
             "Schule, Universität, Verlage, Archive und Kritik schaffen Dauerpräsenz. Einzelne Lektüren sind wichtig, aber sie institutionalisieren noch keinen Kanon.",
           modelAnswer:
             "Prägend sind Schule und Prüfungswesen, Universität und Literaturwissenschaft, Verlage und Feuilleton sowie Archive und digitale Sammlungen."
+        },
+        {
+          id: "m1_t5",
+          type: "matching",
+          title: "Ergebnissicherung: Begriffe präzisieren",
+          prompt: "Ordne die Beobachtung dem passenden Grundbegriff zu.",
+          help: "Die Aufgabe bündelt die Grundunterscheidungen des Moduls.",
+          pairs: [
+            { left: "Texte werden zunächst nur nach Jahreszahlen sortiert.", right: "Chronologie" },
+            { left: "Texte werden ausgewählt, gewichtet und in Zusammenhänge erzählt.", right: "Literaturgeschichtsschreibung" },
+            { left: "Ein Werk wird wiederholt in Schule und Universität gelesen.", right: "Kanonisierung" },
+            { left: "Archive, Verlage und Schulen steuern Sichtbarkeit mit.", right: "Institution" }
+          ],
+          firstHint: "Frage dich, ob es um Daten, Deutung, Wiederholung oder Vermittlung geht.",
+          secondHint: "Chronologie ordnet anders als Literaturgeschichtsschreibung; Kanonisierung anders als Institution.",
+          explanation:
+            "Die vier Begriffe markieren unterschiedliche Ebenen: reine Zeitordnung, Deutungsnarrativ, Wiederholungsaufwertung und soziale Vermittlungsstruktur.",
+          modelAnswer:
+            "Jahreszahlen = Chronologie; auswählen und erzählen = Literaturgeschichtsschreibung; wiederholte Leitpräsenz = Kanonisierung; Archive, Verlage und Schule = Institution."
         }
       ],
       teacher: {
@@ -469,6 +488,26 @@
           secondHint: "Eine gute Antwort sagt etwa: 'Der formalistische Zugriff macht ... sichtbar, blendet aber ... eher aus; der new historicist Zugriff ...'.",
           modelAnswer:
             "Beispiel Kafka: Ein formalistischer Zugriff macht Erzählton, Perspektive und die irritierende Kompositionslogik sichtbar, blendet aber institutionelle und historische Rahmen eher aus. Ein new-historicist Zugriff erschliesst zusätzlich Diskurse von Bürokratie, Recht und moderner Macht, riskiert dafür aber, die ästhetische Eigenlogik weniger präzise zu fassen."
+        },
+        {
+          id: "m2_t5",
+          type: "single-choice",
+          title: "Ergebnissicherung: Methodenurteil",
+          prompt: "Welche Formulierung zeigt den methodisch stärksten Umgang mit Theorieansätzen?",
+          help: "Gesucht ist eine Antwort, die Vergleich und Begrenzung zusammendenkt.",
+          options: [
+            { id: "a", label: "Ein guter Ansatz erklärt einen Text vollständig, deshalb braucht man die anderen nicht mehr." },
+            { id: "b", label: "Ansätze sind nützlich, weil sie unterschiedliche Fragen stellen und deshalb verschiedene Aspekte sichtbar machen." },
+            { id: "c", label: "Theorie ist vor allem dann hilfreich, wenn sie persönliche Lektüreeindrücke ersetzt." },
+            { id: "d", label: "Je abstrakter ein Ansatz ist, desto richtiger ist er." }
+          ],
+          correctOptionIds: ["b"],
+          firstHint: "Achte darauf, ob die Antwort mit Ergänzung und Grenze rechnet.",
+          secondHint: "Die beste Antwort absolutiert keine Theorie, sondern versteht sie als Perspektive.",
+          explanation:
+            "Methodisch stark ist ein Umgang, der Ansätze nicht als Wahrheitsmaschinen, sondern als unterschiedlich produktive Frageinstrumente behandelt.",
+          modelAnswer:
+            "Stark ist die Formulierung, dass Ansätze unterschiedliche Fragen stellen und deshalb verschiedene Aspekte sichtbar machen."
         }
       ],
       teacher: {
@@ -603,6 +642,26 @@
           explanation: "Transnationale Literaturgeschichte zeigt, dass Periodisierungen regional, sprachlich und politisch verschieden funktionieren.",
           modelAnswer:
             "Vormärz = kein universaler Begriff; Kafka = umstrittene nationale und epochale Zuordnung; Borges = anders funktionierende Moderne/Postmoderne; Achmatowa = Einfluss von Zensur und Erinnerungspolitik."
+        },
+        {
+          id: "m3_t5",
+          type: "order",
+          title: "Ergebnissicherung: Vom Modell zur Kritik",
+          prompt: "Ordne die Denkschritte so, dass aus einem Epochenbegriff eine reflektierte literaturgeschichtliche Analyse wird.",
+          help: "Die Reihenfolge zeigt, wie man heuristisch statt dogmatisch mit Periodisierung arbeitet.",
+          items: [
+            { id: "a", label: "Ein Epochenbegriff schafft zunächst grobe Orientierung." },
+            { id: "b", label: "Dann prüft man Grenzfälle, Mischformen und Übergänge." },
+            { id: "c", label: "Anschliessend fragt man nach nationalen und transnationalen Unterschieden." },
+            { id: "d", label: "Erst danach kann man den Begriff als begrenztes Arbeitsmodell nutzen." }
+          ],
+          correctOrder: ["a", "b", "c", "d"],
+          firstHint: "Beginne nicht mit der Kritik, sondern mit der heuristischen Funktion.",
+          secondHint: "Die reflektierte Nutzung steht am Schluss, nicht am Anfang.",
+          explanation:
+            "Epochenbegriffe sind dann produktiv, wenn sie Orientierung geben, aber durch Grenzfallprüfung und Vergleich relativiert werden.",
+          modelAnswer:
+            "Orientierung → Grenzfälle prüfen → nationale und transnationale Unterschiede vergleichen → Begriff als begrenztes Arbeitsmodell verwenden."
         }
       ],
       teacher: {
@@ -738,6 +797,24 @@
             "Kanonrevision ist ein Verfahren der kritischen Nachprüfung. Sie erweitert oder korrigiert Sichtbarkeit, statt alte Listen einfach mechanisch zu ersetzen.",
           modelAnswer:
             "Kanonrevision prüft Auswahlkriterien neu und kann vergessene oder systematisch unterrepräsentierte Texte sichtbar machen."
+        },
+        {
+          id: "m4_t5",
+          type: "short-text",
+          title: "Ergebnissicherung: Kanonkritik auf den Punkt",
+          prompt: "Formuliere in zwei bis vier Sätzen, warum Kanonkritik nicht bedeutet, auf jede Bewertung zu verzichten.",
+          help: "Verbinde Kritik an Auswahlmechanismen mit begründeter Urteilskraft.",
+          placeholder: "Kanonkritik bedeutet nicht ...",
+          conceptGroups: [
+            { label: "Kritik an Kriterien", variants: ["kriterien", "auswahl", "mechanismen", "institutionen"] },
+            { label: "keine Beliebigkeit", variants: ["nicht alles gleich", "nicht beliebig", "nicht auf jede bewertung verzichten", "urteil"] },
+            { label: "Revision oder Erweiterung", variants: ["erweitern", "revidieren", "neu prüfen", "sichtbar machen"] }
+          ],
+          successThreshold: 3,
+          firstHint: "Die Antwort braucht sowohl Kritik als auch Urteil.",
+          secondHint: "Eine gute Formulierung sagt: Kriterien prüfen, Ausschlüsse reflektieren, aber weiterhin begründet bewerten.",
+          modelAnswer:
+            "Kanonkritik bedeutet nicht, dass alle Texte gleich bewertet werden müssen. Sie verlangt vielmehr, Auswahlkriterien, institutionelle Mechanismen und Ausschlüsse offenzulegen und neu zu prüfen. Gerade dadurch wird literarische Urteilskraft präziser statt beliebiger."
         }
       ],
       teacher: {
@@ -874,6 +951,25 @@
             "Eine differenzierte Perspektive bezieht sowohl offene als auch subtile Formen kultureller Steuerung ein.",
           modelAnswer:
             "Plausibel sind: unterschiedliche Wirkungen in politischen Kontexten, der Einfluss von Erinnerungspolitik sowie die Wirkung von Lehrplänen und Prüfungsformaten."
+        },
+        {
+          id: "m5_t5",
+          type: "matching",
+          title: "Ergebnissicherung: Steuerung erkennen",
+          prompt: "Ordne die Form der kulturellen Steuerung dem passenden Beispiel zu.",
+          help: "Die Aufgabe bündelt offene und subtile Formen von Kulturpolitik.",
+          pairs: [
+            { left: "Curriculare Steuerung", right: "bestimmte Texte erscheinen regelmässig im Unterricht" },
+            { left: "Erinnerungspolitik", right: "Autor*innen werden symbolisch für kollektive Identität aufgeladen" },
+            { left: "Zensur", right: "Texte werden unterdrückt, verzögert oder nur eingeschränkt zugänglich" },
+            { left: "Editions- und Förderpolitik", right: "bestimmte Werke bleiben sichtbar und verfügbar" }
+          ],
+          firstHint: "Frage dich, ob es um Schule, Gedenken, Verbot oder Infrastruktur geht.",
+          secondHint: "Zensur unterdrückt; Editionspolitik stabilisiert Verfügbarkeit.",
+          explanation:
+            "Kulturpolitik wirkt nicht nur repressiv, sondern auch über Auswahl, Erinnerung und Infrastruktur.",
+          modelAnswer:
+            "Curriculum = Unterrichtspräsenz; Erinnerungspolitik = symbolische Aufladung; Zensur = Unterdrückung; Editions- und Förderpolitik = dauerhafte Verfügbarkeit."
         }
       ],
       teacher: {
@@ -1223,6 +1319,27 @@
           secondHint: "Die starke Antwort beschreibt, wie Staat, Zensur und spätere Erinnerung Kanonstatus aktiv mitformen.",
           modelAnswer:
             "Besonders deutlich wird, dass Kanon nicht nur ästhetisch, sondern institutionell-politisch hergestellt wird. Zensur, Editionsgeschichte und Erinnerungspolitik beeinflussen, wann und wie Autor*innen wie Achmatowa oder Bulgakow sichtbar werden, während Puschkin zugleich als symbolische Ursprungsfigur stabilisiert wird."
+        },
+        {
+          id: "m6_t10",
+          type: "multi-select",
+          title: "Ergebnissicherung: Vergleichsarchitektur",
+          prompt: "Welche Aussagen treffen die Funktion des Primärtextmoduls besonders gut?",
+          help: "Wähle alle passenden Antworten.",
+          options: [
+            { id: "a", label: "Es zeigt, dass Texte oft komplexer sind als literaturgeschichtliche Raster." },
+            { id: "b", label: "Es dient nur dazu, Autor*innenwissen lexikalisch abzufragen." },
+            { id: "c", label: "Es macht unterschiedliche Sichtbarkeiten verschiedener Methoden erfahrbar." },
+            { id: "d", label: "Es eröffnet Vergleichsachsen zwischen verschiedenen Sprachräumen." },
+            { id: "e", label: "Es beweist, dass jeder Text eindeutig nur in eine Epoche gehört." }
+          ],
+          correctOptionIds: ["a", "c", "d"],
+          firstHint: "Gesucht sind die methodischen Funktionen des Moduls, nicht eine reine Wissensabfrage.",
+          secondHint: "Drei Aussagen benennen genau die Vergleichs- und Reflexionsleistung des Primärtextmoduls.",
+          explanation:
+            "Das Primärtextmodul soll Theorie an konkrete Texte zurückbinden, Methoden vergleichbar machen und transnationale Unterschiede sichtbar werden lassen.",
+          modelAnswer:
+            "Richtig sind: Texte sind komplexer als Raster, Methoden machen Unterschiedliches sichtbar, und verschiedene Sprachräume lassen sich vergleichen."
         }
       ],
       teacher: {
@@ -1362,6 +1479,26 @@
           secondHint: "Zum Beispiel: Die Simulation zeigt Verteilungen und blinde Flecken, aber nicht automatisch ästhetische Qualität oder historische Bedeutung.",
           modelAnswer:
             "Die Simulation kann zeigen, welche Sprachen, Geschlechter, Themen oder Kanonstatus in einem Korpus dominieren und welche Bereiche auffällig selten vertreten sind. Damit wird Kanonkritik datenförmig sichtbar. Sie kann aber nicht von selbst erklären, warum diese Muster entstanden sind, wie Texte ästhetisch funktionieren oder welche historische Bedeutung eine Konstellation genau hat. Dafür braucht es weiterhin Interpretation, Kontextwissen und close reading."
+        },
+        {
+          id: "m7_t5",
+          type: "order",
+          title: "Ergebnissicherung: DH-Arbeitsschritte",
+          prompt: "Ordne die Schritte einer reflektierten DH-Auswertung.",
+          help: "Die Reihenfolge macht deutlich, warum Datenarbeit nicht mit Zahlen endet.",
+          items: [
+            { id: "a", label: "Zuerst wird festgelegt, welches Korpus und welche Metadaten überhaupt untersucht werden." },
+            { id: "b", label: "Dann werden Muster, Verteilungen oder Cluster sichtbar gemacht." },
+            { id: "c", label: "Danach müssen die Muster historisch und literaturwissenschaftlich interpretiert werden." },
+            { id: "d", label: "Schliesslich wird reflektiert, was die Daten nicht zeigen konnten." }
+          ],
+          correctOrder: ["a", "b", "c", "d"],
+          firstHint: "Die Interpretation beginnt nicht vor dem Korpusbau.",
+          secondHint: "Die Reflexion über Grenzen folgt auf die Interpretation, nicht umgekehrt.",
+          explanation:
+            "DH ist ein mehrstufiger Prozess: Korpusdesign, Mustererkennung, Interpretation und Grenzreflexion gehören zusammen.",
+          modelAnswer:
+            "Korpus festlegen → Muster sichtbar machen → interpretieren → Grenzen der Daten reflektieren."
         }
       ],
       teacher: {
@@ -1473,6 +1610,26 @@
           secondHint: "Eine gute Schlussformel lautet sinngemäss: Wir brauchen Literaturgeschichte, aber als reflektierte und kritisierbare Ordnung.",
           modelAnswer:
             "Literaturunterricht sollte Literaturgeschichte lehren, weil Lernende Orientierung und Vergleichsmöglichkeiten brauchen. Zugleich ist gerade der Konstruktionscharakter wichtig: Er macht Literaturgeschichte zu einem Feld kritischer Urteilsbildung statt zu einer blossen Liste. Wer Literaturgeschichte reflektiert lernt, kann Texte einordnen, Kanones befragen und eigene begründete Perspektiven entwickeln."
+        },
+        {
+          id: "m8_t5",
+          type: "single-choice",
+          title: "Ergebnissicherung: Syntheseformel",
+          prompt: "Welche Schlussformel passt am besten zur gesamten Einheit?",
+          help: "Suche die Aussage, die Ordnung, Kritik und Interpretation zusammenhält.",
+          options: [
+            { id: "a", label: "Weil Literaturgeschichte konstruiert ist, sollte man auf jede Ordnung verzichten." },
+            { id: "b", label: "Literaturgeschichte ist dann sinnvoll, wenn sie als begründete, kritisierbare und revidierbare Ordnung verstanden wird." },
+            { id: "c", label: "Digital Humanities lösen das Problem der Literaturgeschichte vollständig, weil Daten neutral sind." },
+            { id: "d", label: "Der Kanon sollte stabil bleiben, damit der Unterricht nicht zu kompliziert wird." }
+          ],
+          correctOptionIds: ["b"],
+          firstHint: "Die richtige Formel lehnt weder Ordnung noch Kritik ab.",
+          secondHint: "Gesucht ist eine Balanceformel, nicht eine Absage an Geschichte oder ein Lob der Starrheit.",
+          explanation:
+            "Die Einheit zielt auf eine reflektierte Literaturgeschichte: notwendig zur Orientierung, aber offen für Kritik, Revision und methodische Vielfalt.",
+          modelAnswer:
+            "Am besten passt die Formel, dass Literaturgeschichte als begründete, kritisierbare und revidierbare Ordnung verstanden werden sollte."
         }
       ],
       teacher: {

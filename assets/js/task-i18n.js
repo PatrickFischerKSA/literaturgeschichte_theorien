@@ -143,6 +143,23 @@
           "Archives, libraries, and digital collections"
         ]
       },
+      m1_t5: {
+        title: "Consolidation: sharpening the terms",
+        prompt: "Match each observation to the corresponding core concept.",
+        help: "This task condenses the foundational distinctions of the module.",
+        firstHint: "Ask whether the line is about dates, interpretation, repetition, or mediation.",
+        secondHint: "Chronology works differently from literary historiography; canonization differently from institution.",
+        explanation:
+          "The four terms mark different levels: pure time-order, interpretive narrative, repeated elevation, and social mediation structure.",
+        modelAnswer:
+          "Sorting by years = chronology; selecting and narrating = literary historiography; repeated educational presence = canonization; archives, publishers, and school = institution.",
+        pairs: [
+          { left: "Texts are only sorted by year at first.", right: "Chronology" },
+          { left: "Texts are selected, weighted, and narrated as connected.", right: "Literary historiography" },
+          { left: "A work is repeatedly read in school and university.", right: "Canonization" },
+          { left: "Archives, publishers, and schools help control visibility.", right: "Institution" }
+        ]
+      },
       m2_t1: {
         title: "Approach and guiding question",
         prompt: "Match each approach to its typical guiding question.",
@@ -202,6 +219,23 @@
         modelAnswer:
           "Example Kafka: A formalist approach makes narrative tone, perspective, and compositional logic visible, but tends to hide institutional and historical frameworks. A new-historicist approach additionally reveals discourses of bureaucracy, law, and modern power, though it risks grasping the aesthetic logic less precisely."
       },
+      m2_t5: {
+        title: "Consolidation: methodological judgment",
+        prompt: "Which formulation shows the strongest methodological use of theory?",
+        help: "Look for the answer that combines comparison and limitation.",
+        firstHint: "Pay attention to whether the answer reckons with complementarity and limits.",
+        secondHint: "The best answer does not absolutize theory, but treats it as perspective.",
+        explanation:
+          "A methodologically strong approach treats theories not as truth machines, but as differently productive instruments of questioning.",
+        modelAnswer:
+          "The strongest formulation is that approaches ask different questions and therefore make different aspects visible.",
+        options: [
+          "A good approach explains a text completely, so the others are no longer needed.",
+          "Approaches are useful because they ask different questions and therefore make different aspects visible.",
+          "Theory is helpful mainly when it replaces personal reading impressions.",
+          "The more abstract an approach is, the more correct it is."
+        ]
+      },
       m3_t1: {
         title: "Understanding heuristics",
         prompt: "Which statement describes the status of period labels most precisely?",
@@ -260,6 +294,23 @@
           { left: "Kafka", right: "national belonging and period placement remain disputed" },
           { left: "Borges", right: "modern and postmodern labels work differently across traditions" },
           { left: "Achmatowa", right: "state censorship and memory politics shape canonization" }
+        ]
+      },
+      m3_t5: {
+        title: "Consolidation: from model to critique",
+        prompt: "Arrange the steps that turn a period label into a reflective literary-historical analysis.",
+        help: "The sequence shows how to work heuristically rather than dogmatically with periodization.",
+        firstHint: "Do not begin with critique, but with the heuristic function.",
+        secondHint: "Reflective use comes at the end, not at the beginning.",
+        explanation:
+          "Period labels become productive when they offer orientation but are relativized through border cases and comparison.",
+        modelAnswer:
+          "Orientation → check border cases → compare national and transnational differences → use the label as a limited working model.",
+        items: [
+          { id: "a", label: "A period label first offers rough orientation." },
+          { id: "b", label: "Then one checks border cases, mixed forms, and transitions." },
+          { id: "c", label: "Next one asks about national and transnational differences." },
+          { id: "d", label: "Only then can the label be used as a limited working model." }
         ]
       },
       m4_t1: {
@@ -323,6 +374,16 @@
           "Canon revision is only a contemporary fashion without scholarly value."
         ]
       },
+      m4_t5: {
+        title: "Consolidation: canon critique in one point",
+        prompt: "Explain in two to four sentences why canon critique does not mean giving up all evaluation.",
+        help: "Connect critique of selection mechanisms with justified judgment.",
+        placeholder: "Canon critique does not mean ...",
+        firstHint: "Your answer needs both critique and judgment.",
+        secondHint: "A good formulation says: examine criteria, reflect on exclusions, but continue to judge in a reasoned way.",
+        modelAnswer:
+          "Canon critique does not mean that all texts have to be valued equally. Rather, it asks us to make criteria of selection, institutional mechanisms, and exclusions visible and to test them anew. In this way literary judgment becomes more precise rather than more arbitrary."
+      },
       m5_t1: {
         title: "From cultural politics to the textbook",
         prompt: "Arrange this chain of cultural steering in a plausible order.",
@@ -382,6 +443,23 @@
           "Memory politics influences which authors become symbolically charged.",
           "Exam formats and curricula also have cultural-political effects.",
           "Literary history is completely separate from politics."
+        ]
+      },
+      m5_t5: {
+        title: "Consolidation: recognizing steering",
+        prompt: "Match the form of cultural steering to the fitting example.",
+        help: "This task condenses open and subtle forms of cultural politics.",
+        firstHint: "Ask whether the line is about school, commemoration, prohibition, or infrastructure.",
+        secondHint: "Censorship suppresses; editorial policy stabilizes availability.",
+        explanation:
+          "Cultural politics works not only repressively, but also through selection, memory, and infrastructure.",
+        modelAnswer:
+          "Curriculum = classroom presence; memory politics = symbolic charge; censorship = suppression; editorial and funding policy = lasting availability.",
+        pairs: [
+          { left: "Curricular steering", right: "certain texts appear regularly in class" },
+          { left: "Memory politics", right: "authors become symbolically charged for collective identity" },
+          { left: "Censorship", right: "texts are suppressed, delayed, or only partly accessible" },
+          { left: "Editorial and funding policy", right: "certain works remain visible and available" }
         ]
       },
       m6_t1: {
@@ -503,6 +581,24 @@
         modelAnswer:
           "It becomes particularly clear that canon is produced not only aesthetically, but institutionally and politically. Censorship, editorial history, and memory politics influence when and how authors such as Akhmatova or Bulgakov become visible, while Pushkin is stabilized as a symbolic origin figure."
       },
+      m6_t10: {
+        title: "Consolidation: comparative architecture",
+        prompt: "Which statements best describe the function of the primary-text module?",
+        help: "Choose all fitting answers.",
+        firstHint: "Look for the module's methodological function, not pure factual recall.",
+        secondHint: "Three statements name the exact comparative and reflective purpose of the module.",
+        explanation:
+          "The primary-text module is designed to reconnect theory with concrete texts, compare methods, and make transnational differences visible.",
+        modelAnswer:
+          "Correct are: texts are more complex than schemes, methods reveal different things, and different language traditions can be compared.",
+        options: [
+          "It shows that texts are often more complex than literary-historical grids.",
+          "It serves only to test lexical author knowledge.",
+          "It makes different methodological visibilities experienceable.",
+          "It opens comparative axes between different language traditions.",
+          "It proves that every text belongs clearly to only one period."
+        ]
+      },
       m7_t1: {
         title: "Distant reading",
         prompt: "Which statement describes distant reading best?",
@@ -562,6 +658,23 @@
         modelAnswer:
           "The simulation can show which languages, genders, themes, or canon statuses dominate in a corpus and which areas are strikingly rare. This makes canon critique visible in data form. But it cannot by itself explain why these patterns emerged, how texts function aesthetically, or what exact historical meaning a constellation has. For that we still need interpretation, contextual knowledge, and close reading."
       },
+      m7_t5: {
+        title: "Consolidation: DH workflow",
+        prompt: "Arrange the steps of a reflective DH analysis.",
+        help: "The sequence shows why data work does not end with numbers.",
+        firstHint: "Interpretation does not begin before corpus design.",
+        secondHint: "Reflecting on limits comes after interpretation, not before.",
+        explanation:
+          "DH is a multi-step process: corpus design, pattern detection, interpretation, and reflection on limits belong together.",
+        modelAnswer:
+          "Define the corpus → make patterns visible → interpret them → reflect on the limits of the data.",
+        items: [
+          { id: "a", label: "First one defines which corpus and metadata will be examined at all." },
+          { id: "b", label: "Then patterns, distributions, or clusters are made visible." },
+          { id: "c", label: "After that the patterns must be interpreted historically and literary-critically." },
+          { id: "d", label: "Finally one reflects on what the data could not show." }
+        ]
+      },
       m8_t1: {
         title: "Securing the axes of comparison",
         prompt: "Match each axis of comparison to the fitting formulation.",
@@ -614,6 +727,23 @@
         secondHint: "A strong concluding formula is: we need literary history, but as a reflective and revisable order.",
         modelAnswer:
           "Literature classes should teach literary history because students need orientation and possibilities of comparison. At the same time, the constructed nature of literary history is important because it turns literary history into a field of critical judgment rather than a mere list. Students who learn literary history reflectively can place texts, question canons, and develop their own justified perspectives."
+      },
+      m8_t5: {
+        title: "Consolidation: synthesis formula",
+        prompt: "Which concluding formula best fits the whole unit?",
+        help: "Look for the statement that holds order, critique, and interpretation together.",
+        firstHint: "The right formula rejects neither order nor critique.",
+        secondHint: "You are looking for a balance formula, not a rejection of history or a defense of rigidity.",
+        explanation:
+          "The unit aims at a reflective literary history: necessary for orientation, but open to critique, revision, and methodological plurality.",
+        modelAnswer:
+          "The best concluding formula is that literary history should be understood as a justified, criticizable, and revisable order.",
+        options: [
+          "Because literary history is constructed, one should give up every form of ordering.",
+          "Literary history is meaningful when it is understood as a justified, criticizable, and revisable order.",
+          "Digital humanities solve the problem of literary history completely because data are neutral.",
+          "The canon should remain stable so that teaching does not become too complicated."
+        ]
       }
     }
   };
