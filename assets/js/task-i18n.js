@@ -100,20 +100,14 @@
         ]
       },
       m1_t2: {
-        title: "DE/EN key terms",
-        prompt: "Match the German terms to the correct English terms.",
-        help: "This task trains bilingual disciplinary language rather than simple vocabulary.",
-        firstHint: "Look for terms that match conceptually, not merely lexically.",
-        secondHint: "Pay special attention to the difference between canon and canonization.",
-        explanation: "These pairings show that academic language requires conceptual precision, not just direct translation.",
+        title: "Defining the concept",
+        prompt: "Define the term literature historiography in two to four sentences so that selection, ordering, interpretation, and institutions are all included.",
+        help: "Do not write a dictionary entry; write a precise working definition for literary studies.",
+        placeholder: "Literature historiography is ...",
+        firstHint: "A workable definition mentions not only texts, but also the way they are ordered.",
+        secondHint: "A strong answer says that literature historiography selects, orders, and interprets texts and is stabilized by institutions.",
         modelAnswer:
-          "Literaturgeschichtsschreibung = literature historiography; Kanonisierung = canonization; Periodisierung = periodization; textnahe Lektüre = close reading.",
-        pairs: [
-          { left: "Literaturgeschichtsschreibung", right: "literature historiography" },
-          { left: "Kanonisierung", right: "canonization" },
-          { left: "Periodisierung", right: "periodization" },
-          { left: "textnahe Lektüre", right: "close reading" }
-        ]
+          "Literature historiography is the scholarly and pedagogical practice of not merely collecting texts chronologically, but selecting them, ordering them, and narrating them within interpretive frameworks. It is therefore never neutral, but shaped by criteria, perspectives, and institutions such as schools, universities, publishers, and archives."
       },
       m1_t3: {
         title: "Chronology or narrative?",
@@ -144,37 +138,24 @@
         ]
       },
       m1_t5: {
-        title: "Consolidation: sharpening the terms",
-        prompt: "Match each observation to the corresponding core concept.",
-        help: "This task condenses the foundational distinctions of the module.",
-        firstHint: "Ask whether the line is about dates, interpretation, repetition, or mediation.",
-        secondHint: "Chronology works differently from literary historiography; canonization differently from institution.",
-        explanation:
-          "The four terms mark different levels: pure time-order, interpretive narrative, repeated elevation, and social mediation structure.",
+        title: "Consolidation: mini-transfer on ordering",
+        prompt: "Take one work from the course, for example Kafka, Heine, or Mary Shelley, and explain in three to five sentences how mere dating becomes literary-historical interpretation.",
+        help: "Connect at least a work example, a criterion of selection, and an interpretive interest.",
+        placeholder: "Using the example of ... mere dating becomes literary history when ...",
+        firstHint: "It is not enough to say when a work appeared; you must show how it becomes meaningful through ordering.",
+        secondHint: "A strong answer says, for example, that a work is selected, related to others, and read under a guiding question as an instance of modernity, canon conflict, or cultural politics.",
         modelAnswer:
-          "Sorting by years = chronology; selecting and narrating = literary historiography; repeated educational presence = canonization; archives, publishers, and school = institution.",
-        pairs: [
-          { left: "Texts are only sorted by year at first.", right: "Chronology" },
-          { left: "Texts are selected, weighted, and narrated as connected.", right: "Literary historiography" },
-          { left: "A work is repeatedly read in school and university.", right: "Canonization" },
-          { left: "Archives, publishers, and schools help control visibility.", right: "Institution" }
-        ]
+          "Using Kafka as an example, a date such as 1915 alone does not yet produce literary history. Only when The Metamorphosis is read as a text of modernity, as a case of unstable national placement, or as an example of bureaucratic and familial power does literary-historical interpretation begin. This requires criteria of selection and comparative axes, not just years."
       },
       m2_t1: {
-        title: "Approach and guiding question",
-        prompt: "Match each approach to its typical guiding question.",
-        help: "Focus on the epistemic interest, not just isolated keywords.",
-        firstHint: "Check whether the approach is centered on text structure, reception, society, or system logic.",
-        secondHint: "Horizon of expectation belongs neither to close reading nor to systems theory.",
-        explanation: "Guiding questions help distinguish approaches without caricaturing them.",
+        title: "Define and delimit an approach",
+        prompt: "Choose one theoretical approach from this module and define it in three to five sentences. Then explain what this approach typically makes visible and what it tends to leave in the background.",
+        help: "The approach should not only be named, but characterized with disciplinary precision.",
+        placeholder: "I choose the approach ...",
+        firstHint: "A good answer gives more than a label; it states the specific horizon of inquiry.",
+        secondHint: "A strong formula is: 'This approach asks mainly about ...; therefore it makes ... visible, but tends to overlook ...'.",
         modelAnswer:
-          "Reception aesthetics = changing readings and expectations; formalism = form and structure; Marxist theory = social contradictions; systems theory = literary communication as system.",
-        pairs: [
-          { left: "Rezeptionsästhetik", right: "How do readings and horizons of expectation change?" },
-          { left: "Werkimmanenz / New Criticism", right: "How does form organize meaning?" },
-          { left: "Marxistische Theorie", right: "Which social contradictions are processed in the text?" },
-          { left: "Systemtheorie", right: "How does literature operate as a communication system?" }
-        ]
+          "I choose reception aesthetics. It understands literature not only from the text itself, but from the relation between text, readers, and horizons of expectation. What it makes especially visible is how the meaning and value of a work change historically. What may remain less visible are the material infrastructures and institutional power structures that also shape reception."
       },
       m2_t2: {
         title: "Historical rough order",
@@ -281,20 +262,14 @@
           "Büchner is useful as a disturbance because his texts do not fit cleanly into a single period model. The open, fragmentary form of Woyzeck, its social radicality, and its strong later reception make him a boundary figure between several historical orders."
       },
       m3_t4: {
-        title: "Transnational perspective",
-        prompt: "Match the observations to the corresponding problem of periodization.",
-        help: "This task links period critique with comparative literature.",
-        firstHint: "Do not think only of style, but also of language space and institution.",
-        secondHint: "Only one line directly addresses the limited exportability of a German period term.",
-        explanation: "Transnational literary history shows that periodization works differently across regions, languages, and political contexts.",
+        title: "Explaining transnational periodization",
+        prompt: "Compare two authors from different language traditions and explain why a single period label captures their literary-historical position only inadequately.",
+        help: "Possible pairs include Kafka and Borges, Heine and Lorca, or Akhmatova and Bachmann.",
+        placeholder: "In comparing ... and ... it becomes clear that ...",
+        firstHint: "This is not only about naming two authors, but about showing what the comparison problematizes in periodization.",
+        secondHint: "A strong answer shows that labels such as modernity, Romanticism, or Vormärz function differently across traditions or cannot simply be exported.",
         modelAnswer:
-          "Vormärz = no universal label; Kafka = disputed national and period placement; Borges = modern/postmodern labels work differently; Akhmatova = censorship and memory politics influence canonization.",
-        pairs: [
-          { left: "Vormärz", right: "not a universal period label across literatures" },
-          { left: "Kafka", right: "national belonging and period placement remain disputed" },
-          { left: "Borges", right: "modern and postmodern labels work differently across traditions" },
-          { left: "Achmatowa", right: "state censorship and memory politics shape canonization" }
-        ]
+          "In comparing Kafka and Borges, it becomes clear that a single period label captures their positions only inadequately. Kafka is often read as a writer of modernity, but he also stands between national, linguistic, and Central European orders. Borges, by contrast, is placed between modernity and postmodernity depending on the tradition. The comparison therefore shows that periodization depends on language field and later reception patterns."
       },
       m3_t5: {
         title: "Consolidation: from model to critique",
@@ -332,20 +307,14 @@
         ]
       },
       m4_t2: {
-        title: "Mechanism and effect",
-        prompt: "Match each canonizing mechanism to its most likely effect.",
-        help: "Think institutionally.",
-        firstHint: "A mechanism works not only symbolically, but often very practically.",
-        secondHint: "Lack of translation produces invisibility, not prestige.",
-        explanation: "Canonization is also infrastructure: visibility, availability, and examinability are powerful filters.",
+        title: "Explaining a canonizing mechanism",
+        prompt: "Choose one mechanism of canonization and explain, using a concrete example, how it produces visibility while also pushing other texts aside.",
+        help: "Possible examples include compulsory reading, editions, translation, prizes, criticism, or exam formats.",
+        placeholder: "A central canonizing mechanism is ...",
+        firstHint: "Do not describe the mechanism only abstractly; show its concrete effect on visibility.",
+        secondHint: "A strong answer might say: compulsory reading keeps Fontane permanently present, but pushes other realist or female voices aside.",
         modelAnswer:
-          "Compulsory reading = repeated visibility; jubilee editions = prestige and availability; lack of translation = invisibility; exam formats = didactic narrowing.",
-        pairs: [
-          { left: "Compulsory reading in school", right: "repeated visibility and normalization" },
-          { left: "Jubilee editions and collected works", right: "lasting availability and prestige" },
-          { left: "Lack of translation", right: "transnational invisibility" },
-          { left: "Exam formats", right: "didactic narrowing to easily testable texts" }
-        ]
+          "A central canonizing mechanism is compulsory reading in school. It keeps authors such as Fontane or Goethe permanently visible because these texts are repeatedly taught, commented on, and examined. Through that repetition they gain normality and prestige. At the same time, the same selection pushes other texts of the period, for example less established or female voices, to the margins."
       },
       m4_t3: {
         title: "Problematizing the school canon",
@@ -446,21 +415,14 @@
         ]
       },
       m5_t5: {
-        title: "Consolidation: recognizing steering",
-        prompt: "Match the form of cultural steering to the fitting example.",
-        help: "This task condenses open and subtle forms of cultural politics.",
-        firstHint: "Ask whether the line is about school, commemoration, prohibition, or infrastructure.",
-        secondHint: "Censorship suppresses; editorial policy stabilizes availability.",
-        explanation:
-          "Cultural politics works not only repressively, but also through selection, memory, and infrastructure.",
+        title: "Consolidation: formulating a cultural-political transfer",
+        prompt: "Compare one subtle and one direct form of cultural steering and explain how both shape literary history in different ways.",
+        help: "For example: curriculum and censorship, or memory politics and editorial policy.",
+        placeholder: "One subtle form is ..., one direct form is ...",
+        firstHint: "It is not enough to name two forms; compare their different modes of effect.",
+        secondHint: "A strong answer shows that curricula or memory politics steer visibility, while censorship directly suppresses or delays texts.",
         modelAnswer:
-          "Curriculum = classroom presence; memory politics = symbolic charge; censorship = suppression; editorial and funding policy = lasting availability.",
-        pairs: [
-          { left: "Curricular steering", right: "certain texts appear regularly in class" },
-          { left: "Memory politics", right: "authors become symbolically charged for collective identity" },
-          { left: "Censorship", right: "texts are suppressed, delayed, or only partly accessible" },
-          { left: "Editorial and funding policy", right: "certain works remain visible and available" }
-        ]
+          "One subtle form of cultural steering is the curriculum: it determines which texts are read regularly and thus shapes the canon over time. One direct form is censorship, which immediately bans, delays, or restricts access to texts. Both shape literary history, but in different ways: one normalizes selection, the other openly blocks visibility."
       },
       m6_t1: {
         title: "Station 1: Goethe/Schiller",
@@ -489,19 +451,14 @@
           "Heine is disruptive because he cannot be harmoniously subordinated to a single period. His satirical and politically sharp writing, his transnational position between Germany and France, and the conflicts around his Jewish background disturb comfortable canon and period narratives."
       },
       m6_t3: {
-        title: "Station 3: Büchner",
-        prompt: "Match the correct approach to Büchner's disruptive potential.",
-        help: "Each pairing names a different analytical level.",
-        firstHint: "The levels are form, society, and reception history.",
-        secondHint: "Later elevation is not the same thing as textual structure.",
-        explanation: "Büchner is especially good for showing that different approaches reveal different layers of the same text.",
+        title: "Station 3: interpreting Büchner methodically",
+        prompt: "Choose the approach that most convincingly explains Büchner's disruptive potential and justify in three to five sentences what this approach makes visible and what another approach could additionally show.",
+        help: "Think, for example, of formalism, Marxism, or reception aesthetics.",
+        placeholder: "The most convincing approach here is ...",
+        firstHint: "Do not just name a method; make a reasoned methodological decision.",
+        secondHint: "A strong answer says, for example, that formalism explains the fragment structure, while Marxism additionally sharpens social violence.",
         modelAnswer:
-          "Fragment structure = formalist; social vulnerability = Marxist/social-historical; later modernity figure = reception-aesthetic.",
-        pairs: [
-          { left: "Fragment structure", right: "formalist reading" },
-          { left: "social vulnerability", right: "Marxist-social-historical reading" },
-          { left: "later modernity figure", right: "reception-aesthetic reading" }
-        ]
+          "A formalist approach is especially convincing here because it can show with precision, through Büchner's fragment structure, scene technique, and linguistic breaks, why Woyzeck does not fit a smooth developmental model. What becomes visible in this way is the formal openness of the text. A Marxist approach could additionally sharpen social vulnerability and relations of domination, while reception aesthetics would explain why Büchner was later elevated into a figure of modernity."
       },
       m6_t4: {
         title: "Station 4: Fontane",
@@ -557,19 +514,14 @@
         ]
       },
       m6_t8: {
-        title: "Stations 8 and 9: Transnational modernity",
-        prompt: "Match each observation to the corresponding comparative perspective.",
-        help: "This task connects the French and the Hispanophone fields.",
-        firstHint: "One statement concerns internal diversity, the other transnationality.",
-        secondHint: "Borges is especially tied to world-literary circulation.",
-        explanation: "The comparison shows that literary history must be scaled differently depending on the language field.",
+        title: "Stations 8 and 9: comparing transnational modernity",
+        prompt: "Compare one French and one Hispanophone figure from the module and explain how that comparison changes the view of modernity or periodization.",
+        help: "For example: Baudelaire and Borges, or Flaubert and Lorca.",
+        placeholder: "In comparing ... and ... the perspective shifts because ...",
+        firstHint: "Do not merely name two authors; show what the comparison does methodologically.",
+        secondHint: "A strong answer makes clear that modernity does not begin everywhere in the same way or perform the same function.",
         modelAnswer:
-          "Baudelaire/Flaubert/Camus = competing modernity narratives; Cervantes/Lorca/Borges = transnational periodization; Borges = global canonization through translation.",
-        pairs: [
-          { left: "Baudelaire / Flaubert / Camus", right: "several competing narratives of modernity within one tradition" },
-          { left: "Cervantes / Lorca / Borges", right: "transnational periodization rather than a purely national line" },
-          { left: "Borges", right: "later global canonization through translation and world literature" }
-        ]
+          "In comparing Baudelaire and Borges, the view of modernity shifts noticeably. Baudelaire often stands for urban condensation and a classic French beginning of modernity. Borges, by contrast, shows that modern and postmodern procedures are narrated differently in Hispanophone contexts and later canonized globally. The comparison makes visible that periodization does not function in one uniform national way."
       },
       m6_t9: {
         title: "Station 10: Russian perspectives",
@@ -616,20 +568,14 @@
         ]
       },
       m7_t2: {
-        title: "Matching DH methods",
-        prompt: "Match each DH method to the most fitting description.",
-        help: "Think of the typical analytical interest of each method.",
-        firstHint: "Networks are about relations; stylometry is about statistical style.",
-        secondHint: "Distant reading is more of a perspective, while corpus analysis is more of a procedure.",
-        explanation: "The terms overlap, but they mark different levels of work.",
+        title: "Distinguishing DH methods",
+        prompt: "Choose two DH methods and explain in three to five sentences how their research questions differ and for which literary-historical problem you would rather use one or the other.",
+        help: "Think of stylometry, network analysis, corpus analysis, or distant reading.",
+        placeholder: "I compare ... and ...",
+        firstHint: "A good answer not only defines the methods, but ties them to different kinds of problems.",
+        secondHint: "For example: network analysis for relations among authors and journals, stylometry for statistical similarities among texts.",
         modelAnswer:
-          "Stylometry = statistical style similarity; network analysis = relations; corpus analysis = patterns in large data sets; distant reading = a scaled question horizon.",
-        pairs: [
-          { left: "Stilometrie", right: "shows statistical style similarities or differences" },
-          { left: "Netzwerkanalyse", right: "makes relations and connections visible" },
-          { left: "Korpusanalyse", right: "examines patterns in larger text and metadata collections" },
-          { left: "Distant reading", right: "scales literary questions beyond the single text" }
-        ]
+          "I compare network analysis and stylometry. Network analysis asks about relations among authors, institutions, journals, or figures and is especially useful when one wants to study literary circulation or canon networks. Stylometry, by contrast, asks about statistical similarities and differences in style between texts. For a problem of authorship or epochal clustering I would rather use stylometry; for questions of mediation and visibility I would rather use network analysis."
       },
       m7_t3: {
         title: "Limits of quantitative methods",
@@ -676,20 +622,14 @@
         ]
       },
       m8_t1: {
-        title: "Securing the axes of comparison",
-        prompt: "Match each axis of comparison to the fitting formulation.",
-        help: "These pairings condense the entire unit.",
-        firstHint: "The four fields are order, selection, method, and boundary-making.",
-        secondHint: "Distant reading belongs to the scaling of analysis, not directly to canon revision.",
-        explanation: "The comparison axes help bundle theoretical debates across modules.",
+        title: "Applying axes of comparison to a thesis",
+        prompt: "Choose two comparison axes from the unit and explain, through your own thesis, why precisely these two axes matter for a reflective literary history.",
+        help: "Possible combinations include text vs. context and canon vs. counter-canon, or close reading vs. distant reading.",
+        placeholder: "I combine the axes ... and ...",
+        firstHint: "Do not merely name two axes; formulate and justify a thesis about their interplay.",
+        secondHint: "A strong answer shows that reflective literary history needs several tension-axes at once, for example text and context or canon and revision.",
         modelAnswer:
-          "Text vs. context = intrinsic logic or embedding; canon vs. counter-canon = stabilization or revision; close vs. distant reading = single text or pattern; national vs. transnational = border-making and multiple belonging.",
-        pairs: [
-          { left: "Werk vs. Kontext", right: "question of whether formal logic or historical embedding is foregrounded" },
-          { left: "Kanon vs. Gegenkanon", right: "question of which selection is stabilized or revised" },
-          { left: "close reading vs. distant reading", right: "question of single-text analysis or scaled pattern analysis" },
-          { left: "nationale vs. transnationale Literaturgeschichte", right: "question of borders, translations, and multiple belonging" }
-        ]
+          "I combine the axes text vs. context and canon vs. counter-canon. My thesis is that literary history becomes reflective only when it considers texts both in their aesthetic logic and in their institutional visibility. Using Kafka or Mary Shelley as examples, one can see that a work is not only formally interesting, but also canonized and historically framed in different ways. The interplay of these axes prevents an overly simple literary history."
       },
       m8_t2: {
         title: "Final quiz",

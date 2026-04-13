@@ -561,6 +561,11 @@ button {
   padding: 18px 20px;
 }
 
+.approach-summary-head {
+  display: grid;
+  gap: 10px;
+}
+
 .approach-card summary::-webkit-details-marker {
   display: none;
 }
@@ -568,6 +573,23 @@ button {
 .approach-card summary p {
   margin: 6px 0 0;
   color: var(--muted);
+}
+
+.approach-priority {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(25, 61, 76, 0.1);
+  border: 1px solid rgba(25, 61, 76, 0.16);
+  color: var(--accent);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.approach-status-inline {
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 .approach-grid {

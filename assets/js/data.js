@@ -181,21 +181,23 @@
         },
         {
           id: "m1_t2",
-          type: "matching",
-          title: "DE/EN-Key-Terms",
-          prompt: "Ordne die deutschen Begriffe den passenden englischen Begriffen zu.",
-          help: "Diese Aufgabe trainiert die bilinguale Fachsprache, nicht bloss Vokabelwissen.",
-          pairs: [
-            { left: "Literaturgeschichtsschreibung", right: "literature historiography" },
-            { left: "Kanonisierung", right: "canonization" },
-            { left: "Periodisierung", right: "periodization" },
-            { left: "textnahe Lektüre", right: "close reading" }
+          type: "short-text",
+          title: "Begriff definieren",
+          prompt: "Definiere in zwei bis vier Sätzen den Begriff Literaturgeschichtsschreibung so, dass Auswahl, Ordnung, Deutung und Institutionen mitgemeint sind.",
+          help: "Schreibe keine Wörterbuchdefinition, sondern eine fachlich präzise Arbeitsdefinition.",
+          placeholder: "Literaturgeschichtsschreibung ist ...",
+          conceptGroups: [
+            { label: "Auswahl", variants: ["auswahl", "selektiv", "selektion"] },
+            { label: "Ordnung", variants: ["ordnung", "struktur", "gliedert", "periodisierung"] },
+            { label: "Deutung", variants: ["deutung", "narrativ", "erzählt", "wertet", "interpretation"] },
+            { label: "Institutionen", variants: ["institution", "schule", "universität", "verlag", "archiv", "kritik"] }
           ],
-          firstHint: "Suche nach Begriffen, die nicht nur lexikalisch, sondern fachlich zusammengehören.",
-          secondHint: "Achte besonders auf den Unterschied zwischen canon und canonization.",
-          explanation: "Die Paarungen zeigen, dass Fachsprache Begriffe nicht eins zu eins übersetzt, sondern begrifflich präzise abgrenzt.",
+          successThreshold: 4,
+          firstHint: "Eine tragfähige Definition nennt nicht nur Texte, sondern auch die Art ihrer Ordnung.",
+          secondHint: "Eine starke Antwort sagt, dass Literaturgeschichtsschreibung Texte auswählt, ordnet, deutet und durch Institutionen stabilisiert wird.",
+          explanation: "Fachlich präzise ist eine Definition dann, wenn sie nicht nur 'Geschichte von Literatur' sagt, sondern Auswahl, Narrativität und institutionelle Rahmung sichtbar macht.",
           modelAnswer:
-            "Literaturgeschichtsschreibung = literature historiography; Kanonisierung = canonization; Periodisierung = periodization; textnahe Lektüre = close reading."
+            "Literaturgeschichtsschreibung ist die wissenschaftliche und didaktische Praxis, Texte nicht nur chronologisch zu sammeln, sondern sie auszuwählen, zu ordnen und in Deutungszusammenhänge zu erzählen. Sie ist deshalb nie neutral, sondern wird durch Kriterien, Perspektiven und Institutionen wie Schule, Universität, Verlage oder Archive mitgeprägt."
         },
         {
           id: "m1_t3",
@@ -239,22 +241,24 @@
         },
         {
           id: "m1_t5",
-          type: "matching",
-          title: "Ergebnissicherung: Begriffe präzisieren",
-          prompt: "Ordne die Beobachtung dem passenden Grundbegriff zu.",
-          help: "Die Aufgabe bündelt die Grundunterscheidungen des Moduls.",
-          pairs: [
-            { left: "Texte werden zunächst nur nach Jahreszahlen sortiert.", right: "Chronologie" },
-            { left: "Texte werden ausgewählt, gewichtet und in Zusammenhänge erzählt.", right: "Literaturgeschichtsschreibung" },
-            { left: "Ein Werk wird wiederholt in Schule und Universität gelesen.", right: "Kanonisierung" },
-            { left: "Archive, Verlage und Schulen steuern Sichtbarkeit mit.", right: "Institution" }
+          type: "short-text",
+          title: "Ergebnissicherung: Mini-Transfer zur Ordnung",
+          prompt: "Nimm ein Werk aus dem Kurs, etwa Kafka, Heine oder Mary Shelley, und erkläre in drei bis fünf Sätzen, wie aus einer blossen Datierung eine literaturgeschichtliche Deutung wird.",
+          help: "Verbinde mindestens Werkbeispiel, Auswahlkriterium und Deutungsinteresse.",
+          placeholder: "Am Beispiel von ... wird aus blosser Datierung Literaturgeschichte, wenn ...",
+          conceptGroups: [
+            { label: "Werkbeispiel", variants: ["kafka", "heine", "shelley", "goethe", "büchner", "fontane", "brecht", "bachmann", "camus", "borges", "achmatowa"] },
+            { label: "Datierung reicht nicht", variants: ["datum", "datierung", "jahr allein", "chronologie"] },
+            { label: "Auswahl oder Ordnung", variants: ["auswahl", "ordnet", "gruppiert", "epoche", "kanon"] },
+            { label: "Deutung oder Interesse", variants: ["deutung", "interesse", "erzählt", "wertet", "sichtbar"] }
           ],
-          firstHint: "Frage dich, ob es um Daten, Deutung, Wiederholung oder Vermittlung geht.",
-          secondHint: "Chronologie ordnet anders als Literaturgeschichtsschreibung; Kanonisierung anders als Institution.",
+          successThreshold: 4,
+          firstHint: "Es reicht nicht zu sagen, wann ein Werk erschienen ist; du musst zeigen, wie daraus eine Ordnung mit Sinn wird.",
+          secondHint: "Eine starke Antwort sagt etwa: Ein Werk wird ausgewählt, mit anderen verbunden und unter einer Leitfrage als Beispiel für Moderne, Kanonproblem oder Kulturpolitik gelesen.",
           explanation:
-            "Die vier Begriffe markieren unterschiedliche Ebenen: reine Zeitordnung, Deutungsnarrativ, Wiederholungsaufwertung und soziale Vermittlungsstruktur.",
+            "Transfer gelingt, wenn deutlich wird, dass Literaturgeschichte nicht beim Datum stehen bleibt, sondern Werke in Auswahl- und Deutungszusammenhänge einträgt.",
           modelAnswer:
-            "Jahreszahlen = Chronologie; auswählen und erzählen = Literaturgeschichtsschreibung; wiederholte Leitpräsenz = Kanonisierung; Archive, Verlage und Schule = Institution."
+            "Am Beispiel von Kafka zeigt sich, dass eine Datierung wie 1915 allein noch keine Literaturgeschichte ergibt. Erst wenn 'Die Verwandlung' als Text der Moderne, als Fall prekärer nationaler Zuordnung oder als Beispiel bürokratischer und familiärer Macht gelesen wird, entsteht eine literaturgeschichtliche Deutung. Dazu werden Auswahlkriterien und Vergleichsachsen benötigt, nicht nur Jahreszahlen."
         }
       ],
       teacher: {
@@ -271,15 +275,19 @@
       title: "Modul 2: Klassische theoretische Ansätze",
       subtitle: "Modelle der Literaturgeschichtsschreibung im Vergleich",
       intro:
-        "Die folgenden Ansätze liefern keine austauschbaren Rezepte, sondern unterschiedliche Erkenntnisinteressen. Jede Perspektive macht etwas sichtbar und blendet anderes aus.",
+        "Die folgenden Ansätze sind nicht gleich wichtig für heutige Praxis. Dieses Modul ordnet sie historisch, markiert aktuelle Schwerpunkte und zeigt, warum manche Modelle eher Hintergrundwissen oder gezielte Ergänzung geworden sind.",
       goals: [
-        "Zentrale Ansätze historisch und erkenntnistheoretisch einordnen.",
-        "Fragen, Chancen und Kritikpunkte der Ansätze vergleichen.",
-        "Mini-Transfers auf Primärtexte vornehmen.",
-        "Modelle nicht absolut setzen, sondern relational denken."
+        "Ansätze nach heutigem Erkenntniswert priorisieren statt nur aufzuzählen.",
+        "Aktuelle Schwerpunkte, bleibende Stärken und heutige Probleme unterscheiden.",
+        "Modelle auf Primärtexte übertragen, ohne sie zu absolutisieren.",
+        "Verstehen, wie Ein-Methoden-Lektüren neue Kanonisierungen erzeugen können."
       ],
       approaches: [
         {
+          priority: 4,
+          priorityLabel: "Historischer Hintergrund",
+          todayStatus:
+            "Heute wichtig als Quellen- und Editionswissen, aber kaum noch als Leitmodell literaturgeschichtlicher Sinnbildung. Besonders problematisch wird der Ansatz dort, wo ein stabiler Autorbegriff Texte vereinnahmt; punktuell bleibt er bei Editionsphilologie, Materialität und in Debatten um Autofiktion produktiv.",
           name: "Positivistische Literaturgeschichtsschreibung",
           keyTerms: ["Empirie", "Quellen", "Dokumentation"],
           definition: "Literatur wird vor allem über überprüfbare Fakten, Quellen, Datierungen, Einflüsse und biografisch-historische Kontexte erschlossen.",
@@ -287,11 +295,20 @@
           epistemology: "Erkenntnis beruht auf belegbaren Daten, Kausalzusammenhängen und dokumentierbaren Kontexten.",
           questions: ["Wann erschien ein Werk?", "Welche Quellen lagen vor?", "Welche Einflüsse und historischen Bedingungen lassen sich belegen?"],
           chances: ["sichert Faktenbasis", "schärft Quellenkritik", "verhindert reine Impressionistik"],
-          critique: ["reduziert Literatur leicht auf Ursachen", "übersieht ästhetische Eigenlogiken", "erzeugt oft lineare Kausalmodelle"],
+          critique: [
+            "reduziert Literatur leicht auf Ursachen und Belege",
+            "setzt oft einen stabilen Autor- und Werkbegriff voraus",
+            "kann Texte vereinnahmen, indem sie zu Dokumenten ihrer Entstehung gemacht werden",
+            "erzeugt leicht lineare Kausal- und Entwicklungserzählungen"
+          ],
           exercise: "Nenne drei Informationen, die ein positivistischer Zugriff zu Kafkas Publikationssituation sammeln würde.",
           transfer: "Bei Mary Shelley würde der Ansatz nach naturwissenschaftlichen Debatten, Reisesituationen, Lektüren und Publikationsbedingungen fragen."
         },
         {
+          priority: 4,
+          priorityLabel: "Historischer Hintergrund",
+          todayStatus:
+            "Heute vor allem als historisch einflussreicher Zugriff relevant. Problematisch ist seine Neigung zu grossen Sinnordnungen, die politisch vereinnahmbar werden; gerade die NS-Zeit und spätere erinnerungspolitische Debatten zeigen, wie riskant totalisierende Geist- und Sendungsnarrative sind.",
           name: "Geistesgeschichtlicher Ansatz",
           keyTerms: ["Zeitgeist", "Idee", "Weltanschauung"],
           definition: "Literatur wird als Ausdruck übergreifender geistiger Strömungen, Weltbilder oder Denkformen einer Epoche gelesen.",
@@ -299,11 +316,20 @@
           epistemology: "Texte gelten als Manifestationen eines geschichtlichen Geistes oder einer kulturellen Leitidee.",
           questions: ["Welche Weltanschauung prägt die Epoche?", "Wie verdichtet ein Werk einen historischen Geist?", "Welche Leitideen organisieren eine Zeit?"],
           chances: ["macht intellektuelle Horizonte sichtbar", "ermöglicht Synthesen", "verknüpft Literatur mit Ideengeschichte"],
-          critique: ["neigt zur Homogenisierung", "übersieht innere Widersprüche", "stabilisiert Epochen oft zu stark"],
+          critique: [
+            "neigt zu Homogenisierung und teleologischen Grossnarrativen",
+            "übersieht innere Widersprüche und Gegenstimmen",
+            "ist politisch vereinnahmbar, wenn historische Sinnordnungen naturalisiert werden",
+            "stabilisiert Epochen oft stärker, als es die Texte tragen"
+          ],
           exercise: "Formuliere eine mögliche geistesgeschichtliche Leitidee für die Weimarer Klassik.",
           transfer: "Goethe und Schiller würden hier als Ausdruck eines humanistischen Bildungsprogramms gelesen."
         },
         {
+          priority: 1,
+          priorityLabel: "Methodische Grundlage",
+          todayStatus:
+            "Bis heute unverzichtbar als Basiskompetenz, aber allein nicht ausreichend. Die textnahe Präzision bleibt ergiebig; problematisch wird sie dort, wo politische, institutionelle oder biografische Konflikte systematisch ausgeblendet oder problematische Vorgeschichten durch 'reine Textnähe' kaschiert werden.",
           name: "Werkimmanente Interpretation / Formalismus / New Criticism",
           keyTerms: ["Form", "Close Reading", "Verfahren"],
           definition: "Im Zentrum stehen sprachliche Form, Struktur, Motivführung, Perspektive, Ambiguität und literarische Verfahren.",
@@ -311,11 +337,20 @@
           epistemology: "Erkenntnis entsteht aus genauer Analyse textinterner Organisation, nicht primär aus Biografie oder Zeitkontext.",
           questions: ["Wie ist der Text gebaut?", "Welche Spannungen und Muster erzeugt die Form?", "Wie arbeitet der Text mit Wiederholung, Ironie oder Verfremdung?"],
           chances: ["schärft textnahe Genauigkeit", "verhindert vorschnelle Kontextauflösung", "macht literarische Verfahren sichtbar"],
-          critique: ["blendet Institutionen, Politik und Rezeption leicht aus", "übersieht soziale Asymmetrien", "kann Werke isolieren"],
+          critique: [
+            "blendet Institutionen, Politik und Rezeption leicht aus",
+            "kann als scheinbar apolitische Lektüre problematische Kontexte kaschieren",
+            "übersieht soziale Asymmetrien, wenn Textautonomie absolut gesetzt wird",
+            "ist historisch auch dort ambivalent, wo Namen wie Emil Staiger oder Paul de Man zeigen, dass Textgenauigkeit kein ethischer Freipass ist"
+          ],
           exercise: "Nenne zwei formale Merkmale, auf die du bei Brechts epischem Theater achten würdest.",
           transfer: "Bei Kafkas 'Die Verwandlung' würde man Erzählton, Lakonik, Perspektive und Motivketten untersuchen."
         },
         {
+          priority: 3,
+          priorityLabel: "Gezielte Ergänzung",
+          todayStatus:
+            "Bleibt als Ideologiekritik und Machtanalyse produktiv, ist aber nicht mehr das selbstverständliche Leitparadigma früherer Theoriephasen. Nach dem Ende des Kalten Kriegs sind totalisierende Klassenmodelle zurückgetreten; stark bleibt der Ansatz dort, wo Materialität und Herrschaft präzise mitgelesen werden.",
           name: "Marxistische Literaturtheorie",
           keyTerms: ["Klasse", "Ideologie", "Materialität"],
           definition: "Literatur wird auf Produktionsverhältnisse, Klassenkonflikte, Ideologiekritik und gesellschaftliche Widersprüche bezogen.",
@@ -323,11 +358,20 @@
           epistemology: "Texte sind weder rein autonom noch blosse Spiegel, sondern Teil gesellschaftlicher Praxis und ideologischer Auseinandersetzungen.",
           questions: ["Welche gesellschaftlichen Widersprüche werden sichtbar?", "Wie wird Herrschaft ästhetisch verarbeitet?", "Welche Perspektiven fehlen?"],
           chances: ["macht Macht- und Klassenverhältnisse sichtbar", "verbindet Ästhetik mit Gesellschaft", "fragt nach materiellen Bedingungen"],
-          critique: ["kann ästhetische Komplexität funktionalisieren", "neigt gelegentlich zu Reduktion auf Klassenlogik", "unterschätzt Offenheit von Rezeption"],
+          critique: [
+            "kann ästhetische Komplexität funktionalisieren",
+            "neigt gelegentlich zu Reduktion auf Klassenlogik",
+            "wirkt dort veraltet, wo politische Lagerlogiken schematisch fortgeschrieben werden",
+            "unterschätzt manchmal die Offenheit von Rezeption und Mehrdeutigkeit"
+          ],
           exercise: "Welche soziale Asymmetrie wäre bei Büchners 'Woyzeck' zentral?",
           transfer: "Bei Fontanes 'Effi Briest' würde ein marxistisch informierter Zugriff Klassenlage, Geschlechterordnung und soziale Reproduktion mitlesen."
         },
         {
+          priority: 3,
+          priorityLabel: "Gezielte Ergänzung",
+          todayStatus:
+            "Weiterhin relevant, wenn man Wandel, Schulkanon und spätere Aufwertung erklären will. Als dominanter Theorierahmen ist sie jedoch zurückgetreten, weil ihre Leserbegriffe oft zu abstrakt bleiben und institutionelle Macht nicht immer scharf genug fassen.",
           name: "Rezeptionsästhetik",
           keyTerms: ["Leserschaft", "Wirkung", "Erwartungshorizont"],
           definition: "Literaturgeschichte wird auch als Geschichte von Lektüren, Erwartungen, Irritationen und veränderten Deutungsweisen verstanden.",
@@ -340,6 +384,10 @@
           transfer: "Die spätere Aufwertung von 'Frankenstein' zeigt, dass Literaturgeschichte stark rezeptionsgeschichtlich dynamisch ist."
         },
         {
+          priority: 4,
+          priorityLabel: "Historischer Hintergrund",
+          todayStatus:
+            "Heute weniger als eigenständiges Leitparadigma wichtig als vielmehr als begriffliches Werkzeuglager. Viele seiner Begriffe leben weiter, aber ein rein strukturalistisches Modell wirkt oft zu statisch für Macht-, Subjekt- und Geschichtsfragen.",
           name: "Strukturalismus",
           keyTerms: ["System", "Relation", "Code"],
           definition: "Ein Text oder eine Textgruppe wird als System von Differenzen, Regeln und wiederkehrenden Strukturen beschrieben.",
@@ -347,11 +395,20 @@
           epistemology: "Bedeutung entsteht relational. Einzelphänomene werden über ihre Position im System verständlich.",
           questions: ["Welche Oppositionen strukturieren den Text?", "Welche Gattungsregeln und Codes greifen?", "Welche Muster wiederholen sich?"],
           chances: ["macht regelhafte Muster sichtbar", "vergleichende Analysen werden präziser", "verschiebt den Fokus von Einzelgenie zu Struktur"],
-          critique: ["Geschichte und Macht treten leicht zurück", "Subjektivität wird unterbestimmt", "zu starre Systemmodelle können Differenz glätten"],
+          critique: [
+            "Geschichte und Macht treten leicht zurück",
+            "Subjektivität wird unterbestimmt",
+            "zu starre Systemmodelle können Differenz glätten",
+            "wird heute oft eher als begrifflicher Vorläufer späterer Ansätze genutzt"
+          ],
           exercise: "Welche Oppositionen könnte man in 'Don Quijote' oder 'Faust I' strukturalistisch untersuchen?",
           transfer: "Bei Baudelaire wäre interessant, wie Gegensatzpaare wie Reinheit/Verfall oder Stadt/Ideal organisiert werden."
         },
         {
+          priority: 2,
+          priorityLabel: "Schwerpunkt heute",
+          todayStatus:
+            "Bleibt für gegenwärtige Theorie wichtig, weil der Ansatz Hierarchien, Ausschlüsse und Instabilitäten sichtbar macht. Er ist aber nur dann didaktisch stark, wenn seine begriffliche Abstraktion mit Textarbeit und historischen Fragen verbunden wird.",
           name: "Poststrukturalismus / Dekonstruktion",
           keyTerms: ["Differenz", "Instabilität", "Aporie"],
           definition: "Texte werden auf innere Spannungen, Brüche, Hierarchien und Bedeutungsverschiebungen hin gelesen, die keine stabile Mitte erlauben.",
@@ -364,6 +421,10 @@
           transfer: "Kafka eignet sich besonders, weil klare Zuschreibungen ständig ins Gleiten geraten."
         },
         {
+          priority: 2,
+          priorityLabel: "Schwerpunkt heute",
+          todayStatus:
+            "Für viele heutige literaturwissenschaftliche Lektüren besonders produktiv, weil der Ansatz Text, Diskurs und Macht zusammendenkt, ohne in einfache Spiegelung zu verfallen. Er wird dort problematisch, wo der Text im Kontextnetz fast verschwindet.",
           name: "New Historicism",
           keyTerms: ["Diskurs", "Macht", "Zirkulation"],
           definition: "Literarische Texte werden mit nichtliterarischen Diskursen, Praktiken und Machtformationen zusammengedacht.",
@@ -376,6 +437,10 @@
           transfer: "Camus kann so mit Kolonialgeschichte, Presse, Gerichtssprache und moralischen Regimen zusammen gelesen werden."
         },
         {
+          priority: 3,
+          priorityLabel: "Gezielte Ergänzung",
+          todayStatus:
+            "Für Institutions-, Medien- und Feldfragen weiterhin anregend, aber selten das Zentrum schulischer oder interpretatorischer Praxis. Viele empfinden den Ansatz als unbefriedigend, weil der Subjektbegriff stark zurücktritt und konflikthafte Erfahrung nur indirekt erscheint.",
           name: "Systemtheorie",
           keyTerms: ["Kommunikation", "Funktion", "Autopoiesis"],
           definition: "Literatur erscheint als Teil eines gesellschaftlichen Systems mit eigenen Kommunikationsformen und Anschlusslogiken.",
@@ -388,6 +453,10 @@
           transfer: "Die späte Kanonisierung von Bachmann lässt sich als Veränderung von Anschlussmustern im Literatursystem lesen."
         },
         {
+          priority: 2,
+          priorityLabel: "Schwerpunkt heute",
+          todayStatus:
+            "Besonders wichtig für gegenwärtige Literaturgeschichtsschreibung, weil diese Erweiterungen Kanon, Nation und Epoche zugleich auf Machtasymmetrien, Übersetzung und transnationale Zirkulation hin befragen. Sie korrigieren ältere Engführungen, dürfen aber nicht nur aus Schlagworten bestehen.",
           name: "Kulturwissenschaftliche und postkoloniale Erweiterungen",
           keyTerms: ["Transnationalität", "Machtkritik", "Zentrum/Peripherie"],
           definition: "Diese Erweiterungen fragen nach Medien, Erinnerung, Geschlecht, Kolonialität, Übersetzung und globalen Ungleichheiten.",
@@ -402,34 +471,38 @@
       ],
       sections: [
         {
-          title: "Wie man mit Theoriemodellen arbeitet",
+          title: "Priorisieren statt gleichrangig nebeneinanderstellen",
           html: `
-            <p>Keiner der Ansätze ist 'die richtige Lösung'. Im Unterricht und in der Forschung sind sie produktiv, wenn sie als <strong>Fragegeneratoren</strong> dienen. Eine gute literaturwissenschaftliche Praxis kann textnahe Präzision, historische Einbettung, Rezeptionsgeschichte und Machtkritik miteinander ins Gespräch bringen.</p>
+            <p>Die Ansätze dieses Moduls werden bewusst <strong>nicht</strong> als gleich starke Gegenwartsmodelle präsentiert. Für die Arbeit heute ist textnahe Präzision weiterhin eine Basiskompetenz, doch die eigentlichen Schwerpunkte liegen stärker bei <strong>Poststrukturalismus, New Historicism sowie kulturwissenschaftlichen und postkolonialen Erweiterungen</strong>, weil sie Mehrdeutigkeit, Macht, Diskurs, Transnationalität und Kanonkritik zugleich fassen.</p>
+            <p>Positivismus, Geistesgeschichte und ein rein strukturalistisches Denken gehören eher zum historischen oder begrifflichen Hintergrund. Marxistische, rezeptionsästhetische und systemtheoretische Zugriffe bleiben als gezielte Ergänzungen wichtig, wenn sie konkrete Fragen besser beantworten als ein einziges Leitmodell.</p>
             <div class="info-box example">
-              <h4>Didaktischer Tipp</h4>
-              <p>Frage nie nur: Welcher Ansatz ist richtig? Frage stattdessen: <em>Was macht dieser Ansatz sichtbar, und was blendet er aus?</em></p>
+              <h4>Didaktische Leitlinie</h4>
+              <p>Frage nicht nur: <em>Welcher Ansatz ist richtig?</em> Frage auch: <em>Warum steht dieser Ansatz heute eher im Vordergrund oder eher im Hintergrund?</em> und <em>Welche Texte würden wir bevorzugen, wenn wir nur mit einem Modell arbeiten?</em></p>
             </div>
+            <p>Genau hier liegt der multiperspektivische Kern der Einheit: Wer nur eine Methode bevorzugt, kanonisiert leicht genau jene Texte, die das eigene Modell bestätigt, während widerspenstige oder anders gelagerte Texte aus dem Blick geraten.</p>
           `
         }
       ],
       tasks: [
         {
           id: "m2_t1",
-          type: "matching",
-          title: "Ansatz und Leitfrage",
-          prompt: "Ordne jedem Ansatz die typische Leitfrage zu.",
-          help: "Achte auf das Erkenntnisinteresse, nicht auf einzelne Schlagwörter.",
-          pairs: [
-            { left: "Rezeptionsästhetik", right: "Wie verändern sich Lektüren und Erwartungshorizonte?" },
-            { left: "Werkimmanenz / New Criticism", right: "Wie organisiert die Form ihre Bedeutung?" },
-            { left: "Marxistische Theorie", right: "Welche gesellschaftlichen Widersprüche werden im Text bearbeitet?" },
-            { left: "Systemtheorie", right: "Wie operiert Literatur als Kommunikationssystem?" }
+          type: "short-text",
+          title: "Ansatz definieren und abgrenzen",
+          prompt: "Wähle einen theoretischen Ansatz aus diesem Modul und definiere ihn in drei bis fünf Sätzen. Erkläre zusätzlich, was dieser Ansatz typischerweise sichtbar macht und was er eher ausblendet.",
+          help: "Der Ansatz soll nicht nur benannt, sondern fachlich präzise charakterisiert werden.",
+          placeholder: "Ich wähle den Ansatz ...",
+          conceptGroups: [
+            { label: "Ansatz benennen", variants: ["positiv", "geistesgesch", "werkimmanent", "formalismus", "new criticism", "marx", "rezeptions", "strukturalismus", "poststrukturalismus", "dekonstruktion", "new historicism", "systemtheorie"] },
+            { label: "Definition", variants: ["fragt", "fokussiert", "liest", "versteht", "analysiert"] },
+            { label: "sichtbar machen", variants: ["sichtbar", "zeigt", "erschliesst", "macht"] },
+            { label: "Ausblendung", variants: ["blendet", "grenzt aus", "übersieht", "weniger"] }
           ],
-          firstHint: "Prüfe, ob der Ansatz eher Textstruktur, Rezeption, Gesellschaft oder Systemlogik fokussiert.",
-          secondHint: "Erwartungshorizont gehört nicht zur Werkimmanenz; Systemoperation nicht zur Marx-Lektüre.",
-          explanation: "Leitfragen sind gute Wegweiser, um Ansätze voneinander zu unterscheiden, ohne sie zu karikieren.",
+          successThreshold: 4,
+          firstHint: "Eine gute Antwort nennt nicht nur ein Schlagwort, sondern das Erkenntnisinteresse des Ansatzes.",
+          secondHint: "Stark ist eine Formel wie: 'Der Ansatz fragt vor allem nach ...; dadurch macht er ... sichtbar, blendet aber ... eher aus.'",
+          explanation: "Theorieverständnis zeigt sich daran, dass ein Ansatz definiert, angewendet und zugleich begrenzt werden kann.",
           modelAnswer:
-            "Rezeptionsästhetik = Lektüren und Erwartungshorizonte; Werkimmanenz = Form und Struktur; Marxistische Theorie = gesellschaftliche Widersprüche; Systemtheorie = Kommunikationssystem."
+            "Ich wähle die Rezeptionsästhetik. Sie versteht Literatur nicht nur vom Text her, sondern vom Verhältnis zwischen Text, Leserschaft und Erwartungshorizonten. Sichtbar macht sie vor allem, wie sich die Bedeutung und Wertung eines Werkes historisch verändern. Eher ausgeblendet bleiben manchmal die materiale Infrastruktur und institutionelle Macht, die diese Rezeption ebenfalls mitformen."
         },
         {
           id: "m2_t2",
@@ -525,43 +598,47 @@
       title: "Modul 3: Epochenbegriffe und ihre Probleme",
       subtitle: "Heuristik, Ungleichzeitigkeit, Transnationalität",
       intro:
-        "Epochenbegriffe schaffen Übersicht, aber sie erzeugen auch Vereinfachungen. Dieses Modul zeigt, warum starre Epochenmodelle hilfreich und problematisch zugleich sind.",
+        "Epochenbegriffe sind weder bloss Irrtum noch letzte Wahrheit. Dieses Modul fragt, wann sie Texte erhellen, wann sie teleologisch werden und warum auch eine pauschale Epochenkritik am Text vorbeigehen kann.",
       goals: [
         "Epochen als heuristische Werkzeuge statt Tatsachen verstehen.",
+        "Zwischen brauchbarer Ordnung und teleologischer Überdehnung unterscheiden.",
         "Ungleichzeitigkeiten und Übergänge analysieren.",
         "Nationale und transnationale Periodisierungen vergleichen.",
-        "Den Beitrag der Digital Humanities zur Epochenkritik benennen."
+        "Fundamentalkritik an Epochenkritik und den Beitrag der Digital Humanities zusammen denken."
       ],
       sections: [
         {
-          title: "Warum Epochen nützlich sind",
+          title: "Warum Epochen trotzdem nötig sind",
           html: `
-            <p>Epochenbegriffe wie Aufklärung, Sturm und Drang, Realismus oder Moderne ermöglichen Verdichtung. Sie helfen, über Familienähnlichkeiten, wiederkehrende Probleme und grössere Entwicklungslinien zu sprechen. Ohne heuristische Begriffe würde Unterricht leicht in einer unverbundenen Werkansammlung enden.</p>
+            <p>Epochenbegriffe wie Aufklärung, Sturm und Drang, Realismus oder Moderne ermöglichen Verdichtung. Sie helfen, über Familienähnlichkeiten, wiederkehrende Probleme und grössere Entwicklungslinien zu sprechen. Ohne heuristische Begriffe würde Unterricht leicht entweder in einer unverbundenen Werkansammlung enden oder in blosser Faktensammlung stecken bleiben.</p>
             <div class="info-box definition">
               <h4>Heuristische Formel</h4>
               <p>Eine Epoche ist eine <strong>arbeitsteilige Vereinfachung</strong>. Sie ist sinnvoll, solange ihre Grenzen, Ausnahmen und Alternativen mitgedacht werden.</p>
             </div>
+            <p>Gerade deshalb ist nicht nur der Epochenbegriff selbst problematisch, sondern auch seine pauschale Verwerfung. Wer jede Periodisierung vorschnell ablehnt, läuft Gefahr, in einen bloss positivistischen Datenhorizont zurückzufallen oder neue geistesgeschichtliche Grossdeutungen unbemerkt an seine Stelle zu setzen.</p>
           `
         },
         {
-          title: "Warum Epochen problematisch sind",
+          title: "Warum Epochen kippen können",
           html: `
-            <p>Starke Epochenmodelle homogenisieren. Sie tun oft so, als ob alle Texte einer Zeit dieselben Merkmale teilten. Gerade Übergangsfiguren wie Heine, Büchner oder Kafka zeigen jedoch, dass literarische Produktion nicht sauber in Container passt. Nationale Literaturgeschichten setzen zusätzlich unterschiedliche Schnitte: Was im deutschsprachigen Unterricht 'Vormärz' heisst, wird in anderen Traditionen anders gegliedert oder gar nicht so benannt.</p>
+            <p>Starke Epochenmodelle homogenisieren. Sie tun oft so, als ob alle Texte einer Zeit dieselben Merkmale teilten oder auf ein Ziel zuliefen. Gerade Übergangsfiguren wie Heine, Büchner oder Kafka zeigen jedoch, dass literarische Produktion nicht sauber in Container passt. Nationale Literaturgeschichten setzen zusätzlich unterschiedliche Schnitte: Was im deutschsprachigen Unterricht 'Vormärz' heisst, wird in anderen Traditionen anders gegliedert oder gar nicht so benannt.</p>
             <ul class="reading-list">
               <li><strong>Ungleichzeitigkeit:</strong> Verschiedene ästhetische Logiken existieren gleichzeitig.</li>
               <li><strong>Überlagerung:</strong> Ein Text kann romantische, realistische und proto-moderne Züge verbinden.</li>
               <li><strong>Eurozentrismus:</strong> Globale und koloniale Verflechtungen verschwinden in nationalen Standardmodellen.</li>
+              <li><strong>Teleologie:</strong> Aus offenen Prozessen werden nachträglich scheinbar zielgerichtete Entwicklungslinien.</li>
               <li><strong>Didaktischer Effekt:</strong> Unterricht übernimmt Epochenbegriffe oft als scheinbar selbstverständliche Raster.</li>
             </ul>
           `
         },
         {
-          title: "Digital Humanities als Irritation",
+          title: "Kritik der Epochenkritik und Digital Humanities",
           html: `
-            <p>Korpusanalysen, Stilometrie, Netzwerkanalysen und distant reading können klassische Epochengrenzen bestätigen, aber auch irritieren. Wenn stilometrische Cluster nicht mit Schulbuchgrenzen zusammenfallen oder Netzwerke transnationale Verbindungen sichtbar machen, wird deutlich: Epochenbegriffe sind Interpretationsangebote, keine naturgegebenen Tatsachen.</p>
+            <p>Eine reflektierte Position lautet deshalb nicht: <em>Epochen weg</em>, sondern: <em>Welche Periodisierung ist wofür heuristisch hilfreich, und wo verstellt sie den Text?</em> Ein Begriff kann eine Lektüre erhellen, solange er nicht den Primärtext ersetzt. Wird dagegen jede Epochisierung vorschnell verdächtigt, droht ein anderer blinder Fleck: Dann erscheint der einzelne Text nur noch als Beleg einer Metakritik.</p>
+            <p>Korpusanalysen, Stilometrie, Netzwerkanalysen und distant reading können klassische Epochengrenzen bestätigen, aber auch irritieren. Wenn stilometrische Cluster nicht mit Schulbuchgrenzen zusammenfallen oder Netzwerke transnationale Verbindungen sichtbar machen, wird deutlich: Epochenbegriffe sind Interpretationsangebote, keine naturgegebenen Tatsachen. Zugleich gilt auch hier: Daten korrigieren schlechte Periodisierung nicht automatisch, wenn schon die Korpusauswahl alte Kanones reproduziert.</p>
             <aside class="language-aside">
               <h4>English focus</h4>
-              <p><strong>Periodization</strong> is a heuristic operation. Data may reveal clusters, but clusters do not automatically equal historical meaning.</p>
+              <p><strong>Periodization</strong> is a heuristic operation. Data may reveal clusters, but clusters do not automatically equal historical meaning, and anti-period rhetoric can become a new simplification of its own.</p>
             </aside>
           `
         }
@@ -627,21 +704,23 @@
         },
         {
           id: "m3_t4",
-          type: "matching",
-          title: "Transnationale Perspektive",
-          prompt: "Ordne die Beobachtungen den passenden Periodisierungsproblemen zu.",
-          help: "Die Aufgabe verbindet Epochenkritik mit Vergleichsliteratur.",
-          pairs: [
-            { left: "Vormärz", right: "kein universaler Begriff für alle Literaturen" },
-            { left: "Kafka", right: "nationale Zuordnung und Epocheneinordnung bleiben umstritten" },
-            { left: "Borges", right: "moderne und postmoderne Raster greifen je nach Tradition anders" },
-            { left: "Achmatowa", right: "staatliche Zensur und Erinnerungspolitik beeinflussen Kanonisierung" }
+          type: "short-text",
+          title: "Transnationale Periodisierung erklären",
+          prompt: "Vergleiche zwei Autor*innen aus unterschiedlichen Sprachräumen und erkläre, warum ein einziger Epochenbegriff ihre literaturgeschichtliche Position nur unzureichend erfasst.",
+          help: "Möglich sind etwa Kafka und Borges, Heine und Lorca oder Achmatowa und Bachmann.",
+          placeholder: "Beim Vergleich von ... und ... zeigt sich ...",
+          conceptGroups: [
+            { label: "zwei Sprachräume", variants: ["kafka", "borges", "heine", "lorca", "achmatowa", "bachmann", "camus", "baudelaire", "shelley", "goethe"] },
+            { label: "Epochenbegriff begrenzt", variants: ["epoche", "periodisierung", "reicht nicht", "unzureichend", "nicht sauber"] },
+            { label: "Unterschiedliche Traditionen", variants: ["sprachraum", "tradition", "national", "transnational", "anders gegliedert"] },
+            { label: "Begründung", variants: ["weil", "zeigt", "sichtbar", "umstritten", "überlagert"] }
           ],
-          firstHint: "Denke nicht nur an Stil, sondern an Sprachraum und Institution.",
-          secondHint: "Nur eine Zeile spricht direkt über den fehlenden Export eines deutschen Epochenbegriffs.",
-          explanation: "Transnationale Literaturgeschichte zeigt, dass Periodisierungen regional, sprachlich und politisch verschieden funktionieren.",
+          successThreshold: 4,
+          firstHint: "Es geht nicht nur um zwei Namen, sondern darum, was der Vergleich an Periodisierung problematisiert.",
+          secondHint: "Eine starke Antwort zeigt, dass Begriffe wie Moderne, Romantik oder Vormärz je nach Tradition anders funktionieren oder gar nicht exportierbar sind.",
+          explanation: "Transnationale Epochenkritik gelingt dort, wo ein Vergleich sichtbar macht, dass literaturgeschichtliche Raster sprachraumabhängig und damit begrenzt sind.",
           modelAnswer:
-            "Vormärz = kein universaler Begriff; Kafka = umstrittene nationale und epochale Zuordnung; Borges = anders funktionierende Moderne/Postmoderne; Achmatowa = Einfluss von Zensur und Erinnerungspolitik."
+            "Beim Vergleich von Kafka und Borges zeigt sich, dass ein einziger Epochenbegriff ihre Position nur unzureichend erfasst. Kafka wird oft als Autor der Moderne gelesen, steht aber zugleich zwischen nationalen, sprachlichen und mitteleuropäischen Ordnungen. Borges wiederum wird je nach Tradition zwischen Moderne und Postmoderne verortet. Der Vergleich zeigt also, dass Periodisierung vom Sprachraum und von späteren Rezeptionsmustern abhängt."
         },
         {
           id: "m3_t5",
@@ -744,21 +823,23 @@
         },
         {
           id: "m4_t2",
-          type: "matching",
-          title: "Mechanismus und Effekt",
-          prompt: "Ordne jedem Kanonisierungsmechanismus den wahrscheinlichsten Effekt zu.",
-          help: "Denke institutionell.",
-          pairs: [
-            { left: "Pflichtlektüre im Unterricht", right: "wiederholte Sichtbarkeit und Normalisierung" },
-            { left: "Jubiläumseditionen und Werkausgaben", right: "dauerhafte Verfügbarkeit und Prestige" },
-            { left: "Übersetzungsausfälle", right: "transnationale Unsichtbarkeit" },
-            { left: "Prüfungsformate", right: "didaktische Verengung auf gut abprüfbare Texte" }
+          type: "short-text",
+          title: "Kanonmechanismus erklären",
+          prompt: "Wähle einen Mechanismus der Kanonisierung aus und erkläre an einem konkreten Beispiel, wie er Sichtbarkeit erzeugt und zugleich andere Texte zurückdrängen kann.",
+          help: "Möglich sind Pflichtlektüre, Editionen, Übersetzung, Preise, Feuilleton oder Prüfungsformate.",
+          placeholder: "Ein zentraler Kanonisierungsmechanismus ist ...",
+          conceptGroups: [
+            { label: "Mechanismus", variants: ["pflichtlektüre", "schule", "edition", "übersetzung", "preis", "feuilleton", "prüfung", "archiv"] },
+            { label: "Sichtbarkeit", variants: ["sichtbar", "präsent", "verfügbar", "wiederholt", "kanon"] },
+            { label: "Ausschluss", variants: ["verdrängt", "ausblendet", "weniger sichtbar", "ausschluss", "zurückdrängt"] },
+            { label: "Beispiel", variants: ["fontane", "goethe", "schiller", "shelley", "achmatowa", "droste", "pardo bazán", "bachmann"] }
           ],
-          firstHint: "Ein Mechanismus wirkt nicht nur symbolisch, sondern oft sehr praktisch.",
-          secondHint: "Übersetzungsausfälle erzeugen kein Prestige, sondern Unsichtbarkeit.",
-          explanation: "Kanonisierung ist auch Infrastruktur: Sichtbarkeit, Verfügbarkeit und Prüfungsfähigkeit sind machtvolle Filter.",
+          successThreshold: 4,
+          firstHint: "Beschreibe nicht nur den Mechanismus abstrakt, sondern seine Wirkung auf konkrete Sichtbarkeit.",
+          secondHint: "Eine starke Antwort sagt etwa: Pflichtlektüre hält Fontane dauerhaft präsent, drängt aber andere realistische oder weibliche Stimmen zurück.",
+          explanation: "Kanonkritik wird präzise, wenn institutionelle Mechanismen an konkreten Sichtbarkeits- und Ausschlusseffekten erklärt werden.",
           modelAnswer:
-            "Pflichtlektüre = wiederholte Sichtbarkeit; Jubiläumseditionen = Prestige und Verfügbarkeit; Übersetzungsausfälle = Unsichtbarkeit; Prüfungsformate = didaktische Verengung."
+            "Ein zentraler Kanonisierungsmechanismus ist die Pflichtlektüre im Unterricht. Sie hält etwa Fontane oder Goethe dauerhaft sichtbar, weil diese Texte wiederholt gelesen, kommentiert und geprüft werden. Genau dadurch gewinnen sie Normalität und Prestige. Zugleich drängt dieselbe Auswahl andere Texte derselben Zeit, etwa weniger etablierte oder weibliche Stimmen, an den Rand."
         },
         {
           id: "m4_t3",
@@ -954,22 +1035,24 @@
         },
         {
           id: "m5_t5",
-          type: "matching",
-          title: "Ergebnissicherung: Steuerung erkennen",
-          prompt: "Ordne die Form der kulturellen Steuerung dem passenden Beispiel zu.",
-          help: "Die Aufgabe bündelt offene und subtile Formen von Kulturpolitik.",
-          pairs: [
-            { left: "Curriculare Steuerung", right: "bestimmte Texte erscheinen regelmässig im Unterricht" },
-            { left: "Erinnerungspolitik", right: "Autor*innen werden symbolisch für kollektive Identität aufgeladen" },
-            { left: "Zensur", right: "Texte werden unterdrückt, verzögert oder nur eingeschränkt zugänglich" },
-            { left: "Editions- und Förderpolitik", right: "bestimmte Werke bleiben sichtbar und verfügbar" }
+          type: "short-text",
+          title: "Ergebnissicherung: Kulturpolitischen Transfer formulieren",
+          prompt: "Vergleiche eine subtile und eine direkte Form kulturpolitischer Steuerung und erkläre, wie beide Literaturgeschichten unterschiedlich prägen.",
+          help: "Zum Beispiel Curriculum und Zensur oder Erinnerungspolitik und Editionspolitik.",
+          placeholder: "Eine subtile Form ist ..., eine direkte Form ist ...",
+          conceptGroups: [
+            { label: "subtile Form", variants: ["curriculum", "lehrplan", "erinnerungspolitik", "edition", "förderung", "feuilleton"] },
+            { label: "direkte Form", variants: ["zensur", "verbot", "unterdrückung", "regime", "staat"] },
+            { label: "Prägung von Literaturgeschichte", variants: ["sichtbarkeit", "kanon", "literaturgeschichte", "prägt", "ordnet"] },
+            { label: "Vergleich", variants: ["hingegen", "während", "anders", "im unterschied", "beide"] }
           ],
-          firstHint: "Frage dich, ob es um Schule, Gedenken, Verbot oder Infrastruktur geht.",
-          secondHint: "Zensur unterdrückt; Editionspolitik stabilisiert Verfügbarkeit.",
+          successThreshold: 4,
+          firstHint: "Es reicht nicht, zwei Formen zu nennen; du musst ihren unterschiedlichen Wirkungsmodus vergleichen.",
+          secondHint: "Eine starke Antwort zeigt, dass Curriculum oder Erinnerungspolitik Sichtbarkeit lenken, während Zensur Texte direkt unterdrückt oder verzögert.",
           explanation:
-            "Kulturpolitik wirkt nicht nur repressiv, sondern auch über Auswahl, Erinnerung und Infrastruktur.",
+            "Transfer gelingt hier dann, wenn subtile und direkte Steuerung nicht verwechselt, sondern in ihrer unterschiedlichen Wirkung auf Sichtbarkeit und Kanonbildung verglichen werden.",
           modelAnswer:
-            "Curriculum = Unterrichtspräsenz; Erinnerungspolitik = symbolische Aufladung; Zensur = Unterdrückung; Editions- und Förderpolitik = dauerhafte Verfügbarkeit."
+            "Eine subtile Form kulturpolitischer Steuerung ist das Curriculum: Es legt fest, welche Texte regelmässig gelesen werden, und prägt so langfristig den Kanon. Eine direkte Form ist Zensur, die Texte unmittelbar verbietet, verzögert oder nur eingeschränkt zugänglich macht. Beide prägen Literaturgeschichte, aber auf unterschiedliche Weise: Die eine normalisiert Auswahl, die andere blockiert Sichtbarkeit offen."
         }
       ],
       teacher: {
@@ -1196,20 +1279,23 @@
         },
         {
           id: "m6_t3",
-          type: "matching",
-          title: "Station 3: Büchner",
-          prompt: "Ordne den passenden Zugang zu Büchners Störpotenzial.",
-          help: "Jede Zuordnung beschreibt eine andere Erkenntnisebene.",
-          pairs: [
-            { left: "Fragmentstruktur", right: "formalistische Lesart" },
-            { left: "soziale Verwundbarkeit", right: "marxistisch-sozialgeschichtliche Lesart" },
-            { left: "spätere Modernitätsfigur", right: "rezeptionsästhetische Lesart" }
+          type: "short-text",
+          title: "Station 3: Büchner methodisch deuten",
+          prompt: "Wähle den Ansatz, der Büchners Störpotenzial für dich am überzeugendsten erklärt, und begründe in drei bis fünf Sätzen, was dieser Ansatz sichtbar macht und was ein anderer Ansatz zusätzlich zeigen könnte.",
+          help: "Denk etwa an Formalismus, Marxismus oder Rezeptionsästhetik.",
+          placeholder: "Am überzeugendsten ist hier ...",
+          conceptGroups: [
+            { label: "Ansatzwahl", variants: ["formalismus", "werkimmanent", "marx", "rezeptionsästhetik", "new historicism"] },
+            { label: "sichtbar machen", variants: ["sichtbar", "zeigt", "erschliesst", "macht"] },
+            { label: "Zusatz eines anderen Ansatzes", variants: ["zusätzlich", "anderer ansatz", "außerdem", "mehr", "ergänzt"] },
+            { label: "Büchnerbezug", variants: ["büchner", "woyzeck", "fragment", "soziale", "wirkungsgeschichte"] }
           ],
-          firstHint: "Die Ebenen sind Form, Gesellschaft und Wirkungsgeschichte.",
-          secondHint: "Die spätere Aufwertung gehört nicht zur reinen Textstruktur.",
-          explanation: "Büchner zeigt besonders gut, dass unterschiedliche Ansätze verschiedene Schichten desselben Textes freilegen.",
+          successThreshold: 4,
+          firstHint: "Es geht nicht nur um die Nennung eines Ansatzes, sondern um eine begründete methodische Entscheidung.",
+          secondHint: "Eine starke Antwort sagt etwa: Formalismus erklärt die Fragmentstruktur, während Marxismus zusätzlich soziale Gewalt sichtbarer macht.",
+          explanation: "Die Aufgabe zwingt dazu, Methoden nicht nur zuzuordnen, sondern argumentativ gegeneinander abzuwägen.",
           modelAnswer:
-            "Fragmentstruktur = formalistisch; soziale Verwundbarkeit = marxistisch-sozialgeschichtlich; spätere Modernitätsfigur = rezeptionsästhetisch."
+            "Am überzeugendsten ist hier ein formalistischer Ansatz, weil er an Büchners Fragmentstruktur, Szenentechnik und sprachlichen Brüchen besonders präzise zeigen kann, warum 'Woyzeck' nicht in ein glattes Entwicklungsmodell passt. Sichtbar wird so die formale Offenheit des Textes. Ein marxistischer Ansatz könnte zusätzlich die soziale Verwundbarkeit und Herrschaftsverhältnisse schärfer fassen, während die Rezeptionsästhetik erklären würde, warum Büchner später als Modernitätsfigur aufgewertet wurde."
         },
         {
           id: "m6_t4",
@@ -1287,20 +1373,23 @@
         },
         {
           id: "m6_t8",
-          type: "matching",
-          title: "Station 8 und 9: Transnationale Moderne",
-          prompt: "Ordne die Beobachtung der passenden Vergleichsperspektive zu.",
-          help: "Die Aufgabe verbindet französische und hispanophone Felder.",
-          pairs: [
-            { left: "Baudelaire / Flaubert / Camus", right: "mehrere konkurrierende Modernitätsnarrative innerhalb einer Tradition" },
-            { left: "Cervantes / Lorca / Borges", right: "transnationale Periodisierung statt rein nationaler Linie" },
-            { left: "Borges", right: "späte globale Kanonisierung über Übersetzung und Weltliteratur" }
+          type: "short-text",
+          title: "Station 8 und 9: Transnationale Moderne vergleichen",
+          prompt: "Vergleiche eine französische und eine hispanophone Fallfigur aus dem Modul und erkläre, wie der Vergleich den Blick auf Moderne oder Periodisierung verändert.",
+          help: "Zum Beispiel Baudelaire und Borges oder Flaubert und Lorca.",
+          placeholder: "Beim Vergleich von ... und ... verändert sich der Blick ...",
+          conceptGroups: [
+            { label: "zwei Vergleichsfiguren", variants: ["baudelaire", "flaubert", "camus", "cervantes", "lorca", "borges"] },
+            { label: "Vergleich", variants: ["vergleich", "nebeneinander", "beide", "während", "hingegen"] },
+            { label: "Moderne oder Periodisierung", variants: ["moderne", "periodisierung", "epoche", "anders gegliedert"] },
+            { label: "Erkenntnisgewinn", variants: ["zeigt", "verändert", "sichtbar", "nicht nur national", "transnational"] }
           ],
-          firstHint: "Eine Aussage betrifft interne Vielfalt, die andere Transnationalität.",
-          secondHint: "Borges ist besonders stark mit Weltliteraturzirkulation verbunden.",
-          explanation: "Der Vergleich zeigt, dass Literaturgeschichte je nach Sprachraum anders skaliert werden muss.",
+          successThreshold: 4,
+          firstHint: "Die Antwort soll nicht nur zwei Autorennamen nennen, sondern zeigen, was der Vergleich methodisch leistet.",
+          secondHint: "Eine starke Antwort macht klar, dass Moderne nicht einfach überall gleich beginnt oder dieselbe Funktion hat.",
+          explanation: "Der Vergleich wird dann produktiv, wenn er Periodisierung als sprachraum- und rezeptionsabhängige Konstruktion sichtbar macht.",
           modelAnswer:
-            "Baudelaire/Flaubert/Camus = konkurrierende Modernitätsnarrative; Cervantes/Lorca/Borges = transnationale Periodisierung; Borges = globale Kanonisierung durch Übersetzung."
+            "Beim Vergleich von Baudelaire und Borges verändert sich der Blick auf Moderne deutlich. Baudelaire steht oft für urbane, lyrische Verdichtung und einen klassischen französischen Beginn der Moderne. Borges zeigt dagegen, dass moderne und postmoderne Verfahren in hispanophonen Kontexten anders erzählt und später global kanonisiert werden. Der Vergleich macht sichtbar, dass Periodisierung nicht einfach national einheitlich funktioniert."
         },
         {
           id: "m6_t9",
@@ -1426,21 +1515,23 @@
         },
         {
           id: "m7_t2",
-          type: "matching",
-          title: "DH-Methoden zuordnen",
-          prompt: "Ordne den DH-Verfahren die jeweils treffendste Aussage zu.",
-          help: "Denke an typische Erkenntnisinteressen.",
-          pairs: [
-            { left: "Stilometrie", right: "zeigt statistische Stilähnlichkeiten oder Differenzen" },
-            { left: "Netzwerkanalyse", right: "macht Beziehungen und Verbindungen sichtbar" },
-            { left: "Korpusanalyse", right: "untersucht Muster in grösseren Text- und Metadatenbeständen" },
-            { left: "Distant reading", right: "skaliert literaturwissenschaftliche Fragen über Einzeltexte hinaus" }
+          type: "short-text",
+          title: "DH-Methoden unterscheiden",
+          prompt: "Wähle zwei DH-Verfahren aus und erkläre in drei bis fünf Sätzen, worin sie sich in ihrer Fragestellung unterscheiden und für welches literaturgeschichtliche Problem du welches Verfahren eher einsetzen würdest.",
+          help: "Denk an Stilometrie, Netzwerkanalyse, Korpusanalyse oder distant reading.",
+          placeholder: "Ich vergleiche ... und ...",
+          conceptGroups: [
+            { label: "zwei Verfahren", variants: ["stilometrie", "netzwerkanalyse", "korpusanalyse", "distant reading"] },
+            { label: "Fragestellung", variants: ["fragt", "untersucht", "muster", "beziehungen", "stil", "korpus"] },
+            { label: "Einsatzproblem", variants: ["würde ich einsetzen", "geeignet", "problem", "für", "kanon", "epoche"] },
+            { label: "Unterschied", variants: ["unterschied", "hingegen", "während", "anders"] }
           ],
-          firstHint: "Netzwerke sind Beziehungen, Stilometrie ist Stilstatistik.",
-          secondHint: "Distant reading ist eher eine Perspektive, Korpusanalyse eher ein Verfahren.",
-          explanation: "Die Begriffe überschneiden sich, markieren aber unterschiedliche Arbeitsebenen.",
+          successThreshold: 4,
+          firstHint: "Eine gute Antwort definiert nicht nur die Verfahren, sondern verbindet sie mit unterschiedlichen Problemen.",
+          secondHint: "Zum Beispiel: Netzwerkanalyse für Beziehungen zwischen Autor*innen und Zeitschriften, Stilometrie für statistische Ähnlichkeiten zwischen Texten.",
+          explanation: "DH-Verständnis wird belastbar, wenn Verfahren über ihre je eigene Fragestellung und ihren Einsatzbereich unterschieden werden.",
           modelAnswer:
-            "Stilometrie = statistische Stilähnlichkeit; Netzwerkanalyse = Beziehungen; Korpusanalyse = Muster in grossen Datenbeständen; distant reading = skalierte Fragestellung."
+            "Ich vergleiche Netzwerkanalyse und Stilometrie. Netzwerkanalyse fragt nach Beziehungen zwischen Autor*innen, Institutionen, Zeitschriften oder Figuren und eignet sich besonders, wenn man literarische Zirkulationen oder Kanonnetzwerke untersuchen will. Stilometrie fragt dagegen nach statistischen Stilähnlichkeiten und -differenzen zwischen Texten. Für ein Problem der Autorschaft oder epochaler Clusterbildung würde ich eher Stilometrie einsetzen, für Fragen nach Vermittlung und Sichtbarkeit eher Netzwerkanalyse."
         },
         {
           id: "m7_t3",
@@ -1539,21 +1630,23 @@
       tasks: [
         {
           id: "m8_t1",
-          type: "matching",
-          title: "Vergleichsachsen sichern",
-          prompt: "Ordne den Vergleichsachsen die passende Zuspitzung zu.",
-          help: "Die Formulierungen verdichten die ganze Einheit.",
-          pairs: [
-            { left: "Werk vs. Kontext", right: "Frage danach, ob formale Eigenlogik oder historische Einbettung im Vordergrund steht" },
-            { left: "Kanon vs. Gegenkanon", right: "Frage danach, welche Auswahl stabilisiert oder revidiert wird" },
-            { left: "close reading vs. distant reading", right: "Frage nach Analyse einzelner Texte oder skalierter Muster" },
-            { left: "nationale vs. transnationale Literaturgeschichte", right: "Frage nach Grenzziehungen, Übersetzungen und Mehrfachzugehörigkeiten" }
+          type: "short-text",
+          title: "Vergleichsachsen auf eine These anwenden",
+          prompt: "Wähle zwei Vergleichsachsen der Einheit aus und erkläre an einer eigenen These, warum gerade diese beiden Achsen für eine reflektierte Literaturgeschichte wichtig sind.",
+          help: "Möglich sind etwa Werk vs. Kontext und Kanon vs. Gegenkanon oder close reading vs. distant reading.",
+          placeholder: "Ich verbinde die Achsen ... und ...",
+          conceptGroups: [
+            { label: "zwei Vergleichsachsen", variants: ["werk", "kontext", "kanon", "gegenkanon", "close reading", "distant reading", "national", "transnational", "autor", "system"] },
+            { label: "eigene These", variants: ["these", "wichtig", "weil", "zeigt", "notwendig"] },
+            { label: "reflektierte Literaturgeschichte", variants: ["literaturgeschichte", "reflektiert", "ordnung", "kritisch"] },
+            { label: "Anwendung", variants: ["zum beispiel", "etwa", "an", "sichtbar"] }
           ],
-          firstHint: "Ordnung, Auswahl, Methode und Grenzziehung sind die vier Felder.",
-          secondHint: "Distant reading gehört nicht zur Kanonfrage, sondern zur Skalierung der Analyse.",
-          explanation: "Die Vergleichsachsen helfen, theoretische Debatten über einzelne Module hinaus zu bündeln.",
+          successThreshold: 4,
+          firstHint: "Nenne nicht nur zwei Achsen, sondern formuliere eine begründete These zu ihrem Zusammenspiel.",
+          secondHint: "Eine starke Antwort zeigt, dass reflektierte Literaturgeschichte mehrere Spannungsachsen zugleich braucht, etwa Text und Kontext oder Kanon und Revision.",
+          explanation: "Die Aufgabe verlangt keine Reproduktion, sondern eine synthetische Auswahl und Begründung zentraler Denkachsen.",
           modelAnswer:
-            "Werk vs. Kontext = Eigenlogik oder Einbettung; Kanon vs. Gegenkanon = Stabilisierung oder Revision; close vs. distant reading = Einzeltext oder Muster; national vs. transnational = Grenzziehung und Mehrfachzugehörigkeit."
+            "Ich verbinde die Achsen Werk vs. Kontext und Kanon vs. Gegenkanon. Meine These ist, dass Literaturgeschichte nur dann reflektiert wird, wenn sie Texte sowohl in ihrer ästhetischen Eigenlogik als auch in ihren institutionellen Sichtbarkeiten betrachtet. Am Beispiel von Kafka oder Mary Shelley zeigt sich, dass ein Werk nicht nur formal interessant ist, sondern auch unterschiedlich kanonisiert und historisch gerahmt wird. Gerade das Zusammenspiel dieser Achsen verhindert eine naive oder zu einfache Literaturgeschichte."
         },
         {
           id: "m8_t2",

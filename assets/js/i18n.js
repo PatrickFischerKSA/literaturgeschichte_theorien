@@ -225,91 +225,123 @@
         title: "Module 2: Classical Theoretical Approaches",
         subtitle: "Comparing models of literary historiography",
         intro:
-          "These approaches are not interchangeable recipes. Each one asks different questions and therefore makes different things visible.",
+          "These approaches are not equally central today. This module prioritizes them, marks current focal points, and shows why some models now function more as background knowledge or targeted supplements.",
         goals: [
-          "Place central approaches historically and epistemologically.",
-          "Compare questions, strengths, and limits of each model.",
-          "Apply mini-transfers to primary texts.",
-          "Think relationally instead of absolutizing one model."
+          "Prioritize approaches instead of treating them as flat equivalents.",
+          "Distinguish current focal methods from historical background models.",
+          "Apply approaches to texts without absolutizing them.",
+          "Understand how one-method reading can silently canonize only fitting texts."
         ],
         focus: {
           question: "What changes when I ask a text a different kind of question?",
           bridge:
-            "You do not need to memorize schools first. Begin by asking what an approach wants to know: facts, form, reception, power, system, discourse, or historical spirit.",
+            "You do not need to memorize schools first. Begin by asking whether an approach is a present-day focal method, a basic skill, or mainly historical background.",
           core:
-            "An approach is best understood as a question-generator. It helps you see one layer of literature more sharply, while pushing another layer into the background.",
+            "An approach is best understood as a question-generator. Close reading remains a basic skill, but newer emphases focus more strongly on discourse, power, transnationality, and canon critique.",
           steps: [
             "Identify the central question of the approach.",
+            "Estimate its current status in literary studies.",
             "Check what becomes visible through this question.",
             "Name what remains less visible."
           ],
           pitfalls: [
+            "Treating all approaches as equally current.",
             "Treating one model as the only correct one.",
             "Reducing an approach to a slogan.",
             "Forgetting that methods are tools, not worldviews to obey."
           ],
-          terms: ["close reading", "reception aesthetics", "structuralism", "New Historicism"]
+          terms: ["close reading", "New Historicism", "poststructuralism", "postcolonial extension"]
         },
         approachesSummary: [
           {
+            priority: "Historical background",
             title: "Positivism",
             focus: "facts, sources, dates, documented contexts",
             strength: "strong empirical basis",
-            blindSpot: "may reduce literature to causes"
+            blindSpot: "may reduce literature to causes",
+            todayStatus:
+              "Still useful for editions, archives, and material questions, but weak as a dominant model because it often assumes stable authorship and turns texts into documents of origin."
           },
           {
+            priority: "Historical background",
             title: "History of ideas",
             focus: "worldviews and intellectual formations",
             strength: "shows larger horizons",
-            blindSpot: "can homogenize periods"
+            blindSpot: "can homogenize periods",
+            todayStatus:
+              "Important historically, but risky when large spiritual narratives become teleological or politically appropriable."
           },
           {
+            priority: "Methodical basis",
             title: "Formalism / New Criticism",
             focus: "form, structure, language, motifs",
             strength: "sharp textual precision",
-            blindSpot: "may underplay institutions and politics"
+            blindSpot: "may underplay institutions and politics",
+            todayStatus:
+              "Still indispensable as close reading, but problematic when textual purity is used to hide politics, institutions, or compromised intellectual histories."
           },
           {
+            priority: "Targeted supplement",
             title: "Marxist theory",
             focus: "class, ideology, material conditions",
             strength: "reveals power and contradiction",
-            blindSpot: "may instrumentalize form"
+            blindSpot: "may instrumentalize form",
+            todayStatus:
+              "Still productive for ideology and materiality, but no longer a default master model after the decline of Cold War grand frameworks."
           },
           {
+            priority: "Targeted supplement",
             title: "Reception aesthetics",
             focus: "readers, horizons of expectation, changing reception",
             strength: "explains shifting value",
-            blindSpot: "readers can remain abstract"
+            blindSpot: "readers can remain abstract",
+            todayStatus:
+              "Useful for canon revision and changing value, but less dominant today because institutional power often remains underdescribed."
           },
           {
+            priority: "Historical background",
             title: "Structuralism",
             focus: "relations, codes, recurrent structures",
             strength: "good for pattern analysis",
-            blindSpot: "history and agency may fade"
+            blindSpot: "history and agency may fade",
+            todayStatus:
+              "Often more important as a conceptual toolbox than as a standalone leading paradigm."
           },
           {
+            priority: "Current focal approach",
             title: "Poststructuralism / Deconstruction",
             focus: "instability, tensions, hierarchy, difference",
             strength: "reveals ambivalence",
-            blindSpot: "can feel abstract and historically thin"
+            blindSpot: "can feel abstract and historically thin",
+            todayStatus:
+              "Still central when combined with careful textual and historical work, especially for hierarchy, exclusion, and unstable meaning."
           },
           {
+            priority: "Current focal approach",
             title: "New Historicism",
             focus: "text and discourse in power-laden circulation",
             strength: "subtle text-context relation",
-            blindSpot: "literature may dissolve in context"
+            blindSpot: "literature may dissolve in context",
+            todayStatus:
+              "Especially productive today because it links texts to discourse and power without reducing them to simple historical mirrors."
           },
           {
+            priority: "Targeted supplement",
             title: "Systems theory",
             focus: "literature as communication system",
             strength: "precise institutional thinking",
-            blindSpot: "can sound detached from lived conflict"
+            blindSpot: "can sound detached from lived conflict",
+            todayStatus:
+              "Stimulating for institutions and media, but often felt to be unsatisfying because subjectivity and lived conflict recede."
           },
           {
+            priority: "Current focal approach",
             title: "Cultural / postcolonial extensions",
             focus: "media, translation, gender, coloniality, center/periphery",
             strength: "opens the canon and criticizes Eurocentrism",
-            blindSpot: "risks becoming too broad if used vaguely"
+            blindSpot: "risks becoming too broad if used vaguely",
+            todayStatus:
+              "Especially important for current literary historiography because they connect canon critique, power asymmetry, and transnational circulation."
           }
         ]
       }
@@ -319,54 +351,57 @@
         title: "Module 3: Period Labels and Their Problems",
         subtitle: "Heuristics, non-synchronicity, transnationality",
         intro:
-          "Period labels create orientation, but they also simplify. This module shows why rigid period models are helpful and problematic at the same time.",
+          "Period labels are neither mere error nor final truth. This module asks when they illuminate texts, when they become teleological, and why blanket anti-period rhetoric can also obscure reading.",
         goals: [
           "Understand periods as heuristic tools rather than facts.",
+          "Distinguish useful ordering from teleological overreach.",
           "Analyze overlaps and non-synchronous developments.",
           "Compare national and transnational periodizations.",
-          "Name the DH contribution to period critique."
+          "Connect critique of periodization with critique of anti-period simplification."
         ],
         focus: {
           question: "Why are period labels useful, but never the last word?",
           bridge:
-            "If a label helps you orient yourself, that does not yet make it a natural truth. Treat period labels as working models.",
+            "If a label helps you orient yourself, that does not yet make it a natural truth. But rejecting every label does not automatically produce a better reading.",
           core:
-            "Periods reduce complexity. That is their strength. The same reduction can also erase hybrid, transitional, or transnational texts.",
+            "Periods reduce complexity. That is their strength. The same reduction can erase hybrid or transnational texts, while pure anti-period critique can itself become a new screen in front of the text.",
           steps: [
             "Ask what the label helps you see.",
             "Ask which border cases it distorts.",
-            "Ask whether the label works across languages and traditions."
+            "Ask whether the critique of the label still helps with the text itself."
           ],
           pitfalls: [
             "Thinking all texts of one period share the same features.",
             "Confusing heuristic clarity with objective fact.",
-            "Forgetting transnational and colonial entanglements."
+            "Forgetting transnational and colonial entanglements.",
+            "Assuming that no period label means no simplification."
           ],
           terms: ["periodization", "heuristic", "non-synchronicity", "distant reading"]
         },
         sections: [
           {
-            title: "Why periods help",
+            title: "Why periods still matter",
             bullets: [
               "They condense large developments into manageable patterns.",
-              "Without them, teaching risks becoming an unconnected list of works.",
+              "Without them, teaching risks becoming an unconnected list of works or a mere accumulation of facts.",
               "But usefulness is not the same as truth."
             ]
           },
           {
-            title: "Why periods mislead",
+            title: "Why periods can mislead",
             bullets: [
               "Rigid models homogenize heterogeneous texts.",
               "Authors like Heine, Büchner, and Kafka expose mixed forms and overlaps.",
+              "Teleology turns open processes into retrospective development lines.",
               "National literary histories also cut time differently."
             ]
           },
           {
-            title: "What DH can add",
+            title: "Critiquing period critique",
             bullets: [
-              "Stylometry and corpus analysis may support existing boundaries.",
-              "They may also reveal clusters that do not match textbook period labels.",
-              "Data shows patterns, but historical meaning still needs interpretation."
+              "Blanket anti-period rhetoric can obscure texts just as much as rigid period labels do.",
+              "DH can reveal clusters that do not match textbook periods, but corpus design may still reproduce old canons.",
+              "Data shows patterns, yet historical meaning still requires interpretation."
             ]
           }
         ]
@@ -968,43 +1003,43 @@
       fr: {
         title: "Module 2: Approches théoriques classiques",
         subtitle: "Comparer des modèles d'historiographie littéraire",
-        intro: "Ces approches ne sont pas des recettes interchangeables. Chacune pose d'autres questions et rend donc visibles d'autres aspects.",
-        goals: ["Situer les approches majeures historiquement et épistémologiquement.", "Comparer questions, potentiels et limites.", "Appliquer des mini-transferts à des textes primaires.", "Penser les modèles de manière relationnelle plutôt qu'absolue."],
+        intro: "Ces approches ne sont pas toutes aussi centrales aujourd'hui. Le module les hiérarchise et distingue entre bases méthodiques, focalisations actuelles et arrière-plan historique.",
+        goals: ["Hiérarchiser les approches au lieu de les traiter comme équivalentes.", "Distinguer les focalisations actuelles des modèles surtout historiques.", "Appliquer les approches à des textes sans les absolutiser.", "Voir comment une seule méthode peut recanoniser les textes qui lui conviennent."],
         focus: {
           question: "Que change le fait de poser à un texte un autre type de question ?",
-          bridge: "Il n'est pas nécessaire de mémoriser d'abord les écoles. Commence par demander ce qu'un approche veut savoir.",
-          core: "Un approche fonctionne comme un générateur de questions. Il rend une couche plus visible et en relègue d'autres à l'arrière-plan.",
-          steps: ["Identifier la question centrale.", "Nommer ce qu'elle rend visible.", "Dire ce qu'elle laisse moins visible."],
-          pitfalls: ["Prendre un modèle pour le seul bon.", "Réduire une théorie à un slogan.", "Confondre méthode et vérité."],
-          terms: ["close reading", "esthétique de la réception", "structuralisme", "New Historicism"]
+          bridge: "Il n'est pas nécessaire de mémoriser d'abord les écoles. Commence par demander si l'approche relève d'une base méthodique, d'un accent actuel ou plutôt d'un arrière-plan historique.",
+          core: "Une approche est un générateur de questions. La lecture rapprochée reste fondamentale, mais les accents actuels concernent davantage pouvoir, discours, transnationalité et canon.",
+          steps: ["Identifier la question centrale.", "Situer le statut actuel de l'approche.", "Nommer ce qu'elle rend visible et ce qu'elle laisse en retrait."],
+          pitfalls: ["Traiter toutes les approches comme également actuelles.", "Prendre un modèle pour le seul bon.", "Confondre méthode et vérité."],
+          terms: ["close reading", "New Historicism", "poststructuralisme", "approche postcoloniale"]
         }
       },
       es: {
         title: "Módulo 2: Enfoques teóricos clásicos",
         subtitle: "Comparar modelos de historiografía literaria",
-        intro: "Estos enfoques no son recetas intercambiables. Cada uno plantea preguntas distintas y por eso vuelve visibles cosas distintas.",
-        goals: ["Situar los enfoques centrales histórica y epistemológicamente.", "Comparar preguntas, potencial y límites.", "Aplicar mini-transferencias a textos primarios.", "Pensar los modelos de forma relacional y no absoluta."],
+        intro: "Estos enfoques no son igual de centrales hoy. El módulo los jerarquiza y distingue entre base metodológica, énfasis actuales y trasfondo histórico.",
+        goals: ["Jerarquizar los enfoques en vez de presentarlos como equivalentes.", "Distinguir los énfasis actuales de los modelos sobre todo históricos.", "Aplicar enfoques a textos sin absolutizarlos.", "Ver cómo una sola metodología puede recanonizar solo los textos que le convienen."],
         focus: {
           question: "¿Qué cambia cuando hago a un texto otro tipo de preguntas?",
-          bridge: "No necesitas memorizar primero las escuelas. Empieza preguntando qué quiere saber cada enfoque.",
-          core: "Un enfoque funciona como generador de preguntas. Hace una capa más visible y desplaza otras al fondo.",
-          steps: ["Identificar la pregunta central.", "Nombrar qué hace visible.", "Decir qué deja menos visible."],
-          pitfalls: ["Tomar un modelo como el único correcto.", "Reducir una teoría a un eslogan.", "Confundir método y verdad."],
-          terms: ["close reading", "estética de la recepción", "estructuralismo", "New Historicism"]
+          bridge: "No necesitas memorizar primero las escuelas. Empieza por preguntar si el enfoque es una base metodológica, un énfasis actual o más bien un trasfondo histórico.",
+          core: "Un enfoque funciona como generador de preguntas. La lectura cercana sigue siendo básica, pero los énfasis actuales se concentran más en poder, discurso, transnacionalidad y canon.",
+          steps: ["Identificar la pregunta central.", "Ubicar su posición actual.", "Nombrar lo que hace visible y lo que deja en segundo plano."],
+          pitfalls: ["Tratar todos los enfoques como igual de actuales.", "Tomar un modelo como el único correcto.", "Confundir método y verdad."],
+          terms: ["close reading", "New Historicism", "postestructuralismo", "enfoque poscolonial"]
         }
       },
       ru: {
         title: "Модуль 2: Классические теоретические подходы",
         subtitle: "Сравнение моделей литературной историографии",
-        intro: "Эти подходы не являются взаимозаменяемыми рецептами. Каждый задаёт другие вопросы и поэтому делает видимым другое.",
-        goals: ["Исторически и эпистемологически расположить основные подходы.", "Сравнить вопросы, возможности и границы.", "Применить мини-перенос к первичным текстам.", "Мыслить модели реляционно, а не абсолютизировать их."],
+        intro: "Эти подходы сегодня не одинаково центральны. Модуль расставляет приоритеты и различает методическую базу, актуальные акценты и исторический фон.",
+        goals: ["Расставлять подходы по значимости, а не представлять их как равные.", "Различать актуальные акценты и преимущественно исторические модели.", "Применять подходы к текстам, не абсолютизируя их.", "Понимать, как одна-единственная методика может заново канонизировать только удобные ей тексты."],
         focus: {
           question: "Что меняется, когда я задаю тексту другой тип вопроса?",
-          bridge: "Не нужно сначала заучивать школы. Начни с вопроса, что именно хочет узнать подход.",
-          core: "Подход работает как генератор вопросов. Он делает один слой литературы яснее, а другой отодвигает в тень.",
-          steps: ["Определить центральный вопрос.", "Назвать, что становится видимым.", "Показать, что остаётся менее видимым."],
-          pitfalls: ["Считать один подход единственно верным.", "Сводить теорию к лозунгу.", "Путать метод и истину."],
-          terms: ["close reading", "эстетика рецепции", "структурализм", "New Historicism"]
+          bridge: "Не нужно сначала заучивать школы. Начни с вопроса, является ли подход методической базой, актуальным акцентом или скорее историческим фоном.",
+          core: "Подход работает как генератор вопросов. Внимательное чтение остаётся базовым, но сегодняшние акценты сильнее связаны с властью, дискурсом, транснациональностью и каноном.",
+          steps: ["Определить центральный вопрос.", "Понять его современный статус.", "Назвать, что он делает видимым и что уходит в тень."],
+          pitfalls: ["Считать все подходы одинаково актуальными.", "Считать один подход единственно верным.", "Путать метод и истину."],
+          terms: ["close reading", "New Historicism", "постструктурализм", "постколониальный подход"]
         }
       }
     },
@@ -1012,42 +1047,42 @@
       fr: {
         title: "Module 3: Les notions de période et leurs problèmes",
         subtitle: "Heuristique, non-simultanéité, transnationalité",
-        intro: "Les notions de période créent de l'orientation, mais elles simplifient aussi. Ce module montre pourquoi elles sont utiles et problématiques à la fois.",
-        goals: ["Comprendre les périodes comme outils heuristiques.", "Analyser transitions et superpositions.", "Comparer périodisations nationales et transnationales.", "Nommer la contribution des humanités numériques à cette critique."],
+        intro: "Les notions de période ne sont ni de simples erreurs ni des vérités finales. Le module demande quand elles éclairent les textes et quand la critique des périodes devient elle-même réductrice.",
+        goals: ["Comprendre les périodes comme outils heuristiques.", "Distinguer l'ordre utile de la téléologie.", "Comparer périodisations nationales et transnationales.", "Articuler critique des périodes et critique d'une anti-périodisation simplificatrice."],
         focus: {
           question: "Pourquoi les notions de période sont-elles utiles, mais jamais le dernier mot ?",
-          bridge: "Si un terme aide à s'orienter, cela ne signifie pas encore qu'il décrive une vérité naturelle.",
-          core: "Les périodes réduisent la complexité. C'est leur force. Cette même réduction peut effacer des cas hybrides ou transnationaux.",
-          steps: ["Dire ce que la notion aide à voir.", "Tester les cas limites.", "Demander si elle fonctionne dans plusieurs traditions."],
-          pitfalls: ["Homogénéiser tous les textes d'une période.", "Confondre heuristique et fait objectif.", "Oublier les enchevêtrements transnationaux."],
+          bridge: "Si un terme aide à s'orienter, cela ne signifie pas encore qu'il décrive une vérité naturelle. Mais rejeter tous les termes n'améliore pas automatiquement la lecture.",
+          core: "Les périodes réduisent la complexité. C'est leur force. La même réduction peut effacer des cas hybrides, tandis qu'une anti-périodisation totale peut devenir un nouvel écran devant le texte.",
+          steps: ["Dire ce que la notion aide à voir.", "Tester les cas limites.", "Demander si la critique de la notion éclaire encore le texte."],
+          pitfalls: ["Homogénéiser tous les textes d'une période.", "Confondre heuristique et fait objectif.", "Croire qu'abolir les périodes supprime toute simplification."],
           terms: ["périodisation", "heuristique", "non-simultanéité", "distant reading"]
         }
       },
       es: {
         title: "Módulo 3: Los periodos y sus problemas",
         subtitle: "Heurística, no simultaneidad, transnacionalidad",
-        intro: "Los periodos orientan, pero también simplifican. Este módulo muestra por qué son útiles y problemáticos a la vez.",
-        goals: ["Entender los periodos como herramientas heurísticas.", "Analizar transiciones y solapamientos.", "Comparar periodizaciones nacionales y transnacionales.", "Nombrar la aportación de las humanidades digitales a esta crítica."],
+        intro: "Los periodos no son ni mero error ni verdad final. El módulo pregunta cuándo iluminan los textos y cuándo la crítica de los periodos se vuelve ella misma reductora.",
+        goals: ["Entender los periodos como herramientas heurísticas.", "Distinguir entre orden útil y teleología.", "Comparar periodizaciones nacionales y transnacionales.", "Vincular la crítica del periodo con la crítica de una anti-periodización simplificadora."],
         focus: {
           question: "¿Por qué los periodos son útiles, pero nunca la última palabra?",
-          bridge: "Que un término ayude a orientarse no significa todavía que describa una verdad natural.",
-          core: "Los periodos reducen complejidad. Esa es su fuerza. La misma reducción puede borrar textos híbridos o transnacionales.",
-          steps: ["Decir qué ayuda a ver el término.", "Comprobar los casos límite.", "Preguntar si funciona entre tradiciones."],
-          pitfalls: ["Homogeneizar todos los textos de un periodo.", "Confundir heurística con hecho objetivo.", "Olvidar los entrelazamientos transnacionales."],
+          bridge: "Que un término ayude a orientarse no significa todavía que describa una verdad natural. Pero rechazar todos los términos tampoco mejora automáticamente la lectura.",
+          core: "Los periodos reducen complejidad. Esa es su fuerza. La misma reducción puede borrar casos híbridos, mientras que una antiperiocidad total puede convertirse en una nueva pantalla delante del texto.",
+          steps: ["Decir qué ayuda a ver el término.", "Comprobar los casos límite.", "Preguntar si la crítica del término sigue ayudando al texto."],
+          pitfalls: ["Homogeneizar todos los textos de un periodo.", "Confundir heurística con hecho objetivo.", "Creer que eliminar los periodos elimina toda simplificación."],
           terms: ["periodización", "heurística", "no simultaneidad", "distant reading"]
         }
       },
       ru: {
         title: "Модуль 3: Периодизация и её проблемы",
         subtitle: "Эвристика, несинхронность, транснациональность",
-        intro: "Периодизация создаёт ориентацию, но одновременно упрощает. Этот модуль показывает, почему она и полезна, и проблемна.",
-        goals: ["Понимать периоды как эвристические инструменты.", "Анализировать переходы и наложения.", "Сравнивать национальные и транснациональные периодизации.", "Показать вклад цифровых гуманитарных наук в эту критику."],
+        intro: "Периодизация не является ни простой ошибкой, ни окончательной истиной. Модуль спрашивает, когда она проясняет тексты, а когда сама критика периодизации начинает упрощать.",
+        goals: ["Понимать периоды как эвристические инструменты.", "Различать полезный порядок и телеологию.", "Сравнивать национальные и транснациональные периодизации.", "Связывать критику периодизации с критикой упрощающей антипериодизации."],
         focus: {
           question: "Почему периоды полезны, но никогда не являются последним словом?",
-          bridge: "Если термин помогает ориентироваться, это ещё не значит, что он описывает естественный факт.",
-          core: "Периоды уменьшают сложность. В этом их сила. Но та же редукция может стирать гибридные и транснациональные случаи.",
-          steps: ["Понять, что термин помогает увидеть.", "Проверить пограничные случаи.", "Спросить, работает ли он в разных традициях."],
-          pitfalls: ["Гомогенизировать все тексты периода.", "Путать эвристику с объективным фактом.", "Забывать о транснациональных связях."],
+          bridge: "Если термин помогает ориентироваться, это ещё не значит, что он описывает естественный факт. Но отказ от всех терминов тоже не делает чтение автоматически лучше.",
+          core: "Периоды уменьшают сложность. В этом их сила. Но та же редукция может стирать гибридные случаи, а тотальная антипериодизация может стать новым экраном перед текстом.",
+          steps: ["Понять, что термин помогает увидеть.", "Проверить пограничные случаи.", "Спросить, помогает ли критика термина самому чтению текста."],
+          pitfalls: ["Гомогенизировать все тексты периода.", "Путать эвристику с объективным фактом.", "Думать, что отказ от периодов снимает всякое упрощение."],
           terms: ["периодизация", "эвристика", "несинхронность", "distant reading"]
         }
       }

@@ -92,36 +92,38 @@
       "mod-2": {
         question: "Was verändert sich, wenn ich an einen Text andere Fragen stelle?",
         bridge:
-          "Du musst die Theorieansätze nicht auswendig kennen. Beginne immer mit der Frage, was ein Ansatz überhaupt wissen will.",
+          "Du musst die Theorieansätze nicht auswendig kennen. Wichtiger ist, dass du zwischen methodischer Grundlage, heutigen Schwerpunkten und eher historischem Hintergrund unterscheiden kannst.",
         core:
-          "Ein Ansatz ist ein Fragewerkzeug. Er schärft einen Aspekt von Literatur und schwächt andere Aspekte ab.",
+          "Ein Ansatz ist ein Fragewerkzeug. Textnahe Präzision bleibt grundlegend, aber die heutigen Schwerpunkte liegen stärker bei Macht-, Diskurs-, Transnationalitäts- und Kanonfragen.",
         steps: [
           "Leitfrage des Ansatzes benennen.",
-          "Sichtbar gemachte Ebene bestimmen.",
-          "Ausblendung oder Grenze reflektieren."
+          "Seine heutige Stellung im Feld einschätzen.",
+          "Sichtbar gemachte Ebene und Grenze reflektieren."
         ],
         pitfalls: [
+          "Alle Ansätze als gleich gegenwartsrelevant behandeln.",
           "Einen Ansatz absolut setzen.",
           "Theorie auf ein Schlagwort verkürzen.",
           "Methoden mit Wahrheiten verwechseln."
         ],
-        terms: ["Werkimmanenz", "Rezeptionsästhetik", "Strukturalismus", "New Historicism"]
+        terms: ["Werkimmanenz", "New Historicism", "Poststrukturalismus", "postkoloniale Erweiterungen"]
       },
       "mod-3": {
         question: "Warum sind Epochenbegriffe nützlich und zugleich gefährlich?",
         bridge:
-          "Wenn ein Begriff Orientierung schafft, bedeutet das noch nicht, dass er eine objektive Tatsache bezeichnet. Behandle Epochen als Arbeitsmodelle.",
+          "Wenn ein Begriff Orientierung schafft, bedeutet das noch nicht, dass er eine objektive Tatsache bezeichnet. Aber auch seine pauschale Verwerfung löst das Problem nicht.",
         core:
-          "Epochenbegriffe reduzieren Komplexität. Das ist ihre Stärke. Dieselbe Reduktion kann aber Grenzfälle und Überlagerungen unsichtbar machen.",
+          "Epochenbegriffe reduzieren Komplexität. Das ist ihre Stärke. Dieselbe Reduktion kann Grenzfälle und Teleologien erzeugen; reine Epochenkritik kann umgekehrt den Blick auf den Text verstellen.",
         steps: [
           "Nutzen des Epochenbegriffs benennen.",
           "Grenzfälle und Mischformen prüfen.",
-          "Nationale und transnationale Unterschiede vergleichen."
+          "Fragen, wo Kritik erhellt und wo sie selbst zum Raster wird."
         ],
         pitfalls: [
           "Alle Texte einer Epoche homogen lesen.",
           "Heuristik mit Naturtatsache verwechseln.",
-          "Eurozentrische Raster unbemerkt übernehmen."
+          "Eurozentrische Raster unbemerkt übernehmen.",
+          "Zu glauben, ohne Periodisierung arbeite man automatisch textnäher."
         ],
         terms: ["Epoche", "Heuristik", "Ungleichzeitigkeit", "Periodisierung"]
       },
@@ -410,19 +412,33 @@
 
   function renderApproachesGerman(module) {
     if (!module.approaches) return "";
+    const orderedApproaches = [...module.approaches].sort(
+      (left, right) => (left.priority ?? 99) - (right.priority ?? 99)
+    );
     return `
       <div class="accordion-stack">
-        ${module.approaches
+        ${orderedApproaches
           .map(
             (approach) => `
               <details class="approach-card">
                 <summary>
-                  <div>
-                    <h4>${escapeHtml(approach.name)}</h4>
-                    <p>${escapeHtml(approach.keyTerms.join(" | "))}</p>
+                  <div class="approach-summary-head">
+                    <div>
+                      ${approach.priorityLabel ? `<span class="approach-priority">${escapeHtml(approach.priorityLabel)}</span>` : ""}
+                    </div>
+                    <div>
+                      <h4>${escapeHtml(approach.name)}</h4>
+                      <p>${escapeHtml(approach.keyTerms.join(" | "))}</p>
+                      ${approach.todayStatus ? `<p class="approach-status-inline">${escapeHtml(approach.todayStatus)}</p>` : ""}
+                    </div>
                   </div>
                 </summary>
                 <div class="approach-grid">
+                  ${
+                    approach.todayStatus
+                      ? `<article><h5>Heutige Stellung</h5><p>${escapeHtml(approach.todayStatus)}</p></article>`
+                      : ""
+                  }
                   <article><h5>Kurzdefinition</h5><p>${escapeHtml(approach.definition)}</p></article>
                   <article><h5>Historische Einordnung</h5><p>${escapeHtml(approach.history)}</p></article>
                   <article><h5>Erkenntnistheoretische Grundannahme</h5><p>${escapeHtml(approach.epistemology)}</p></article>
@@ -450,6 +466,17 @@
             (entry) => `
               <article class="deep-card">
                 <h4>${escapeHtml(entry.title)}</h4>
+                ${
+                  entry.priority
+                    ? `<p><strong>${escapeHtml(copy({
+                        de: "Stellung",
+                        en: "Status today",
+                        fr: "Statut actuel",
+                        es: "Situación actual",
+                        ru: "Современный статус"
+                      }))}:</strong> ${escapeHtml(entry.priority)}</p>`
+                    : ""
+                }
                 <p><strong>${escapeHtml(copy({
                   de: "Fokus",
                   en: "Focus",
@@ -471,6 +498,17 @@
                   es: "Punto ciego",
                   ru: "Слепое пятно"
                 }))}:</strong> ${escapeHtml(entry.blindSpot)}</p>
+                ${
+                  entry.todayStatus
+                    ? `<p><strong>${escapeHtml(copy({
+                        de: "Kommentar",
+                        en: "Comment",
+                        fr: "Commentaire",
+                        es: "Comentario",
+                        ru: "Комментарий"
+                      }))}:</strong> ${escapeHtml(entry.todayStatus)}</p>`
+                    : ""
+                }
               </article>
             `
           )
