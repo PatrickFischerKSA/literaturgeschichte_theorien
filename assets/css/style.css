@@ -610,6 +610,99 @@ button {
   margin-bottom: 8px;
 }
 
+.controversy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.controversy-card {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+  background: #f7f9fb;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.quote-shell {
+  position: relative;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+.quote-shell blockquote {
+  margin: 0;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.quote-toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.quote-source-link,
+.source-list a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.quote-source-link:hover,
+.source-list a:hover {
+  text-decoration: underline;
+}
+
+.quote-popover {
+  position: absolute;
+  right: 12px;
+  top: calc(100% - 6px);
+  z-index: 4;
+  width: min(320px, calc(100vw - 80px));
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: #20313f;
+  color: #f7f9fb;
+  box-shadow: 0 18px 40px rgba(18, 33, 45, 0.28);
+}
+
+.quote-popover p {
+  margin: 8px 0 0;
+}
+
+.quote-popover-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.quote-close {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.source-list {
+  display: grid;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+
+.controversy-summary-card {
+  display: grid;
+  gap: 12px;
+}
+
 .station-grid {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }

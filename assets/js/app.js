@@ -5,6 +5,7 @@
   const progressApi = window.LitProgress;
   const tasksApi = window.LitTasks;
   const dhDemoApi = window.LitDhDemo;
+  const disputesApi = window.LitDisputes;
   const i18n = window.LitI18n;
   const taskI18n = window.LitTaskI18n;
   const state = progressApi.loadState();
@@ -533,6 +534,102 @@
     `;
   }
 
+  function renderControversyDossier(module) {
+    if (module.id !== "mod-6" || !disputesApi) return "";
+
+    const dossier = disputesApi.get(lang());
+    const labels = disputesApi.getUi(lang());
+
+    return `
+      <section class="subsection controversy-section">
+        <div class="subsection-head">
+          <h3>${escapeHtml(labels.title)}</h3>
+          <p>${escapeHtml(dossier.intro)}</p>
+        </div>
+        <div class="info-box english">
+          <h4>${escapeHtml(labels.kicker)}</h4>
+          <p>${escapeHtml(labels.translationNote)}</p>
+        </div>
+        <div class="controversy-grid">
+          ${dossier.cases
+            .map((entry, index) => {
+              const popupId = `${lang()}-quote-${index}`;
+              return `
+                <article class="controversy-card">
+                  <h4>${escapeHtml(entry.title)}</h4>
+                  <p><strong>${escapeHtml(copy({
+                    de: "Streitpunkt",
+                    en: "Core dispute",
+                    fr: "Nœud du conflit",
+                    es: "Núcleo de la disputa",
+                    ru: "Узел спора"
+                  }))}:</strong> ${escapeHtml(entry.debate)}</p>
+                  <p><strong>${escapeHtml(copy({
+                    de: "Warum literaturgeschichtlich wichtig?",
+                    en: "Why it matters for literary history",
+                    fr: "Pourquoi cela compte pour l'histoire littéraire",
+                    es: "Por qué importa para la historia literaria",
+                    ru: "Почему это важно для литературной истории"
+                  }))}:</strong> ${escapeHtml(entry.stakes)}</p>
+                  <div class="quote-shell">
+                    <blockquote>${escapeHtml(entry.quote.original)}</blockquote>
+                    <div class="quote-toolbar">
+                      <button type="button" class="btn ghost quote-toggle" data-quote-toggle="${escapeHtml(popupId)}" aria-expanded="false">
+                        ${escapeHtml(labels.quoteButton)}
+                      </button>
+                      <a class="quote-source-link" href="${escapeHtml(entry.quote.sourceUrl)}" target="_blank" rel="noreferrer noopener">${escapeHtml(entry.quote.sourceLabel)}</a>
+                    </div>
+                    <div class="quote-popover" data-quote-popover="${escapeHtml(popupId)}" hidden>
+                      <div class="quote-popover-head">
+                        <strong>${escapeHtml(labels.quoteTitle)}</strong>
+                        <button type="button" class="quote-close" data-quote-close="${escapeHtml(popupId)}" aria-label="${escapeHtml(copy({
+                          de: "Schließen",
+                          en: "Close",
+                          fr: "Fermer",
+                          es: "Cerrar",
+                          ru: "Закрыть"
+                        }))}">×</button>
+                      </div>
+                      <p><strong>DE:</strong> ${escapeHtml(entry.quote.de)}</p>
+                      <p><strong>EN:</strong> ${escapeHtml(entry.quote.en)}</p>
+                    </div>
+                  </div>
+                  <div class="source-list">
+                    <strong>${escapeHtml(labels.sourceLabel)}:</strong>
+                    ${entry.links
+                      .map(
+                        (link) =>
+                          `<a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer noopener">${escapeHtml(link.label)}</a>`
+                      )
+                      .join("")}
+                  </div>
+                </article>
+              `;
+            })
+            .join("")}
+        </div>
+        <div class="subsection-head">
+          <h3>${escapeHtml(labels.otherTitle)}</h3>
+        </div>
+        <div class="summary-card-grid">
+          ${dossier.others
+            .map(
+              (entry) => `
+                <article class="deep-card controversy-summary-card">
+                  <h4>${escapeHtml(entry.title)}</h4>
+                  <p>${escapeHtml(entry.summary)}</p>
+                  <button type="button" class="btn ghost" data-open-language-dossier="${escapeHtml(entry.language)}">
+                    ${escapeHtml(labels.switchLabel)} ${escapeHtml(entry.language.toUpperCase())}
+                  </button>
+                </article>
+              `
+            )
+            .join("")}
+        </div>
+      </section>
+    `;
+  }
+
   function renderStationsGerman(module) {
     return `
       <div class="station-grid">
@@ -627,6 +724,7 @@
         ${renderFocusGuide(module)}
         ${renderSections(module)}
         ${renderApproaches(module)}
+        ${renderControversyDossier(module)}
         ${renderStations(module)}
         <section class="tasks-shell" data-task-module="${escapeHtml(module.id)}"></section>
         ${module.id === "mod-7" ? `<section class="dh-demo-anchor"><div class="dh-demo-container"></div></section>` : ""}
@@ -1032,6 +1130,43 @@
     document.querySelectorAll("[data-module-link]").forEach((link) => {
       link.addEventListener("click", () => {
         progressApi.markModuleVisited(state, link.dataset.moduleLink);
+      });
+    });
+
+    document.querySelectorAll("[data-open-language-dossier]").forEach((button) => {
+      button.addEventListener("click", () => {
+        progressApi.setLanguage(state, button.dataset.openLanguageDossier);
+        window.location.hash = "#mod-6";
+        renderApp();
+      });
+    });
+
+    document.querySelectorAll("[data-quote-toggle]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const targetId = button.dataset.quoteToggle;
+        const popover = document.querySelector(`[data-quote-popover="${targetId}"]`);
+        if (!popover) return;
+        const willOpen = popover.hidden;
+
+        document.querySelectorAll("[data-quote-popover]").forEach((element) => {
+          element.hidden = true;
+        });
+        document.querySelectorAll("[data-quote-toggle]").forEach((element) => {
+          element.setAttribute("aria-expanded", "false");
+        });
+
+        popover.hidden = !willOpen;
+        button.setAttribute("aria-expanded", willOpen ? "true" : "false");
+      });
+    });
+
+    document.querySelectorAll("[data-quote-close]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const targetId = button.dataset.quoteClose;
+        const popover = document.querySelector(`[data-quote-popover="${targetId}"]`);
+        const trigger = document.querySelector(`[data-quote-toggle="${targetId}"]`);
+        if (popover) popover.hidden = true;
+        if (trigger) trigger.setAttribute("aria-expanded", "false");
       });
     });
 
